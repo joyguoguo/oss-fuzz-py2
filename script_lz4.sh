@@ -45,31 +45,30 @@ run_command() {
 
 # 自动发现fuzz目标
 discover_fuzz_targets() {
-  local project_dir="$OSS_FUZZ_DIR/build/out/$PROJECT_NAME"
-  local targets=()
-  
-  # 查找所有可执行文件（排除扩展文件）
-  if [ -d "$project_dir" ]; then
-    while IFS= read -r -d $'\0' file; do
-      if [[ -x "$file" && ! "$file" =~ \..*$ ]]; then
-        targets+=("$(basename "$file")")
-      fi
-    done < <(find "$project_dir" -maxdepth 1 -type f -print0)
-  fi
-
-  # 回退方案：检查项目目录中的.py文件
-  if [ ${#targets[@]} -eq 0 ]; then
+   local project_dir="$OSS_FUZZ_DIR/build/out/$PROJECT_NAME"
     local project_src="$OSS_FUZZ_DIR/projects/$PROJECT_NAME"
-    if [ -d "$project_src" ]; then
-      while IFS= read -r -d $'\0' file; do
-        if grep -q "atheris.Setup" "$file"; then
-          targets+=("$(basename "${file%.*}")")
-        fi
-      done < <(find "$project_src" -name 'fuzz_*.py' -print0)
-    fi
-  fi
+    local targets=()
 
-  echo "${targets[@]}"
+    # 编译目录扫描：仅匹配"fuzz_"开头的可执行文件
+    if [ -d "$project_dir" ]; then
+        while IFS= read -r -d $'\0' file; do
+            filename=$(basename "$file")
+            if [[ -x "$file" && "$filename" =~ ^fuzz_ && ! "$file" =~ \..*$ ]]; then
+                targets+=("$filename")
+            fi
+        done < <(find "$project_dir" -maxdepth 1 -type f -print0)
+    fi
+
+    # 源码目录扫描：仅匹配"fuzz_*.py"且含Atheris标识
+    if [ ${#targets[@]} -eq 0 ] && [ -d "$project_src" ]; then
+        while IFS= read -r -d $'\0' file; do
+            if grep -q "atheris.Setup" "$file"; then
+                targets+=("$(basename "${file%.*}")")
+            fi
+        done < <(find "$project_src" -name 'fuzz_*.py' -print0)
+    fi
+
+    echo "${targets[@]}"
 }
 
 # 主流程
@@ -104,8 +103,8 @@ main() {
   # 4. 遍历运行所有目标
   for target in "${FUZZ_TARGETS[@]}"; do
     run_command \
-      "timeout 5m python3 infra/helper.py run_fuzzer $PROJECT_NAME $target" \
-      "步骤3/5: 运行目标 [$target] (5分钟超时)" \
+      "python3 infra/helper.py run_fuzzer $PROJECT_NAME $target" \
+      "步骤3/5: 运行目标 [$target] (∞分钟超时)" \
       "124,1"  # 允许超时(124)和发现崩溃(1)
   done
 

@@ -1,0 +1,908 @@
+▶️ ...
+Pull latest base images (compiler/runtime)? (y/N): INFO:__main__:Pulling latest base images...
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-image
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-image
+Digest: sha256:2c064ba36c657efbf3c31e69ced46f2a4b7d2fe0aa7683e042a3968dcbc8a007
+Status: Image is up to date for gcr.io/oss-fuzz-base/base-image:latest
+gcr.io/oss-fuzz-base/base-image:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-clang
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-clang
+Digest: sha256:d6e7e83389e4792b76784e57c098727bb4519681d32378ee924fa5cec4ec00ee
+Status: Image is up to date for gcr.io/oss-fuzz-base/base-clang:latest
+gcr.io/oss-fuzz-base/base-clang:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-builder
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-builder
+Digest: sha256:742682adc573d1aba753214170bc1c7a94745611bf2b3235e5254a7e53b264cf
+Status: Image is up to date for gcr.io/oss-fuzz-base/base-builder:latest
+gcr.io/oss-fuzz-base/base-builder:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-runner
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-runner
+Digest: sha256:93bdce5749aee474acb78cdd15f9013fab341905d5e5e03d07bac53076c7990b
+Status: Image is up to date for gcr.io/oss-fuzz-base/base-runner:latest
+gcr.io/oss-fuzz-base/base-runner:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-runner-debug
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-runner-debug
+Digest: sha256:79e29dd68f5012ddbd52157399a6d7b7e1e141666e300f0779c78ca3cd8a283b
+Status: Image is up to date for gcr.io/oss-fuzz-base/base-runner-debug:latest
+gcr.io/oss-fuzz-base/base-runner-debug:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-builder-python
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-builder-python
+Digest: sha256:a50c8ee54cdef0a95a653a40dda2ec5c1b5b43a8322f87314e14effaaf959c0e
+Status: Image is up to date for gcr.io/oss-fuzz-base/base-builder-python:latest
+gcr.io/oss-fuzz-base/base-builder-python:latest
+INFO:__main__:Running: docker build --no-cache -t gcr.io/oss-fuzz/python-lz4 --file /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/python-lz4/Dockerfile /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/python-lz4.
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 874B done
+#1 DONE 0.4s
+
+#2 [internal] load metadata for gcr.io/oss-fuzz-base/base-builder-python:latest
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context:
+#3 transferring context: 2B done
+#3 DONE 0.5s
+
+#4 [1/5] FROM gcr.io/oss-fuzz-base/base-builder-python:latest
+#4 CACHED
+
+#5 [internal] load build context
+#5 transferring context: 61B done
+#5 DONE 0.8s
+
+#6 [2/5] RUN git clone --depth 1 https://github.com/python-lz4/python-lz4
+#6 2.174 Cloning into 'python-lz4'...
+#6 DONE 4.8s
+
+#7 [3/5] COPY build.sh /src/
+#7 DONE 2.4s
+
+#8 [4/5] COPY fuzz_* /src/
+#8 DONE 2.3s
+
+#9 [5/5] WORKDIR /src/python-lz4
+#9 DONE 2.3s
+
+#10 exporting to image
+#10 exporting layers
+#10 exporting layers 1.7s done
+#10 writing image sha256:20468dd9b0c8a32181f18717b91afa2b0b8e207a288fafd5e9af42970bc28772 0.1s done
+#10 naming to gcr.io/oss-fuzz/python-lz4 0.1s done
+#10 DONE 2.2s
+▶️ 步骤2/4: 编译fuzzer [fuzz_lz4] (sanitizer=address)...
+INFO:__main__:Running: docker build -t gcr.io/oss-fuzz/python-lz4 --file /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/python-lz4/Dockerfile /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/python-lz4.
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile:
+#1 transferring dockerfile: 874B done
+#1 DONE 1.2s
+
+#2 [internal] load metadata for gcr.io/oss-fuzz-base/base-builder-python:latest
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context:
+#3 transferring context: 2B done
+#3 DONE 0.4s
+
+#4 [1/5] FROM gcr.io/oss-fuzz-base/base-builder-python:latest
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 61B done
+#5 DONE 0.4s
+
+#6 [2/5] RUN git clone --depth 1 https://github.com/python-lz4/python-lz4
+#6 CACHED
+
+#7 [3/5] COPY build.sh /src/
+#7 CACHED
+
+#8 [4/5] COPY fuzz_* /src/
+#8 CACHED
+
+#9 [5/5] WORKDIR /src/python-lz4
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers done
+#10 writing image sha256:20468dd9b0c8a32181f18717b91afa2b0b8e207a288fafd5e9af42970bc28772 0.1s done
+#10 naming to gcr.io/oss-fuzz/python-lz4
+#10 naming to gcr.io/oss-fuzz/python-lz4 0.1s done
+#10 DONE 0.4s
+INFO:__main__:Keeping existing build artifacts as-is (if any).
+INFO:__main__:Running: docker run --privileged --shm-size=2g --platform linux/amd64 --rm -i -e FUZZING_ENGINE=libfuzzer -e SANITIZER=address -e ARCHITECTURE=x86_64 -e PROJECT_NAME=python-lz4 -e HELPER=True -e FUZZING_LANGUAGE=python -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/out/python-lz4/:/out -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/work/python-lz4:/work -t gcr.io/oss-fuzz/python-lz4.
+---------------------------------------------------------------
+vm.mmap_rnd_bits = 28
+Compiling libFuzzer to /usr/lib/libFuzzingEngine.a...  done.
+---------------------------------------------------------------
+CC=clang
+CXX=clang++
+CFLAGS=-O1   -fno-omit-frame-pointer   -gline-tables-only   -Wno-error=enum-constexpr-conversion   -Wno-error=incompatible-function-pointer-types   -Wno-error=int-conversion   -Wno-error=deprecated-declarations   -Wno-error=implicit-function-declaration   -Wno-error=implicit-int   -Wno-error=vla-cxx-extension   -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -fno-sanitize=function,leak,vptr,
+CXXFLAGS=-O1   -fno-omit-frame-pointer   -gline-tables-only   -Wno-error=enum-constexpr-conversion   -Wno-error=incompatible-function-pointer-types   -Wno-error=int-conversion   -Wno-error=deprecated-declarations   -Wno-error=implicit-function-declaration   -Wno-error=implicit-int   -Wno-error=vla-cxx-extension   -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -stdlib=libc++ -fno-sanitize=function,leak,vptr
+RUSTFLAGS=--cfg fuzzing -Zsanitizer=address -Cdebuginfo=1 -Cforce-frame-pointers
+---------------------------------------------------------------
++ python3 setup.py install
+/usr/local/lib/python3.11/site-packages/setuptools/__init__.py:85: _DeprecatedInstaller: setuptools.installer and fetch_build_eggs are deprecated.
+!!
+
+        ********************************************************************************
+        Requirements should be satisfied by a PEP 517 installer.
+        If you are using pip, you can try `pip install --use-pep517`.
+        ********************************************************************************
+
+!!
+  dist.fetch_build_eggs(dist.setup_requires)
+/usr/local/lib/python3.11/site-packages/setuptools/_distutils/dist.py:268: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+/src/python-lz4/.eggs/setuptools_scm-8.3.1-py3.11.egg/setuptools_scm/git.py:167: UserWarning: "/src/python-lz4" is shallow and may cause errors
+  warnings.warn(f'"{wd.path}" is shallow and may cause errors')
+/src/python-lz4/.eggs/setuptools_scm-8.3.1-py3.11.egg/setuptools_scm/_integration/setuptools.py:92: UserWarning: version of lz4 already set
+  warnings.warn(f"version of {dist_name} already set")
+running install
+/usr/local/lib/python3.11/site-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+!!
+
+        ********************************************************************************
+        Please avoid running ``setup.py`` directly.
+        Instead, use pypa/build, pypa/installer or other
+        standards-based tools.
+
+        See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+        ********************************************************************************
+
+!!
+  self.initialize_options()
+/usr/local/lib/python3.11/site-packages/setuptools/_distutils/cmd.py:66: EasyInstallDeprecationWarning: easy_install command is deprecated.
+!!
+
+        ********************************************************************************
+        Please avoid running ``setup.py`` and ``easy_install``.
+        Instead, use pypa/build, pypa/installer or other
+        standards-based tools.
+
+        See https://github.com/pypa/setuptools/issues/917 for details.
+        ********************************************************************************
+
+!!
+  self.initialize_options()
+running bdist_egg
+running egg_info
+creating lz4.egg-info
+writing lz4.egg-info/PKG-INFO
+writing dependency_links to lz4.egg-info/dependency_links.txt
+writing requirements to lz4.egg-info/requires.txt
+writing top-level names to lz4.egg-info/top_level.txt
+writing manifest file 'lz4.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+adding license file 'LICENSE'
+writing manifest file 'lz4.egg-info/SOURCES.txt'
+installing library code to build/bdist.linux-x86_64/egg
+running install_lib
+running build_py
+creating build
+creating build/lib.linux-x86_64-cpython-311
+creating build/lib.linux-x86_64-cpython-311/lz4
+copying lz4/__init__.py -> build/lib.linux-x86_64-cpython-311/lz4
+copying lz4/version.py -> build/lib.linux-x86_64-cpython-311/lz4
+creating build/lib.linux-x86_64-cpython-311/lz4/block
+copying lz4/block/__init__.py -> build/lib.linux-x86_64-cpython-311/lz4/block
+creating build/lib.linux-x86_64-cpython-311/lz4/frame
+copying lz4/frame/__init__.py -> build/lib.linux-x86_64-cpython-311/lz4/frame
+running build_ext
+building 'lz4._version' extension
+creating build/temp.linux-x86_64-cpython-311
+creating build/temp.linux-x86_64-cpython-311/lz4
+creating build/temp.linux-x86_64-cpython-311/lz4libs
+clang -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -fno-sanitize=function,leak,vptr, -fPIC -Ilz4libs -I/usr/local/include/python3.11 -c lz4/_version.c -o build/temp.linux-x86_64-cpython-311/lz4/_version.o -O3 -Wall -Wundef
+clang -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -fno-sanitize=function,leak,vptr, -fPIC -Ilz4libs -I/usr/local/include/python3.11 -c lz4libs/lz4.c -o build/temp.linux-x86_64-cpython-311/lz4libs/lz4.o -O3 -Wall -Wundef
+clang -shared -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -fno-sanitize=function,leak,vptr, build/temp.linux-x86_64-cpython-311/lz4/_version.o build/temp.linux-x86_64-cpython-311/lz4libs/lz4.o -L/usr/local/lib -o build/lib.linux-x86_64-cpython-311/lz4/_version.cpython-311-x86_64-linux-gnu.so
+building 'lz4.block._block' extension
+creating build/temp.linux-x86_64-cpython-311/lz4/block
+clang -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -fno-sanitize=function,leak,vptr, -fPIC -Ilz4libs -I/usr/local/include/python3.11 -c lz4/block/_block.c -o build/temp.linux-x86_64-cpython-311/lz4/block/_block.o -O3 -Wall -Wundef
+clang -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -fno-sanitize=function,leak,vptr, -fPIC -Ilz4libs -I/usr/local/include/python3.11 -c lz4libs/lz4.c -o build/temp.linux-x86_64-cpython-311/lz4libs/lz4.o -O3 -Wall -Wundef
+clang -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -fno-sanitize=function,leak,vptr, -fPIC -Ilz4libs -I/usr/local/include/python3.11 -c lz4libs/lz4hc.c -o build/temp.linux-x86_64-cpython-311/lz4libs/lz4hc.o -O3 -Wall -Wundef
+clang -shared -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -fno-sanitize=function,leak,vptr, build/temp.linux-x86_64-cpython-311/lz4/block/_block.o build/temp.linux-x86_64-cpython-311/lz4libs/lz4.o build/temp.linux-x86_64-cpython-311/lz4libs/lz4hc.o -L/usr/local/lib -o build/lib.linux-x86_64-cpython-311/lz4/block/_block.cpython-311-x86_64-linux-gnu.so
+building 'lz4.frame._frame' extension
+creating build/temp.linux-x86_64-cpython-311/lz4/frame
+clang -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -fno-sanitize=function,leak,vptr, -fPIC -Ilz4libs -I/usr/local/include/python3.11 -c lz4/frame/_frame.c -o build/temp.linux-x86_64-cpython-311/lz4/frame/_frame.o -O3 -Wall -Wundef
+clang -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -fno-sanitize=function,leak,vptr, -fPIC -Ilz4libs -I/usr/local/include/python3.11 -c lz4libs/lz4.c -o build/temp.linux-x86_64-cpython-311/lz4libs/lz4.o -O3 -Wall -Wundef
+clang -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -fno-sanitize=function,leak,vptr, -fPIC -Ilz4libs -I/usr/local/include/python3.11 -c lz4libs/lz4frame.c -o build/temp.linux-x86_64-cpython-311/lz4libs/lz4frame.o -O3 -Wall -Wundef
+clang -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -fno-sanitize=function,leak,vptr, -fPIC -Ilz4libs -I/usr/local/include/python3.11 -c lz4libs/lz4hc.c -o build/temp.linux-x86_64-cpython-311/lz4libs/lz4hc.o -O3 -Wall -Wundef
+clang -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -fno-sanitize=function,leak,vptr, -fPIC -Ilz4libs -I/usr/local/include/python3.11 -c lz4libs/xxhash.c -o build/temp.linux-x86_64-cpython-311/lz4libs/xxhash.o -O3 -Wall -Wundef
+clang -shared -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -fno-sanitize=function,leak,vptr, build/temp.linux-x86_64-cpython-311/lz4/frame/_frame.o build/temp.linux-x86_64-cpython-311/lz4libs/lz4.o build/temp.linux-x86_64-cpython-311/lz4libs/lz4frame.o build/temp.linux-x86_64-cpython-311/lz4libs/lz4hc.o build/temp.linux-x86_64-cpython-311/lz4libs/xxhash.o -L/usr/local/lib -o build/lib.linux-x86_64-cpython-311/lz4/frame/_frame.cpython-311-x86_64-linux-gnu.so
+copying build/lib.linux-x86_64-cpython-311/lz4/_version.cpython-311-x86_64-linux-gnu.so -> lz4
+copying build/lib.linux-x86_64-cpython-311/lz4/block/_block.cpython-311-x86_64-linux-gnu.so -> lz4/block
+copying build/lib.linux-x86_64-cpython-311/lz4/frame/_frame.cpython-311-x86_64-linux-gnu.so -> lz4/frame
+creating build/bdist.linux-x86_64
+creating build/bdist.linux-x86_64/egg
+creating build/bdist.linux-x86_64/egg/lz4
+copying build/lib.linux-x86_64-cpython-311/lz4/__init__.py -> build/bdist.linux-x86_64/egg/lz4
+copying build/lib.linux-x86_64-cpython-311/lz4/version.py -> build/bdist.linux-x86_64/egg/lz4
+creating build/bdist.linux-x86_64/egg/lz4/block
+copying build/lib.linux-x86_64-cpython-311/lz4/block/__init__.py -> build/bdist.linux-x86_64/egg/lz4/block
+copying build/lib.linux-x86_64-cpython-311/lz4/block/_block.cpython-311-x86_64-linux-gnu.so -> build/bdist.linux-x86_64/egg/lz4/block
+creating build/bdist.linux-x86_64/egg/lz4/frame
+copying build/lib.linux-x86_64-cpython-311/lz4/frame/__init__.py -> build/bdist.linux-x86_64/egg/lz4/frame
+copying build/lib.linux-x86_64-cpython-311/lz4/frame/_frame.cpython-311-x86_64-linux-gnu.so -> build/bdist.linux-x86_64/egg/lz4/frame
+copying build/lib.linux-x86_64-cpython-311/lz4/_version.cpython-311-x86_64-linux-gnu.so -> build/bdist.linux-x86_64/egg/lz4
+byte-compiling build/bdist.linux-x86_64/egg/lz4/__init__.py to __init__.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/lz4/version.py to version.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/lz4/block/__init__.py to __init__.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/lz4/frame/__init__.py to __init__.cpython-311.pyc
+creating stub loader for lz4/_version.cpython-311-x86_64-linux-gnu.so
+creating stub loader for lz4/block/_block.cpython-311-x86_64-linux-gnu.so
+creating stub loader for lz4/frame/_frame.cpython-311-x86_64-linux-gnu.so
+byte-compiling build/bdist.linux-x86_64/egg/lz4/_version.py to _version.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/lz4/block/_block.py to _block.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/lz4/frame/_frame.py to _frame.cpython-311.pyc
+creating build/bdist.linux-x86_64/egg/EGG-INFO
+copying lz4.egg-info/PKG-INFO -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying lz4.egg-info/SOURCES.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying lz4.egg-info/dependency_links.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying lz4.egg-info/requires.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying lz4.egg-info/top_level.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+writing build/bdist.linux-x86_64/egg/EGG-INFO/native_libs.txt
+zip_safe flag not set; analyzing archive contents...
+lz4.__pycache__._version.cpython-311: module references __file__
+lz4.block.__pycache__._block.cpython-311: module references __file__
+lz4.frame.__pycache__._frame.cpython-311: module references __file__
+creating dist
+creating 'dist/lz4-0.1.dev1+g022d538-py3.11-linux-x86_64.egg' and adding 'build/bdist.linux-x86_64/egg' to it
+removing 'build/bdist.linux-x86_64/egg' (and everything under it)
+Processing lz4-0.1.dev1+g022d538-py3.11-linux-x86_64.egg
+creating /usr/local/lib/python3.11/site-packages/lz4-0.1.dev1+g022d538-py3.11-linux-x86_64.egg
+Extracting lz4-0.1.dev1+g022d538-py3.11-linux-x86_64.egg to /usr/local/lib/python3.11/site-packages
+Adding lz4 0.1.dev1+g022d538 to easy-install.pth file
+
+Installed /usr/local/lib/python3.11/site-packages/lz4-0.1.dev1+g022d538-py3.11-linux-x86_64.egg
+Processing dependencies for lz4==0.1.dev1+g022d538
+Finished processing dependencies for lz4==0.1.dev1+g022d538
+++ find /src -name 'fuzz_*.py'
++ for fuzzer in $(find $SRC -name 'fuzz_*.py')
++ compile_python_fuzzer /src/fuzz_lz4.py
++ fuzzer_path=/src/fuzz_lz4.py
++ shift 1
+++ basename -s .py /src/fuzz_lz4.py
++ fuzzer_basename=fuzz_lz4
++ fuzzer_package=fuzz_lz4.pkg
++ PYFUZZ_WORKPATH=/src/pyfuzzworkdir/
++ FUZZ_WORKPATH=/src/pyfuzzworkdir//fuzz_lz4
++ [[ address = *introspector* ]]
++ [[ address = *coverage* ]]
++ [[ 0 != \0 ]]
++ rm -rf /src/pyfuzzworkdir/
++ mkdir /src/pyfuzzworkdir/ /src/pyfuzzworkdir//fuzz_lz4
++ pyinstaller --distpath /out --workpath=/src/pyfuzzworkdir//fuzz_lz4 --onefile --name fuzz_lz4.pkg /src/fuzz_lz4.py
+48 INFO: PyInstaller: 6.10.0, contrib hooks: 2025.6
+48 INFO: Python: 3.11.13
+49 INFO: Platform: Linux-5.15.0-140-generic-x86_64-with-glibc2.31
+49 INFO: Python environment: /usr/local
+50 INFO: wrote /src/python-lz4/fuzz_lz4.pkg.spec
+51 INFO: Module search paths (PYTHONPATH):
+['/usr/local/lib/python311.zip',
+ '/usr/local/lib/python3.11',
+ '/usr/local/lib/python3.11/lib-dynload',
+ '/usr/local/lib/python3.11/site-packages',
+ '/usr/local/lib/python3.11/site-packages/lz4-0.1.dev1+g022d538-py3.11-linux-x86_64.egg',
+ '/usr/local/lib/python3.11/site-packages/setuptools/_vendor',
+ '/src']
+120 INFO: checking Analysis
+120 INFO: Building Analysis because Analysis-00.toc is non existent
+121 INFO: Running Analysis Analysis-00.toc
+121 INFO: Target bytecode optimization level: 0
+121 INFO: Initializing module dependency graph...
+121 INFO: Caching module graph hooks...
+127 INFO: Analyzing base_library.zip ...
+627 INFO: Processing standard module hook 'hook-heapq.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+680 INFO: Processing standard module hook 'hook-encodings.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+1588 INFO: Processing standard module hook 'hook-pickle.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2548 INFO: Caching module dependency graph...
+2606 INFO: Looking for Python shared library...
+2615 INFO: Using Python shared library: /usr/local/lib/libpython3.11.so.1.0
+2615 INFO: Analyzing /src/fuzz_lz4.py
+2617 INFO: Processing standard module hook 'hook-atheris.py' from '/usr/local/lib/python3.11/site-packages/atheris'
+2661 INFO: Processing standard module hook 'hook-lz4.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+2669 INFO: Processing module hooks (post-graph stage)...
+2673 INFO: Performing binary vs. data reclassification (9 entries)
+2676 INFO: Looking for ctypes DLLs
+2683 INFO: Analyzing run-time hooks ...
+2684 INFO: Including run-time hook 'pyi_rth_inspect.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+2687 INFO: Looking for dynamic libraries
+3066 INFO: Warnings written to /src/pyfuzzworkdir/fuzz_lz4/fuzz_lz4.pkg/warn-fuzz_lz4.pkg.txt
+3072 INFO: Graph cross-reference written to /src/pyfuzzworkdir/fuzz_lz4/fuzz_lz4.pkg/xref-fuzz_lz4.pkg.html
+3079 INFO: checking PYZ
+3079 INFO: Building PYZ because PYZ-00.toc is non existent
+3079 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_lz4/fuzz_lz4.pkg/PYZ-00.pyz
+3224 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_lz4/fuzz_lz4.pkg/PYZ-00.pyz completed successfully.
+3234 INFO: checking PKG
+3235 INFO: Building PKG because PKG-00.toc is non existent
+3235 INFO: Building PKG (CArchive) fuzz_lz4.pkg.pkg
+13239 INFO: Building PKG (CArchive) fuzz_lz4.pkg.pkg completed successfully.
+13240 INFO: Bootloader /usr/local/lib/python3.11/site-packages/PyInstaller/bootloader/Linux-64bit-intel/run
+13240 INFO: checking EXE
+13240 INFO: Building EXE because EXE-00.toc is non existent
+13240 INFO: Building EXE from EXE-00.toc
+13244 INFO: Copying bootloader EXE to /out/fuzz_lz4.pkg
+13244 INFO: Appending PKG archive to custom ELF section in EXE
+13284 INFO: Building EXE from EXE-00.toc completed successfully.
++ chmod -x /out/fuzz_lz4.pkg
++ [[ address = *coverage* ]]
++ echo '#!/bin/sh
+# LLVMFuzzerTestOneInput for fuzzer detection.
+this_dir=$(dirname "$0")
+chmod +x $this_dir/fuzz_lz4.pkg
+LD_PRELOAD=$this_dir/sanitizer_with_fuzzer.so ASAN_OPTIONS=$ASAN_OPTIONS:symbolize=1:external_symbolizer_path=$this_dir/llvm-symbolizer:detect_leaks=0 $this_dir/fuzz_lz4.pkg $@'
++ chmod +x /out/fuzz_lz4
+▶️ 步骤3/4: 运行模糊测试 [fuzz_lz4] (5分钟)...
+usage: helper.py [-h]
+                 {generate,build_image,build_fuzzers,fuzzbench_build_fuzzers,check_build,index,run_fuzzer,fuzzbench_run_fuzzer,fuzzbench_measure,coverage,introspector,download_corpora,reproduce,shell,run_clusterfuzzlite,pull_images}
+                 ...
+helper.py: error: unrecognized arguments: -max_total_time=300
+▶️ 步骤4/4: 生成覆盖率报告...
+INFO:__main__:Running: docker build -t gcr.io/oss-fuzz/python-lz4 --file /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/python-lz4/Dockerfile /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/python-lz4.
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 874B done
+#1 DONE 0.4s
+
+#2 [internal] load metadata for gcr.io/oss-fuzz-base/base-builder-python:latest
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.4s
+
+#4 [1/5] FROM gcr.io/oss-fuzz-base/base-builder-python:latest
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 61B done
+#5 DONE 0.4s
+
+#6 [4/5] COPY fuzz_* /src/
+#6 CACHED
+
+#7 [2/5] RUN git clone --depth 1 https://github.com/python-lz4/python-lz4
+#7 CACHED
+
+#8 [3/5] COPY build.sh /src/
+#8 CACHED
+
+#9 [5/5] WORKDIR /src/python-lz4
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers done
+#10 writing image sha256:20468dd9b0c8a32181f18717b91afa2b0b8e207a288fafd5e9af42970bc28772 0.0s done
+#10 naming to gcr.io/oss-fuzz/python-lz4 0.1s done
+#10 DONE 0.4s
+INFO:__main__:Keeping existing build artifacts as-is (if any).
+INFO:__main__:Running: docker run --privileged --shm-size=2g --platform linux/amd64 --rm -i -e FUZZING_ENGINE=libfuzzer -e SANITIZER=coverage -e ARCHITECTURE=x86_64 -e PROJECT_NAME=python-lz4 -e HELPER=True -e FUZZING_LANGUAGE=python -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/out/python-lz4/:/out -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/work/python-lz4:/work -t gcr.io/oss-fuzz/python-lz4.
+---------------------------------------------------------------
+vm.mmap_rnd_bits = 28
+Compiling libFuzzer to /usr/lib/libFuzzingEngine.a...  done.
+---------------------------------------------------------------
+CC=clang
+CXX=clang++
+CFLAGS=-O1   -fno-omit-frame-pointer   -gline-tables-only   -Wno-error=enum-constexpr-conversion   -Wno-error=incompatible-function-pointer-types   -Wno-error=int-conversion   -Wno-error=deprecated-declarations   -Wno-error=implicit-function-declaration   -Wno-error=implicit-int   -Wno-error=vla-cxx-extension   -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION  -fprofile-instr-generate -fcoverage-mapping -pthread -Wl,--no-as-needed -Wl,-ldl -Wl,-lm -Wno-unused-command-line-argument -fno-sanitize=function,leak,vptr,
+CXXFLAGS=-O1   -fno-omit-frame-pointer   -gline-tables-only   -Wno-error=enum-constexpr-conversion   -Wno-error=incompatible-function-pointer-types   -Wno-error=int-conversion   -Wno-error=deprecated-declarations   -Wno-error=implicit-function-declaration   -Wno-error=implicit-int   -Wno-error=vla-cxx-extension   -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION  -fprofile-instr-generate -fcoverage-mapping -pthread -Wl,--no-as-needed -Wl,-ldl -Wl,-lm -Wno-unused-command-line-argument -stdlib=libc++ -fno-sanitize=function,leak,vptr
+RUSTFLAGS=--cfg fuzzing -Cdebuginfo=1 -Cforce-frame-pointers -Cinstrument-coverage -C link-arg=-lc++
+---------------------------------------------------------------
++ python3 setup.py install
+/usr/local/lib/python3.11/site-packages/setuptools/__init__.py:85: _DeprecatedInstaller: setuptools.installer and fetch_build_eggs are deprecated.
+!!
+
+        ********************************************************************************
+        Requirements should be satisfied by a PEP 517 installer.
+        If you are using pip, you can try `pip install --use-pep517`.
+        ********************************************************************************
+
+!!
+  dist.fetch_build_eggs(dist.setup_requires)
+/usr/local/lib/python3.11/site-packages/setuptools/_distutils/dist.py:268: UserWarning: Unknown distribution option: 'tests_require'
+  warnings.warn(msg)
+/src/python-lz4/.eggs/setuptools_scm-8.3.1-py3.11.egg/setuptools_scm/git.py:167: UserWarning: "/src/python-lz4" is shallow and may cause errors
+  warnings.warn(f'"{wd.path}" is shallow and may cause errors')
+/src/python-lz4/.eggs/setuptools_scm-8.3.1-py3.11.egg/setuptools_scm/_integration/setuptools.py:92: UserWarning: version of lz4 already set
+  warnings.warn(f"version of {dist_name} already set")
+running install
+/usr/local/lib/python3.11/site-packages/setuptools/_distutils/cmd.py:66: SetuptoolsDeprecationWarning: setup.py install is deprecated.
+!!
+
+        ********************************************************************************
+        Please avoid running ``setup.py`` directly.
+        Instead, use pypa/build, pypa/installer or other
+        standards-based tools.
+
+        See https://blog.ganssle.io/articles/2021/10/setup-py-deprecated.html for details.
+        ********************************************************************************
+
+!!
+  self.initialize_options()
+/usr/local/lib/python3.11/site-packages/setuptools/_distutils/cmd.py:66: EasyInstallDeprecationWarning: easy_install command is deprecated.
+!!
+
+        ********************************************************************************
+        Please avoid running ``setup.py`` and ``easy_install``.
+        Instead, use pypa/build, pypa/installer or other
+        standards-based tools.
+
+        See https://github.com/pypa/setuptools/issues/917 for details.
+        ********************************************************************************
+
+!!
+  self.initialize_options()
+running bdist_egg
+running egg_info
+creating lz4.egg-info
+writing lz4.egg-info/PKG-INFO
+writing dependency_links to lz4.egg-info/dependency_links.txt
+writing requirements to lz4.egg-info/requires.txt
+writing top-level names to lz4.egg-info/top_level.txt
+writing manifest file 'lz4.egg-info/SOURCES.txt'
+reading manifest template 'MANIFEST.in'
+adding license file 'LICENSE'
+writing manifest file 'lz4.egg-info/SOURCES.txt'
+installing library code to build/bdist.linux-x86_64/egg
+running install_lib
+running build_py
+creating build
+creating build/lib.linux-x86_64-cpython-311
+creating build/lib.linux-x86_64-cpython-311/lz4
+copying lz4/__init__.py -> build/lib.linux-x86_64-cpython-311/lz4
+copying lz4/version.py -> build/lib.linux-x86_64-cpython-311/lz4
+creating build/lib.linux-x86_64-cpython-311/lz4/block
+copying lz4/block/__init__.py -> build/lib.linux-x86_64-cpython-311/lz4/block
+creating build/lib.linux-x86_64-cpython-311/lz4/frame
+copying lz4/frame/__init__.py -> build/lib.linux-x86_64-cpython-311/lz4/frame
+running build_ext
+building 'lz4._version' extension
+creating build/temp.linux-x86_64-cpython-311
+creating build/temp.linux-x86_64-cpython-311/lz4
+creating build/temp.linux-x86_64-cpython-311/lz4libs
+clang -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fprofile-instr-generate -fcoverage-mapping -pthread -Wl,--no-as-needed -Wl,-ldl -Wl,-lm -Wno-unused-command-line-argument -fno-sanitize=function,leak,vptr, -fPIC -Ilz4libs -I/usr/local/include/python3.11 -c lz4/_version.c -o build/temp.linux-x86_64-cpython-311/lz4/_version.o -O3 -Wall -Wundef
+clang -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fprofile-instr-generate -fcoverage-mapping -pthread -Wl,--no-as-needed -Wl,-ldl -Wl,-lm -Wno-unused-command-line-argument -fno-sanitize=function,leak,vptr, -fPIC -Ilz4libs -I/usr/local/include/python3.11 -c lz4libs/lz4.c -o build/temp.linux-x86_64-cpython-311/lz4libs/lz4.o -O3 -Wall -Wundef
+clang -shared -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fprofile-instr-generate -fcoverage-mapping -pthread -Wl,--no-as-needed -Wl,-ldl -Wl,-lm -Wno-unused-command-line-argument -fno-sanitize=function,leak,vptr, build/temp.linux-x86_64-cpython-311/lz4/_version.o build/temp.linux-x86_64-cpython-311/lz4libs/lz4.o -L/usr/local/lib -o build/lib.linux-x86_64-cpython-311/lz4/_version.cpython-311-x86_64-linux-gnu.so
+building 'lz4.block._block' extension
+creating build/temp.linux-x86_64-cpython-311/lz4/block
+clang -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fprofile-instr-generate -fcoverage-mapping -pthread -Wl,--no-as-needed -Wl,-ldl -Wl,-lm -Wno-unused-command-line-argument -fno-sanitize=function,leak,vptr, -fPIC -Ilz4libs -I/usr/local/include/python3.11 -c lz4/block/_block.c -o build/temp.linux-x86_64-cpython-311/lz4/block/_block.o -O3 -Wall -Wundef
+clang -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fprofile-instr-generate -fcoverage-mapping -pthread -Wl,--no-as-needed -Wl,-ldl -Wl,-lm -Wno-unused-command-line-argument -fno-sanitize=function,leak,vptr, -fPIC -Ilz4libs -I/usr/local/include/python3.11 -c lz4libs/lz4.c -o build/temp.linux-x86_64-cpython-311/lz4libs/lz4.o -O3 -Wall -Wundef
+clang -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fprofile-instr-generate -fcoverage-mapping -pthread -Wl,--no-as-needed -Wl,-ldl -Wl,-lm -Wno-unused-command-line-argument -fno-sanitize=function,leak,vptr, -fPIC -Ilz4libs -I/usr/local/include/python3.11 -c lz4libs/lz4hc.c -o build/temp.linux-x86_64-cpython-311/lz4libs/lz4hc.o -O3 -Wall -Wundef
+clang -shared -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fprofile-instr-generate -fcoverage-mapping -pthread -Wl,--no-as-needed -Wl,-ldl -Wl,-lm -Wno-unused-command-line-argument -fno-sanitize=function,leak,vptr, build/temp.linux-x86_64-cpython-311/lz4/block/_block.o build/temp.linux-x86_64-cpython-311/lz4libs/lz4.o build/temp.linux-x86_64-cpython-311/lz4libs/lz4hc.o -L/usr/local/lib -o build/lib.linux-x86_64-cpython-311/lz4/block/_block.cpython-311-x86_64-linux-gnu.so
+building 'lz4.frame._frame' extension
+creating build/temp.linux-x86_64-cpython-311/lz4/frame
+clang -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fprofile-instr-generate -fcoverage-mapping -pthread -Wl,--no-as-needed -Wl,-ldl -Wl,-lm -Wno-unused-command-line-argument -fno-sanitize=function,leak,vptr, -fPIC -Ilz4libs -I/usr/local/include/python3.11 -c lz4/frame/_frame.c -o build/temp.linux-x86_64-cpython-311/lz4/frame/_frame.o -O3 -Wall -Wundef
+clang -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fprofile-instr-generate -fcoverage-mapping -pthread -Wl,--no-as-needed -Wl,-ldl -Wl,-lm -Wno-unused-command-line-argument -fno-sanitize=function,leak,vptr, -fPIC -Ilz4libs -I/usr/local/include/python3.11 -c lz4libs/lz4.c -o build/temp.linux-x86_64-cpython-311/lz4libs/lz4.o -O3 -Wall -Wundef
+clang -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fprofile-instr-generate -fcoverage-mapping -pthread -Wl,--no-as-needed -Wl,-ldl -Wl,-lm -Wno-unused-command-line-argument -fno-sanitize=function,leak,vptr, -fPIC -Ilz4libs -I/usr/local/include/python3.11 -c lz4libs/lz4frame.c -o build/temp.linux-x86_64-cpython-311/lz4libs/lz4frame.o -O3 -Wall -Wundef
+clang -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fprofile-instr-generate -fcoverage-mapping -pthread -Wl,--no-as-needed -Wl,-ldl -Wl,-lm -Wno-unused-command-line-argument -fno-sanitize=function,leak,vptr, -fPIC -Ilz4libs -I/usr/local/include/python3.11 -c lz4libs/lz4hc.c -o build/temp.linux-x86_64-cpython-311/lz4libs/lz4hc.o -O3 -Wall -Wundef
+clang -Wsign-compare -Wunreachable-code -DNDEBUG -g -fwrapv -O3 -Wall -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fprofile-instr-generate -fcoverage-mapping -pthread -Wl,--no-as-needed -Wl,-ldl -Wl,-lm -Wno-unused-command-line-argument -fno-sanitize=function,leak,vptr, -fPIC -Ilz4libs -I/usr/local/include/python3.11 -c lz4libs/xxhash.c -o build/temp.linux-x86_64-cpython-311/lz4libs/xxhash.o -O3 -Wall -Wundef
+clang -shared -O1 -fno-omit-frame-pointer -gline-tables-only -Wno-error=enum-constexpr-conversion -Wno-error=incompatible-function-pointer-types -Wno-error=int-conversion -Wno-error=deprecated-declarations -Wno-error=implicit-function-declaration -Wno-error=implicit-int -Wno-error=vla-cxx-extension -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fprofile-instr-generate -fcoverage-mapping -pthread -Wl,--no-as-needed -Wl,-ldl -Wl,-lm -Wno-unused-command-line-argument -fno-sanitize=function,leak,vptr, build/temp.linux-x86_64-cpython-311/lz4/frame/_frame.o build/temp.linux-x86_64-cpython-311/lz4libs/lz4.o build/temp.linux-x86_64-cpython-311/lz4libs/lz4frame.o build/temp.linux-x86_64-cpython-311/lz4libs/lz4hc.o build/temp.linux-x86_64-cpython-311/lz4libs/xxhash.o -L/usr/local/lib -o build/lib.linux-x86_64-cpython-311/lz4/frame/_frame.cpython-311-x86_64-linux-gnu.so
+copying build/lib.linux-x86_64-cpython-311/lz4/_version.cpython-311-x86_64-linux-gnu.so -> lz4
+copying build/lib.linux-x86_64-cpython-311/lz4/block/_block.cpython-311-x86_64-linux-gnu.so -> lz4/block
+copying build/lib.linux-x86_64-cpython-311/lz4/frame/_frame.cpython-311-x86_64-linux-gnu.so -> lz4/frame
+creating build/bdist.linux-x86_64
+creating build/bdist.linux-x86_64/egg
+creating build/bdist.linux-x86_64/egg/lz4
+copying build/lib.linux-x86_64-cpython-311/lz4/__init__.py -> build/bdist.linux-x86_64/egg/lz4
+copying build/lib.linux-x86_64-cpython-311/lz4/version.py -> build/bdist.linux-x86_64/egg/lz4
+creating build/bdist.linux-x86_64/egg/lz4/block
+copying build/lib.linux-x86_64-cpython-311/lz4/block/__init__.py -> build/bdist.linux-x86_64/egg/lz4/block
+copying build/lib.linux-x86_64-cpython-311/lz4/block/_block.cpython-311-x86_64-linux-gnu.so -> build/bdist.linux-x86_64/egg/lz4/block
+creating build/bdist.linux-x86_64/egg/lz4/frame
+copying build/lib.linux-x86_64-cpython-311/lz4/frame/__init__.py -> build/bdist.linux-x86_64/egg/lz4/frame
+copying build/lib.linux-x86_64-cpython-311/lz4/frame/_frame.cpython-311-x86_64-linux-gnu.so -> build/bdist.linux-x86_64/egg/lz4/frame
+copying build/lib.linux-x86_64-cpython-311/lz4/_version.cpython-311-x86_64-linux-gnu.so -> build/bdist.linux-x86_64/egg/lz4
+byte-compiling build/bdist.linux-x86_64/egg/lz4/__init__.py to __init__.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/lz4/version.py to version.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/lz4/block/__init__.py to __init__.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/lz4/frame/__init__.py to __init__.cpython-311.pyc
+creating stub loader for lz4/_version.cpython-311-x86_64-linux-gnu.so
+creating stub loader for lz4/block/_block.cpython-311-x86_64-linux-gnu.so
+creating stub loader for lz4/frame/_frame.cpython-311-x86_64-linux-gnu.so
+byte-compiling build/bdist.linux-x86_64/egg/lz4/_version.py to _version.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/lz4/block/_block.py to _block.cpython-311.pyc
+byte-compiling build/bdist.linux-x86_64/egg/lz4/frame/_frame.py to _frame.cpython-311.pyc
+creating build/bdist.linux-x86_64/egg/EGG-INFO
+copying lz4.egg-info/PKG-INFO -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying lz4.egg-info/SOURCES.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying lz4.egg-info/dependency_links.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying lz4.egg-info/requires.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying lz4.egg-info/top_level.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+writing build/bdist.linux-x86_64/egg/EGG-INFO/native_libs.txt
+zip_safe flag not set; analyzing archive contents...
+lz4.__pycache__._version.cpython-311: module references __file__
+lz4.block.__pycache__._block.cpython-311: module references __file__
+lz4.frame.__pycache__._frame.cpython-311: module references __file__
+creating dist
+creating 'dist/lz4-0.1.dev1+g022d538-py3.11-linux-x86_64.egg' and adding 'build/bdist.linux-x86_64/egg' to it
+removing 'build/bdist.linux-x86_64/egg' (and everything under it)
+Processing lz4-0.1.dev1+g022d538-py3.11-linux-x86_64.egg
+creating /usr/local/lib/python3.11/site-packages/lz4-0.1.dev1+g022d538-py3.11-linux-x86_64.egg
+Extracting lz4-0.1.dev1+g022d538-py3.11-linux-x86_64.egg to /usr/local/lib/python3.11/site-packages
+Adding lz4 0.1.dev1+g022d538 to easy-install.pth file
+
+Installed /usr/local/lib/python3.11/site-packages/lz4-0.1.dev1+g022d538-py3.11-linux-x86_64.egg
+Processing dependencies for lz4==0.1.dev1+g022d538
+Finished processing dependencies for lz4==0.1.dev1+g022d538
+++ find /src -name 'fuzz_*.py'
++ for fuzzer in $(find $SRC -name 'fuzz_*.py')
++ compile_python_fuzzer /src/fuzz_lz4.py
++ fuzzer_path=/src/fuzz_lz4.py
++ shift 1
+++ basename -s .py /src/fuzz_lz4.py
++ fuzzer_basename=fuzz_lz4
++ fuzzer_package=fuzz_lz4.pkg
++ PYFUZZ_WORKPATH=/src/pyfuzzworkdir/
++ FUZZ_WORKPATH=/src/pyfuzzworkdir//fuzz_lz4
++ [[ coverage = *introspector* ]]
++ [[ coverage = *coverage* ]]
++ cat
++ cat coverage_wrapper.py /src/fuzz_lz4.py
++ mv tmp_fuzzer_coverage.py /src/fuzz_lz4.py
++ [[ 0 != \0 ]]
++ rm -rf /src/pyfuzzworkdir/
++ mkdir /src/pyfuzzworkdir/ /src/pyfuzzworkdir//fuzz_lz4
++ pyinstaller --distpath /out --workpath=/src/pyfuzzworkdir//fuzz_lz4 --onefile --name fuzz_lz4.pkg /src/fuzz_lz4.py
+48 INFO: PyInstaller: 6.10.0, contrib hooks: 2025.6
+48 INFO: Python: 3.11.13
+49 INFO: Platform: Linux-5.15.0-140-generic-x86_64-with-glibc2.31
+50 INFO: Python environment: /usr/local
+50 INFO: wrote /src/python-lz4/fuzz_lz4.pkg.spec
+51 INFO: Module search paths (PYTHONPATH):
+['/usr/local/lib/python311.zip',
+ '/usr/local/lib/python3.11',
+ '/usr/local/lib/python3.11/lib-dynload',
+ '/usr/local/lib/python3.11/site-packages',
+ '/usr/local/lib/python3.11/site-packages/lz4-0.1.dev1+g022d538-py3.11-linux-x86_64.egg',
+ '/usr/local/lib/python3.11/site-packages/setuptools/_vendor',
+ '/src']
+120 INFO: checking Analysis
+120 INFO: Building Analysis because Analysis-00.toc is non existent
+120 INFO: Running Analysis Analysis-00.toc
+120 INFO: Target bytecode optimization level: 0
+120 INFO: Initializing module dependency graph...
+121 INFO: Caching module graph hooks...
+127 INFO: Analyzing base_library.zip ...
+531 INFO: Processing standard module hook 'hook-heapq.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+624 INFO: Processing standard module hook 'hook-encodings.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+1617 INFO: Processing standard module hook 'hook-pickle.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2627 INFO: Caching module dependency graph...
+2679 INFO: Looking for Python shared library...
+2688 INFO: Using Python shared library: /usr/local/lib/libpython3.11.so.1.0
+2688 INFO: Analyzing /src/fuzz_lz4.py
+2729 INFO: Processing standard module hook 'hook-platform.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2834 INFO: Processing standard module hook 'hook-sqlite3.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3003 INFO: Processing standard module hook 'hook-sysconfig.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3100 INFO: Processing standard module hook 'hook-xml.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3101 INFO: Processing standard module hook 'hook-xml.dom.domreg.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3432 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3652 INFO: Processing standard module hook 'hook-atheris.py' from '/usr/local/lib/python3.11/site-packages/atheris'
+3695 INFO: Processing standard module hook 'hook-lz4.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+3704 INFO: Processing module hooks (post-graph stage)...
+3721 INFO: Performing binary vs. data reclassification (9 entries)
+3724 INFO: Looking for ctypes DLLs
+3734 INFO: Analyzing run-time hooks ...
+3735 INFO: Including run-time hook 'pyi_rth_inspect.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+3737 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+3738 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+3741 INFO: Looking for dynamic libraries
+4217 INFO: Warnings written to /src/pyfuzzworkdir/fuzz_lz4/fuzz_lz4.pkg/warn-fuzz_lz4.pkg.txt
+4226 INFO: Graph cross-reference written to /src/pyfuzzworkdir/fuzz_lz4/fuzz_lz4.pkg/xref-fuzz_lz4.pkg.html
+4234 INFO: checking PYZ
+4234 INFO: Building PYZ because PYZ-00.toc is non existent
+4234 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_lz4/fuzz_lz4.pkg/PYZ-00.pyz
+4464 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_lz4/fuzz_lz4.pkg/PYZ-00.pyz completed successfully.
+4475 INFO: checking PKG
+4475 INFO: Building PKG because PKG-00.toc is non existent
+4475 INFO: Building PKG (CArchive) fuzz_lz4.pkg.pkg
+14937 INFO: Building PKG (CArchive) fuzz_lz4.pkg.pkg completed successfully.
+14938 INFO: Bootloader /usr/local/lib/python3.11/site-packages/PyInstaller/bootloader/Linux-64bit-intel/run
+14938 INFO: checking EXE
+14938 INFO: Building EXE because EXE-00.toc is non existent
+14938 INFO: Building EXE from EXE-00.toc
+14942 INFO: Copying bootloader EXE to /out/fuzz_lz4.pkg
+14942 INFO: Appending PKG archive to custom ELF section in EXE
+14983 INFO: Building EXE from EXE-00.toc completed successfully.
++ chmod -x /out/fuzz_lz4.pkg
++ [[ coverage = *coverage* ]]
++ rm -rf /medio/
++ python3 /usr/local/bin/python_coverage_helper.py /src/pyfuzzworkdir//fuzz_lz4 /medio
+Extracts files from the pyinstaller workpath
++ zip -r fuzz_lz4.pkg.deps.zip /medio
+  adding: medio/ (stored 0%)
+  adding: medio/usr/ (stored 0%)
+  adding: medio/usr/local/ (stored 0%)
+  adding: medio/usr/local/lib/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/copy.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/queue.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/threading.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/popen_fork.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/context.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/shared_memory.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/resource_sharer.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/managers.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/sharedctypes.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/heap.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/queues.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/process.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/forkserver.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/dummy/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/dummy/__init__.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/dummy/connection.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/popen_spawn_posix.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/popen_spawn_win32.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/__init__.py (deflated 44%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/util.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/spawn.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/pool.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/connection.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/popen_forkserver.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/resource_tracker.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/reduction.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/synchronize.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/importlib/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/importlib/machinery.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/importlib/__init__.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/_collections.py (deflated 48%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/_functools.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/_text.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/_adapters.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/__init__.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/_itertools.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/_meta.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/importlib/_abc.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/importlib/_bootstrap_external.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/abc.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/__init__.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/readers.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/_common.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/_adapters.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/_legacy.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/_itertools.py (deflated 55%)
+  adding: medio/usr/local/lib/python3.11/importlib/abc.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/importlib/util.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/importlib/readers.py (deflated 39%)
+  adding: medio/usr/local/lib/python3.11/importlib/_bootstrap.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/nturl2path.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/glob.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/site-packages/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/report.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/env.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/multiproc.py (deflated 62%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/html.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/plugin_support.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/phystokens.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/data.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/jsonreport.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/context.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/control.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/inorout.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/tomlconfig.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/debug.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/results.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/misc.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/lcovreport.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/parser.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/annotate.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/summary.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/templite.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/sqldata.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/bytecode.py (deflated 42%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/version.py (deflated 54%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/disposition.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/collector.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/config.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/python.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/files.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/plugin.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/numbits.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/xmlreport.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/__init__.py (deflated 50%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/pytracer.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/exceptions.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/function_hooks.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/import_hook.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/__init__.py (deflated 56%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/utils.py (deflated 56%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/version_dependent.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/instrument_bytecode.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks/pyi_rth_multiprocessing.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks/pyi_rth_pkgutil.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks/pyi_rth_inspect.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/loader/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/loader/pyiboot01_bootstrap.py (deflated 55%)
+  adding: medio/usr/local/lib/python3.11/site-packages/lz4-0.1.dev1+g022d538-py3.11-linux-x86_64.egg/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/lz4-0.1.dev1+g022d538-py3.11-linux-x86_64.egg/lz4/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/lz4-0.1.dev1+g022d538-py3.11-linux-x86_64.egg/lz4/version.py (deflated 48%)
+  adding: medio/usr/local/lib/python3.11/site-packages/lz4-0.1.dev1+g022d538-py3.11-linux-x86_64.egg/lz4/frame/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/lz4-0.1.dev1+g022d538-py3.11-linux-x86_64.egg/lz4/frame/__init__.py (deflated 78%)
+  adding: medio/usr/local/lib/python3.11/site-packages/lz4-0.1.dev1+g022d538-py3.11-linux-x86_64.egg/lz4/__init__.py (deflated 47%)
+  adding: medio/usr/local/lib/python3.11/site-packages/six.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/ctypes/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/ctypes/__init__.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/ctypes/_endian.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/stringprep.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/random.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/xml/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xml/__init__.py (deflated 41%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/xmlreader.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/_exceptions.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/saxutils.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/__init__.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/expatreader.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/handler.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/xmlbuilder.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/__init__.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/minidom.py (deflated 80%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/domreg.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/NodeFilter.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/minicompat.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/expatbuilder.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/pulldom.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/xml/parsers/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xml/parsers/__init__.py (deflated 22%)
+  adding: medio/usr/local/lib/python3.11/xml/parsers/expat.py (deflated 43%)
+  adding: medio/usr/local/lib/python3.11/pickle.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/struct.py (deflated 46%)
+  adding: medio/usr/local/lib/python3.11/_strptime.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/urllib/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/urllib/parse.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/urllib/request.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/urllib/response.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/urllib/error.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/urllib/__init__.py (stored 0%)
+  adding: medio/usr/local/lib/python3.11/shlex.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/shutil.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/email/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/email/errors.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/email/header.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/email/policy.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/email/__init__.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/email/iterators.py (deflated 57%)
+  adding: medio/usr/local/lib/python3.11/email/_parseaddr.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/email/contentmanager.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/email/utils.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/email/_policybase.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/email/encoders.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/email/parser.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/email/charset.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/email/feedparser.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/email/message.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/email/_header_value_parser.py (deflated 79%)
+  adding: medio/usr/local/lib/python3.11/email/_encoded_words.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/email/generator.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/email/base64mime.py (deflated 56%)
+  adding: medio/usr/local/lib/python3.11/email/quoprimime.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/email/headerregistry.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/json/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/json/scanner.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/json/decoder.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/json/encoder.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/json/__init__.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/_aix_support.py (deflated 54%)
+  adding: medio/usr/local/lib/python3.11/token.py (deflated 57%)
+  adding: medio/usr/local/lib/python3.11/selectors.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/ssl.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/tempfile.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/getpass.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/datetime.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/inspect.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/sysconfig.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/csv.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/pathlib.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/contextlib.py (deflated 80%)
+  adding: medio/usr/local/lib/python3.11/calendar.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/argparse.py (deflated 79%)
+  adding: medio/usr/local/lib/python3.11/socket.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/fnmatch.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/numbers.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/lzma.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/_compression.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/typing.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/_pydecimal.py (deflated 79%)
+  adding: medio/usr/local/lib/python3.11/sqlite3/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/sqlite3/__init__.py (deflated 51%)
+  adding: medio/usr/local/lib/python3.11/sqlite3/dump.py (deflated 62%)
+  adding: medio/usr/local/lib/python3.11/sqlite3/dbapi2.py (deflated 59%)
+  adding: medio/usr/local/lib/python3.11/tarfile.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/bisect.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/platform.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/quopri.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/opcode.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/_py_abc.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/ipaddress.py (deflated 80%)
+  adding: medio/usr/local/lib/python3.11/hashlib.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/http/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/http/cookiejar.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/http/__init__.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/http/client.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/hmac.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/__future__.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/subprocess.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/decimal.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/tracemalloc.py (deflated 79%)
+  adding: medio/usr/local/lib/python3.11/secrets.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/_compat_pickle.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/bz2.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/py_compile.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/tokenize.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/zipimport.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/logging/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/logging/__init__.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/statistics.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/xmlrpc/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xmlrpc/__init__.py (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xmlrpc/client.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/textwrap.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/base64.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/gettext.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/contextvars.py (deflated 35%)
+  adding: medio/usr/local/lib/python3.11/configparser.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/pkgutil.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/runpy.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/dataclasses.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/_bootsubprocess.py (deflated 62%)
+  adding: medio/usr/local/lib/python3.11/_threading_local.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/pprint.py (deflated 79%)
+  adding: medio/usr/local/lib/python3.11/fractions.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/signal.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/dis.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/string.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/zipfile.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/netrc.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/ast.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/gzip.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/ftplib.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/mimetypes.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/_sysconfigdata__linux_x86_64-linux-gnu.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/getopt.py (deflated 66%)
+  adding: medio/src/ (stored 0%)
+  adding: medio/src/pyfuzzworkdir/ (stored 0%)
+  adding: medio/src/pyfuzzworkdir/fuzz_lz4/ (stored 0%)
+  adding: medio/src/pyfuzzworkdir/fuzz_lz4/fuzz_lz4.pkg/ (stored 0%)
+  adding: medio/src/pyfuzzworkdir/fuzz_lz4/fuzz_lz4.pkg/localpycs/ (stored 0%)
+  adding: medio/src/pyfuzzworkdir/fuzz_lz4/fuzz_lz4.pkg/localpycs/pyimod01_archive.pyc (deflated 46%)
+  adding: medio/src/pyfuzzworkdir/fuzz_lz4/fuzz_lz4.pkg/localpycs/struct.pyc (deflated 31%)
+  adding: medio/src/pyfuzzworkdir/fuzz_lz4/fuzz_lz4.pkg/localpycs/pyimod03_ctypes.pyc (deflated 59%)
+  adding: medio/src/pyfuzzworkdir/fuzz_lz4/fuzz_lz4.pkg/localpycs/pyimod02_importers.pyc (deflated 59%)
+  adding: medio/src/pyfuzzworkdir/fuzz_lz4/fuzz_lz4.pkg/PYZ-00.pyz (deflated 0%)
+  adding: medio/src/fuzz_lz4.py (deflated 46%)
++ mv fuzz_lz4.pkg.deps.zip /out/
++ echo '#!/bin/sh
+# LLVMFuzzerTestOneInput for fuzzer detection.
+this_dir=$(dirname "$0")
+chmod +x $this_dir/fuzz_lz4.pkg
+LD_PRELOAD=$this_dir/sanitizer_with_fuzzer.so ASAN_OPTIONS=$ASAN_OPTIONS:symbolize=1:external_symbolizer_path=$this_dir/llvm-symbolizer:detect_leaks=0 $this_dir/fuzz_lz4.pkg $@'
++ chmod +x /out/fuzz_lz4
+INFO:__main__:Downloading corpora for python-lz4 project to /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/corpus/python-lz4.
+ServiceException: 401 Anonymous caller does not have storage.objects.get access to the Google Cloud Storage object. Permission 'storage.objects.get' denied on resource (or it may not exist).
+ServiceException: 401 Anonymous caller does not have storage.objects.get access to the Google Cloud Storage object. Permission 'storage.objects.get' denied on resource (or it may not exist).
+WARNING:__main__:Corpus for python-lz4_sanitizer_with_fuzzer-so not found:
+
+WARNING:__main__:Corpus for python-lz4_fuzz_lz4 not found:
+
+INFO:__main__:Running: docker run --privileged --shm-size=2g --platform linux/amd64 --rm -i -e FUZZING_ENGINE=libfuzzer -e HELPER=True -e FUZZING_LANGUAGE=python -e PROJECT=python-lz4 -e SANITIZER=coverage -e 'COVERAGE_EXTRA_ARGS= ' -e ARCHITECTURE=x86_64 -p 8888:8888 -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/corpus/python-lz4:/corpus -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/out/python-lz4:/out -t gcr.io/oss-fuzz-base/base-runner coverage.
+Entering python fuzzing
+^CERROR:__main__:Failed to generate clang code coverage report.

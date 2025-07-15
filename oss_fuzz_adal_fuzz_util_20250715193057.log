@@ -1,0 +1,1835 @@
+▶️ 步骤1/4: 构建Docker镜像 [adal]...
+Pull latest base images (compiler/runtime)? (y/N): INFO:__main__:Pulling latest base images...
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-image
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-image
+Digest: sha256:2c064ba36c657efbf3c31e69ced46f2a4b7d2fe0aa7683e042a3968dcbc8a007
+Status: Image is up to date for gcr.io/oss-fuzz-base/base-image:latest
+gcr.io/oss-fuzz-base/base-image:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-clang
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-clang
+Digest: sha256:d6e7e83389e4792b76784e57c098727bb4519681d32378ee924fa5cec4ec00ee
+Status: Image is up to date for gcr.io/oss-fuzz-base/base-clang:latest
+gcr.io/oss-fuzz-base/base-clang:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-builder
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-builder
+Digest: sha256:742682adc573d1aba753214170bc1c7a94745611bf2b3235e5254a7e53b264cf
+Status: Image is up to date for gcr.io/oss-fuzz-base/base-builder:latest
+gcr.io/oss-fuzz-base/base-builder:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-runner
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-runner
+Digest: sha256:93bdce5749aee474acb78cdd15f9013fab341905d5e5e03d07bac53076c7990b
+Status: Image is up to date for gcr.io/oss-fuzz-base/base-runner:latest
+gcr.io/oss-fuzz-base/base-runner:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-runner-debug
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-runner-debug
+Digest: sha256:79e29dd68f5012ddbd52157399a6d7b7e1e141666e300f0779c78ca3cd8a283b
+Status: Image is up to date for gcr.io/oss-fuzz-base/base-runner-debug:latest
+gcr.io/oss-fuzz-base/base-runner-debug:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-builder-python
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-builder-python
+Digest: sha256:a50c8ee54cdef0a95a653a40dda2ec5c1b5b43a8322f87314e14effaaf959c0e
+Status: Image is up to date for gcr.io/oss-fuzz-base/base-builder-python:latest
+gcr.io/oss-fuzz-base/base-builder-python:latest
+INFO:__main__:Running: docker build --no-cache -t gcr.io/oss-fuzz/adal --file /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/adal/Dockerfile /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/adal.
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile:
+#1 transferring dockerfile: 876B done
+#1 DONE 0.5s
+
+#2 [internal] load metadata for gcr.io/oss-fuzz-base/base-builder-python:latest
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context:
+#3 transferring context: 2B done
+#3 DONE 0.7s
+
+#4 [1/4] FROM gcr.io/oss-fuzz-base/base-builder-python:latest
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 ...
+
+#4 [1/4] FROM gcr.io/oss-fuzz-base/base-builder-python:latest
+#4 CACHED
+
+#5 [internal] load build context
+#5 transferring context: 97B done
+#5 DONE 0.9s
+
+#6 [2/4] RUN git clone https://github.com/AzureAD/azure-activedirectory-library-for-python adsl
+#6 2.446 Cloning into 'adsl'...
+#6 DONE 5.3s
+
+#7 [3/4] WORKDIR adsl
+#7 DONE 2.7s
+
+#8 [4/4] COPY build.sh fuzz_*.py /src/
+#8 DONE 2.6s
+
+#9 exporting to image
+#9 exporting layers
+#9 exporting layers 1.9s done
+#9 writing image sha256:1a8615526fd500af6be03c7db703489b91716059f031f17d402b5054ec65931f 0.0s done
+#9 naming to gcr.io/oss-fuzz/adal 0.1s done
+#9 DONE 2.5s
+
+ [33m1 warning found (use docker --debug to expand):
+[0m - WorkdirRelativePath: Relative workdir "adsl" can have unexpected results if the base image changes (line 20)
+▶️ 步骤2/4: 编译fuzzer [fuzz_util] (sanitizer=address)...
+INFO:__main__:Running: docker build -t gcr.io/oss-fuzz/adal --file /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/adal/Dockerfile /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/adal.
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile:
+#1 transferring dockerfile: 876B done
+#1 DONE 1.2s
+
+#2 [internal] load metadata for gcr.io/oss-fuzz-base/base-builder-python:latest
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context:
+#3 transferring context: 2B done
+#3 DONE 0.6s
+
+#4 [1/4] FROM gcr.io/oss-fuzz-base/base-builder-python:latest
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 97B done
+#5 DONE 1.0s
+
+#6 [2/4] RUN git clone https://github.com/AzureAD/azure-activedirectory-library-for-python adsl
+#6 CACHED
+
+#7 [3/4] WORKDIR adsl
+#7 CACHED
+
+#8 [4/4] COPY build.sh fuzz_*.py /src/
+#8 CACHED
+
+#9 exporting to image
+#9 exporting layers done
+#9 writing image sha256:1a8615526fd500af6be03c7db703489b91716059f031f17d402b5054ec65931f 0.1s done
+#9 naming to gcr.io/oss-fuzz/adal 0.1s done
+#9 DONE 0.4s
+
+ [33m1 warning found (use docker --debug to expand):
+[0m - WorkdirRelativePath: Relative workdir "adsl" can have unexpected results if the base image changes (line 20)
+INFO:__main__:Keeping existing build artifacts as-is (if any).
+INFO:__main__:Running: docker run --privileged --shm-size=2g --platform linux/amd64 --rm -i -e FUZZING_ENGINE=libfuzzer -e SANITIZER=address -e ARCHITECTURE=x86_64 -e PROJECT_NAME=adal -e HELPER=True -e FUZZING_LANGUAGE=python -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/out/adal/:/out -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/work/adal:/work -t gcr.io/oss-fuzz/adal.
+---------------------------------------------------------------
+vm.mmap_rnd_bits = 28
+Compiling libFuzzer to /usr/lib/libFuzzingEngine.a...  done.
+---------------------------------------------------------------
+CC=clang
+CXX=clang++
+CFLAGS=-O1   -fno-omit-frame-pointer   -gline-tables-only   -Wno-error=enum-constexpr-conversion   -Wno-error=incompatible-function-pointer-types   -Wno-error=int-conversion   -Wno-error=deprecated-declarations   -Wno-error=implicit-function-declaration   -Wno-error=implicit-int   -Wno-error=vla-cxx-extension   -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -fno-sanitize=function,leak,vptr,
+CXXFLAGS=-O1   -fno-omit-frame-pointer   -gline-tables-only   -Wno-error=enum-constexpr-conversion   -Wno-error=incompatible-function-pointer-types   -Wno-error=int-conversion   -Wno-error=deprecated-declarations   -Wno-error=implicit-function-declaration   -Wno-error=implicit-int   -Wno-error=vla-cxx-extension   -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -stdlib=libc++ -fno-sanitize=function,leak,vptr
+RUSTFLAGS=--cfg fuzzing -Zsanitizer=address -Cdebuginfo=1 -Cforce-frame-pointers
+---------------------------------------------------------------
++ pip3 install --upgrade pip
+Requirement already satisfied: pip in /usr/local/lib/python3.11/site-packages (25.1.1)
+[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.[0m[33m
+[0m+ pip3 install .
+Processing /src/adsl
+  Installing build dependencies ... [?25l- \ done
+[?25h  Getting requirements to build wheel ... [?25l- done
+[?25h  Preparing metadata (pyproject.toml) ... [?25l- done
+[?25hCollecting PyJWT<3,>=1.0.0 (from adal==1.2.7)
+  Downloading PyJWT-2.10.1-py3-none-any.whl.metadata (4.0 kB)
+Collecting requests<3,>=2.0.0 (from adal==1.2.7)
+  Downloading requests-2.32.4-py3-none-any.whl.metadata (4.9 kB)
+Collecting python-dateutil<3,>=2.1.0 (from adal==1.2.7)
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting cryptography>=1.1.0 (from adal==1.2.7)
+  Downloading cryptography-45.0.5-cp311-abi3-manylinux_2_28_x86_64.whl.metadata (5.7 kB)
+Requirement already satisfied: six>=1.5 in /usr/local/lib/python3.11/site-packages (from python-dateutil<3,>=2.1.0->adal==1.2.7) (1.15.0)
+Collecting charset_normalizer<4,>=2 (from requests<3,>=2.0.0->adal==1.2.7)
+  Downloading charset_normalizer-3.4.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (35 kB)
+Collecting idna<4,>=2.5 (from requests<3,>=2.0.0->adal==1.2.7)
+  Downloading idna-3.10-py3-none-any.whl.metadata (10 kB)
+Collecting urllib3<3,>=1.21.1 (from requests<3,>=2.0.0->adal==1.2.7)
+  Downloading urllib3-2.5.0-py3-none-any.whl.metadata (6.5 kB)
+Collecting certifi>=2017.4.17 (from requests<3,>=2.0.0->adal==1.2.7)
+  Downloading certifi-2025.7.14-py3-none-any.whl.metadata (2.4 kB)
+Collecting cffi>=1.14 (from cryptography>=1.1.0->adal==1.2.7)
+  Downloading cffi-1.17.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting pycparser (from cffi>=1.14->cryptography>=1.1.0->adal==1.2.7)
+  Downloading pycparser-2.22-py3-none-any.whl.metadata (943 bytes)
+Downloading PyJWT-2.10.1-py3-none-any.whl (22 kB)
+Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Downloading requests-2.32.4-py3-none-any.whl (64 kB)
+Downloading charset_normalizer-3.4.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (147 kB)
+Downloading idna-3.10-py3-none-any.whl (70 kB)
+Downloading urllib3-2.5.0-py3-none-any.whl (129 kB)
+Downloading certifi-2025.7.14-py3-none-any.whl (162 kB)
+Downloading cryptography-45.0.5-cp311-abi3-manylinux_2_28_x86_64.whl (4.5 MB)
+[?25l   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/4.5 MB[0m [31m?[0m eta [36m-:--:--[0m[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m4.5/4.5 MB[0m [31m24.2 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading cffi-1.17.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (467 kB)
+Downloading pycparser-2.22-py3-none-any.whl (117 kB)
+Building wheels for collected packages: adal
+  Building wheel for adal (pyproject.toml) ... [?25l- done
+[?25h  Created wheel for adal: filename=adal-1.2.7-py2.py3-none-any.whl size=55914 sha256=51f0aba06b798eb378440d048c72ab96884274c6fd04c6337bbf9461b4a70d46
+  Stored in directory: /tmp/pip-ephem-wheel-cache-e_acxg5f/wheels/a3/cc/c5/663685137c4d451251ea50a1c5f5e40de5b451bf8ce574b9bb
+Successfully built adal
+Installing collected packages: urllib3, python-dateutil, PyJWT, pycparser, idna, charset_normalizer, certifi, requests, cffi, cryptography, adal
+[?25l[2K   [91m━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 1/11[0m [python-dateutil][2K   [91m━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/11[0m [PyJWT][2K   [91m━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 3/11[0m [pycparser][2K   [91m━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 4/11[0m [idna][2K   [91m━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━[0m [32m 5/11[0m [charset_normalizer][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━[0m [32m 7/11[0m [requests][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m 8/11[0m [cffi][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━[0m [32m 9/11[0m [cryptography][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━[0m [32m10/11[0m [adal][2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m11/11[0m [adal]
+[?25h[1A[2KSuccessfully installed PyJWT-2.10.1 adal-1.2.7 certifi-2025.7.14 cffi-1.17.1 charset_normalizer-3.4.2 cryptography-45.0.5 idna-3.10 pycparser-2.22 python-dateutil-2.9.0.post0 requests-2.32.4 urllib3-2.5.0
+[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.[0m[33m
+[0m++ find /src -name 'fuzz_*.py'
++ for fuzzer in $(find $SRC -name 'fuzz_*.py')
++ compile_python_fuzzer /src/fuzz_util.py
++ fuzzer_path=/src/fuzz_util.py
++ shift 1
+++ basename -s .py /src/fuzz_util.py
++ fuzzer_basename=fuzz_util
++ fuzzer_package=fuzz_util.pkg
++ PYFUZZ_WORKPATH=/src/pyfuzzworkdir/
++ FUZZ_WORKPATH=/src/pyfuzzworkdir//fuzz_util
++ [[ address = *introspector* ]]
++ [[ address = *coverage* ]]
++ [[ 0 != \0 ]]
++ rm -rf /src/pyfuzzworkdir/
++ mkdir /src/pyfuzzworkdir/ /src/pyfuzzworkdir//fuzz_util
++ pyinstaller --distpath /out --workpath=/src/pyfuzzworkdir//fuzz_util --onefile --name fuzz_util.pkg /src/fuzz_util.py
+51 INFO: PyInstaller: 6.10.0, contrib hooks: 2025.6
+51 INFO: Python: 3.11.13
+52 INFO: Platform: Linux-5.15.0-140-generic-x86_64-with-glibc2.31
+52 INFO: Python environment: /usr/local
+52 INFO: wrote /src/adsl/fuzz_util.pkg.spec
+54 INFO: Module search paths (PYTHONPATH):
+['/usr/local/lib/python311.zip',
+ '/usr/local/lib/python3.11',
+ '/usr/local/lib/python3.11/lib-dynload',
+ '/usr/local/lib/python3.11/site-packages',
+ '/usr/local/lib/python3.11/site-packages/setuptools/_vendor',
+ '/src']
+123 INFO: checking Analysis
+123 INFO: Building Analysis because Analysis-00.toc is non existent
+123 INFO: Running Analysis Analysis-00.toc
+123 INFO: Target bytecode optimization level: 0
+123 INFO: Initializing module dependency graph...
+124 INFO: Caching module graph hooks...
+130 INFO: Analyzing base_library.zip ...
+637 INFO: Processing standard module hook 'hook-heapq.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+691 INFO: Processing standard module hook 'hook-encodings.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+1589 INFO: Processing standard module hook 'hook-pickle.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2558 INFO: Caching module dependency graph...
+2615 INFO: Looking for Python shared library...
+2624 INFO: Using Python shared library: /usr/local/lib/libpython3.11.so.1.0
+2624 INFO: Analyzing /src/fuzz_util.py
+2627 INFO: Processing standard module hook 'hook-atheris.py' from '/usr/local/lib/python3.11/site-packages/atheris'
+2683 INFO: Processing standard module hook 'hook-urllib3.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+2895 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+2895 INFO: SetuptoolsInfo: initializing cached setuptools info...
+6007 INFO: Processing standard module hook 'hook-charset_normalizer.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+6075 INFO: Processing standard module hook 'hook-cryptography.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+6389 INFO: hook-cryptography: cryptography does not seem to be using dynamically linked OpenSSL.
+6585 INFO: Processing standard module hook 'hook-certifi.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+6699 INFO: Processing standard module hook 'hook-platform.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+6722 INFO: Processing standard module hook 'hook-xml.etree.cElementTree.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+6722 INFO: Processing standard module hook 'hook-xml.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+6830 INFO: Processing standard module hook 'hook-dateutil.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+7001 INFO: Processing pre-safe-import-module hook 'hook-six.moves.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7120 INFO: Processing module hooks (post-graph stage)...
+7151 INFO: Performing binary vs. data reclassification (12 entries)
+7154 INFO: Looking for ctypes DLLs
+7187 WARNING: Library user32 required via ctypes not found
+7195 INFO: Analyzing run-time hooks ...
+7197 INFO: Including run-time hook 'pyi_rth_inspect.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+7198 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+7199 INFO: Including run-time hook 'pyi_rth_cryptography_openssl.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/rthooks'
+7202 INFO: Looking for dynamic libraries
+7648 INFO: Warnings written to /src/pyfuzzworkdir/fuzz_util/fuzz_util.pkg/warn-fuzz_util.pkg.txt
+7660 INFO: Graph cross-reference written to /src/pyfuzzworkdir/fuzz_util/fuzz_util.pkg/xref-fuzz_util.pkg.html
+7669 INFO: checking PYZ
+7669 INFO: Building PYZ because PYZ-00.toc is non existent
+7669 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_util/fuzz_util.pkg/PYZ-00.pyz
+8155 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_util/fuzz_util.pkg/PYZ-00.pyz completed successfully.
+8167 INFO: checking PKG
+8167 INFO: Building PKG because PKG-00.toc is non existent
+8167 INFO: Building PKG (CArchive) fuzz_util.pkg.pkg
+20247 INFO: Building PKG (CArchive) fuzz_util.pkg.pkg completed successfully.
+20248 INFO: Bootloader /usr/local/lib/python3.11/site-packages/PyInstaller/bootloader/Linux-64bit-intel/run
+20248 INFO: checking EXE
+20248 INFO: Building EXE because EXE-00.toc is non existent
+20248 INFO: Building EXE from EXE-00.toc
+20252 INFO: Copying bootloader EXE to /out/fuzz_util.pkg
+20252 INFO: Appending PKG archive to custom ELF section in EXE
+20296 INFO: Building EXE from EXE-00.toc completed successfully.
++ chmod -x /out/fuzz_util.pkg
++ [[ address = *coverage* ]]
++ echo '#!/bin/sh
+# LLVMFuzzerTestOneInput for fuzzer detection.
+this_dir=$(dirname "$0")
+chmod +x $this_dir/fuzz_util.pkg
+LD_PRELOAD=$this_dir/sanitizer_with_fuzzer.so ASAN_OPTIONS=$ASAN_OPTIONS:symbolize=1:external_symbolizer_path=$this_dir/llvm-symbolizer:detect_leaks=0 $this_dir/fuzz_util.pkg $@'
++ chmod +x /out/fuzz_util
++ for fuzzer in $(find $SRC -name 'fuzz_*.py')
++ compile_python_fuzzer /src/fuzz_xmlutil.py
++ fuzzer_path=/src/fuzz_xmlutil.py
++ shift 1
+++ basename -s .py /src/fuzz_xmlutil.py
++ fuzzer_basename=fuzz_xmlutil
++ fuzzer_package=fuzz_xmlutil.pkg
++ PYFUZZ_WORKPATH=/src/pyfuzzworkdir/
++ FUZZ_WORKPATH=/src/pyfuzzworkdir//fuzz_xmlutil
++ [[ address = *introspector* ]]
++ [[ address = *coverage* ]]
++ [[ 0 != \0 ]]
++ rm -rf /src/pyfuzzworkdir/
++ mkdir /src/pyfuzzworkdir/ /src/pyfuzzworkdir//fuzz_xmlutil
++ pyinstaller --distpath /out --workpath=/src/pyfuzzworkdir//fuzz_xmlutil --onefile --name fuzz_xmlutil.pkg /src/fuzz_xmlutil.py
+47 INFO: PyInstaller: 6.10.0, contrib hooks: 2025.6
+47 INFO: Python: 3.11.13
+48 INFO: Platform: Linux-5.15.0-140-generic-x86_64-with-glibc2.31
+48 INFO: Python environment: /usr/local
+48 INFO: wrote /src/adsl/fuzz_xmlutil.pkg.spec
+50 INFO: Module search paths (PYTHONPATH):
+['/usr/local/lib/python311.zip',
+ '/usr/local/lib/python3.11',
+ '/usr/local/lib/python3.11/lib-dynload',
+ '/usr/local/lib/python3.11/site-packages',
+ '/usr/local/lib/python3.11/site-packages/setuptools/_vendor',
+ '/src']
+119 INFO: checking Analysis
+119 INFO: Building Analysis because Analysis-00.toc is non existent
+119 INFO: Running Analysis Analysis-00.toc
+119 INFO: Target bytecode optimization level: 0
+119 INFO: Initializing module dependency graph...
+119 INFO: Caching module graph hooks...
+125 INFO: Analyzing base_library.zip ...
+458 INFO: Processing standard module hook 'hook-encodings.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+736 INFO: Processing standard module hook 'hook-heapq.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+1048 INFO: Processing standard module hook 'hook-pickle.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2771 INFO: Caching module dependency graph...
+2827 INFO: Looking for Python shared library...
+2836 INFO: Using Python shared library: /usr/local/lib/libpython3.11.so.1.0
+2836 INFO: Analyzing /src/fuzz_xmlutil.py
+2838 INFO: Processing standard module hook 'hook-atheris.py' from '/usr/local/lib/python3.11/site-packages/atheris'
+2882 INFO: Processing standard module hook 'hook-xml.etree.cElementTree.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2882 INFO: Processing standard module hook 'hook-xml.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2937 INFO: Processing standard module hook 'hook-urllib3.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+3156 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+3156 INFO: SetuptoolsInfo: initializing cached setuptools info...
+6248 INFO: Processing standard module hook 'hook-charset_normalizer.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+6308 INFO: Processing standard module hook 'hook-cryptography.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+6620 INFO: hook-cryptography: cryptography does not seem to be using dynamically linked OpenSSL.
+6830 INFO: Processing standard module hook 'hook-certifi.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+6938 INFO: Processing standard module hook 'hook-platform.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7023 INFO: Processing standard module hook 'hook-dateutil.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+7194 INFO: Processing pre-safe-import-module hook 'hook-six.moves.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7316 INFO: Processing module hooks (post-graph stage)...
+7347 INFO: Performing binary vs. data reclassification (12 entries)
+7350 INFO: Looking for ctypes DLLs
+7381 WARNING: Library user32 required via ctypes not found
+7388 INFO: Analyzing run-time hooks ...
+7390 INFO: Including run-time hook 'pyi_rth_inspect.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+7391 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+7392 INFO: Including run-time hook 'pyi_rth_cryptography_openssl.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/rthooks'
+7395 INFO: Looking for dynamic libraries
+7839 INFO: Warnings written to /src/pyfuzzworkdir/fuzz_xmlutil/fuzz_xmlutil.pkg/warn-fuzz_xmlutil.pkg.txt
+7850 INFO: Graph cross-reference written to /src/pyfuzzworkdir/fuzz_xmlutil/fuzz_xmlutil.pkg/xref-fuzz_xmlutil.pkg.html
+7859 INFO: checking PYZ
+7859 INFO: Building PYZ because PYZ-00.toc is non existent
+7859 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_xmlutil/fuzz_xmlutil.pkg/PYZ-00.pyz
+8162 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_xmlutil/fuzz_xmlutil.pkg/PYZ-00.pyz completed successfully.
+8174 INFO: checking PKG
+8174 INFO: Building PKG because PKG-00.toc is non existent
+8174 INFO: Building PKG (CArchive) fuzz_xmlutil.pkg.pkg
+20274 INFO: Building PKG (CArchive) fuzz_xmlutil.pkg.pkg completed successfully.
+20275 INFO: Bootloader /usr/local/lib/python3.11/site-packages/PyInstaller/bootloader/Linux-64bit-intel/run
+20275 INFO: checking EXE
+20275 INFO: Building EXE because EXE-00.toc is non existent
+20275 INFO: Building EXE from EXE-00.toc
+20279 INFO: Copying bootloader EXE to /out/fuzz_xmlutil.pkg
+20279 INFO: Appending PKG archive to custom ELF section in EXE
+20322 INFO: Building EXE from EXE-00.toc completed successfully.
++ chmod -x /out/fuzz_xmlutil.pkg
++ [[ address = *coverage* ]]
++ echo '#!/bin/sh
+# LLVMFuzzerTestOneInput for fuzzer detection.
+this_dir=$(dirname "$0")
+chmod +x $this_dir/fuzz_xmlutil.pkg
+LD_PRELOAD=$this_dir/sanitizer_with_fuzzer.so ASAN_OPTIONS=$ASAN_OPTIONS:symbolize=1:external_symbolizer_path=$this_dir/llvm-symbolizer:detect_leaks=0 $this_dir/fuzz_xmlutil.pkg $@'
++ chmod +x /out/fuzz_xmlutil
+▶️ 步骤3/4: 运行模糊测试 [fuzz_util] (5分钟)...
+INFO:__main__:Running: docker run --privileged --shm-size=2g --platform linux/amd64 --rm -i -e FUZZING_ENGINE=libfuzzer -e SANITIZER=address -e RUN_FUZZER_MODE=interactive -e HELPER=True -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/out/adal:/out -t gcr.io/oss-fuzz-base/base-runner run_fuzzer fuzz_util.
+vm.mmap_rnd_bits = 28
+/out/fuzz_util -rss_limit_mb=2560 -timeout=25 /tmp/fuzz_util_corpus < /dev/null
+INFO: Instrumenting adal
+WARNING: It looks like this module is imported by a custom loader. Atheris has experimental support for this. However, it may be incompatible with certain libraries. If you experience unusual errors or poor coverage collection, try atheris.instrument_all() instead, add enable_loader_override=False to instrument_imports(), or file an issue on GitHub.
+INFO: Instrumenting adal.authentication_context
+INFO: Instrumenting adal.authority
+INFO: Instrumenting requests
+INFO: Instrumenting urllib3
+INFO: Instrumenting __future__
+INFO: Instrumenting urllib3.exceptions
+INFO: Instrumenting socket
+INFO: Instrumenting selectors
+INFO: Instrumenting email
+INFO: Instrumenting email.errors
+INFO: Instrumenting http
+INFO: Instrumenting http.client
+INFO: Instrumenting email.parser
+INFO: Instrumenting email.feedparser
+INFO: Instrumenting email._policybase
+INFO: Instrumenting email.header
+INFO: Instrumenting email.quoprimime
+INFO: Instrumenting email.base64mime
+INFO: Instrumenting base64
+INFO: Instrumenting email.charset
+INFO: Instrumenting email.encoders
+INFO: Instrumenting quopri
+INFO: Instrumenting email.utils
+INFO: Instrumenting datetime
+INFO: Instrumenting email._parseaddr
+INFO: Instrumenting calendar
+INFO: Instrumenting locale
+INFO: Instrumenting email.message
+INFO: Instrumenting email._encoded_words
+INFO: Instrumenting email.iterators
+INFO: Instrumenting ssl
+INFO: Instrumenting urllib3._base_connection
+INFO: Instrumenting urllib3.util
+INFO: Instrumenting urllib3.util.connection
+INFO: Instrumenting urllib3.util.timeout
+INFO: Instrumenting urllib3.util.request
+INFO: Instrumenting urllib3.util.util
+INFO: Instrumenting urllib3.util.response
+INFO: Instrumenting urllib3.util.retry
+INFO: Instrumenting urllib3.util.ssl_
+INFO: Instrumenting hashlib
+INFO: Instrumenting hmac
+INFO: Instrumenting urllib3.util.url
+INFO: Instrumenting urllib3.util.ssltransport
+INFO: Instrumenting urllib3.util.wait
+INFO: Instrumenting urllib3._collections
+INFO: Instrumenting urllib3._version
+INFO: Instrumenting urllib3.connectionpool
+INFO: Instrumenting queue
+INFO: Instrumenting heapq
+INFO: Instrumenting urllib3._request_methods
+INFO: Instrumenting json
+INFO: Instrumenting json.decoder
+INFO: Instrumenting json.scanner
+INFO: Instrumenting json.encoder
+INFO: Instrumenting urllib3.filepost
+INFO: Instrumenting urllib3.fields
+INFO: Instrumenting mimetypes
+INFO: Instrumenting urllib3.response
+INFO: Instrumenting urllib3.connection
+INFO: Instrumenting urllib3.http2
+INFO: Instrumenting importlib.metadata
+INFO: Instrumenting csv
+INFO: Instrumenting zipfile
+INFO: Instrumenting importlib.metadata._adapters
+INFO: Instrumenting importlib.metadata._text
+INFO: Instrumenting importlib.metadata._functools
+INFO: Instrumenting importlib.metadata._meta
+INFO: Instrumenting importlib.metadata._collections
+INFO: Instrumenting importlib.metadata._itertools
+INFO: Instrumenting urllib3.http2.probe
+INFO: Instrumenting urllib3.util.ssl_match_hostname
+INFO: Instrumenting urllib3.util.proxy
+INFO: Instrumenting urllib3.poolmanager
+INFO: Instrumenting requests.exceptions
+INFO: Instrumenting requests.compat
+INFO: Instrumenting charset_normalizer
+INFO: Instrumenting charset_normalizer.api
+INFO: Instrumenting charset_normalizer.cd
+INFO: Instrumenting charset_normalizer.constant
+INFO: Instrumenting charset_normalizer.utils
+INFO: Instrumenting charset_normalizer.models
+INFO: Instrumenting charset_normalizer.legacy
+INFO: Instrumenting charset_normalizer.version
+INFO: Instrumenting http.cookiejar
+INFO: Instrumenting copy
+INFO: Instrumenting urllib.request
+INFO: Instrumenting urllib.error
+INFO: Instrumenting urllib.response
+INFO: Instrumenting http.cookies
+INFO: Instrumenting requests.packages
+INFO: Instrumenting idna
+INFO: Instrumenting idna.core
+INFO: Instrumenting idna.idnadata
+INFO: Instrumenting idna.intranges
+INFO: Instrumenting idna.package_data
+INFO: Instrumenting requests.utils
+INFO: Instrumenting requests.certs
+INFO: Instrumenting certifi
+INFO: Instrumenting certifi.core
+INFO: Instrumenting requests.__version__
+INFO: Instrumenting requests._internal_utils
+INFO: Instrumenting requests.cookies
+INFO: Instrumenting requests.structures
+INFO: Instrumenting requests.api
+INFO: Instrumenting requests.sessions
+INFO: Instrumenting requests.adapters
+INFO: Instrumenting requests.auth
+INFO: Instrumenting requests.models
+INFO: Instrumenting encodings.idna
+INFO: Instrumenting stringprep
+INFO: Instrumenting requests.hooks
+INFO: Instrumenting requests.status_codes
+INFO: Instrumenting urllib3.contrib
+INFO: Instrumenting urllib3.contrib.socks
+INFO: Instrumenting adal.constants
+INFO: Instrumenting adal.adal_error
+INFO: Instrumenting adal.log
+INFO: Instrumenting uuid
+INFO: Instrumenting platform
+INFO: Instrumenting adal.util
+INFO: Instrumenting adal.argument
+INFO: Instrumenting adal.code_request
+INFO: Instrumenting adal.oauth2_client
+INFO: Instrumenting adal.token_request
+INFO: Instrumenting adal.mex
+INFO: Instrumenting xml
+INFO: Instrumenting xml.etree
+INFO: Instrumenting xml.etree.cElementTree
+INFO: Instrumenting xml.etree.ElementTree
+INFO: Instrumenting xml.etree.ElementPath
+INFO: Instrumenting adal.xmlutil
+INFO: Instrumenting adal.self_signed_jwt
+INFO: Instrumenting jwt
+INFO: Instrumenting jwt.api_jwk
+INFO: Instrumenting jwt.algorithms
+INFO: Instrumenting jwt.exceptions
+INFO: Instrumenting jwt.types
+INFO: Instrumenting jwt.utils
+INFO: Instrumenting cryptography
+INFO: Instrumenting cryptography.utils
+INFO: Instrumenting cryptography.__about__
+INFO: Instrumenting cryptography.hazmat
+INFO: Instrumenting cryptography.hazmat.primitives
+INFO: Instrumenting cryptography.hazmat.primitives.asymmetric
+INFO: Instrumenting cryptography.hazmat.primitives.asymmetric.ec
+INFO: Instrumenting cryptography.exceptions
+INFO: Instrumenting cryptography.hazmat.bindings
+INFO: Instrumenting cryptography.hazmat._oid
+INFO: Instrumenting cryptography.hazmat.primitives.hashes
+INFO: Instrumenting cryptography.hazmat.primitives._serialization
+INFO: Instrumenting cryptography.hazmat.primitives.asymmetric.utils
+INFO: Instrumenting cryptography.hazmat.backends
+INFO: Instrumenting cryptography.hazmat.primitives.asymmetric.padding
+INFO: Instrumenting cryptography.hazmat.primitives._asymmetric
+INFO: Instrumenting cryptography.hazmat.primitives.asymmetric.rsa
+INFO: Instrumenting cryptography.hazmat.primitives.asymmetric.ed448
+INFO: Instrumenting cryptography.hazmat.primitives.asymmetric.ed25519
+INFO: Instrumenting cryptography.hazmat.primitives.serialization
+INFO: Instrumenting cryptography.hazmat.primitives.serialization.base
+INFO: Instrumenting cryptography.hazmat.primitives.serialization.ssh
+INFO: Instrumenting dataclasses
+INFO: Instrumenting cryptography.hazmat.primitives.asymmetric.dsa
+INFO: Instrumenting cryptography.hazmat.primitives.ciphers
+INFO: Instrumenting cryptography.hazmat.primitives._cipheralgorithm
+INFO: Instrumenting cryptography.hazmat.primitives.ciphers.base
+INFO: Instrumenting cryptography.hazmat.primitives.ciphers.modes
+INFO: Instrumenting cryptography.hazmat.primitives.ciphers.algorithms
+INFO: Instrumenting cryptography.hazmat.decrepit
+INFO: Instrumenting cryptography.hazmat.decrepit.ciphers
+INFO: Instrumenting cryptography.hazmat.decrepit.ciphers.algorithms
+INFO: Instrumenting jwt.api_jws
+INFO: Instrumenting jwt.warnings
+INFO: Instrumenting jwt.api_jwt
+INFO: Instrumenting jwt.jwks_client
+INFO: Instrumenting jwt.jwk_set_cache
+INFO: Instrumenting adal.user_realm
+INFO: Instrumenting adal.wstrust_request
+INFO: Instrumenting adal.wstrust_response
+INFO: Instrumenting adal.cache_driver
+INFO: Instrumenting dateutil
+INFO: Instrumenting dateutil._version
+INFO: Instrumenting dateutil.parser
+INFO: Instrumenting dateutil.parser._parser
+INFO: Instrumenting six
+INFO: Instrumenting decimal
+INFO: Instrumenting numbers
+INFO: Instrumenting dateutil.relativedelta
+INFO: Instrumenting dateutil._common
+INFO: Instrumenting dateutil.tz
+INFO: Instrumenting dateutil.tz.tz
+INFO: Instrumenting dateutil.tz._common
+INFO: Instrumenting dateutil.tz._factories
+INFO: Instrumenting dateutil.tz.win
+INFO: Instrumenting dateutil.parser.isoparser
+INFO: Instrumenting adal.token_cache
+INFO: Using preloaded libfuzzer
+INFO: Running with entropic power schedule (0xFF, 100).
+INFO: Seed: 2747237381
+INFO:        0 files found in /tmp/fuzz_util_corpus
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes
+INFO: A corpus is not provided, starting from an empty corpus
+#2	INITED cov: 24 ft: 24 corp: 1/1b exec/s: 0 rss: 219Mb
+#8	NEW    cov: 25 ft: 25 corp: 2/3b lim: 4 exec/s: 0 rss: 219Mb L: 2/2 MS: 3 CopyPart-ChangeBinInt-CopyPart-
+INFO: libFuzzer disabled leak detection after every mutation.
+      Most likely the target function accumulates allocated
+      memory in a global state w/o actually leaking it.
+      You may try running this binary with -trace_malloc=[12]      to get a trace of mallocs and frees.
+      If LeakSanitizer is enabled in this process it will still
+      run on the process shutdown.
+#65536	pulse  cov: 25 ft: 25 corp: 2/3b lim: 652 exec/s: 32768 rss: 219Mb
+#131072	pulse  cov: 25 ft: 25 corp: 2/3b lim: 1300 exec/s: 32768 rss: 219Mb
+#262144	pulse  cov: 25 ft: 25 corp: 2/3b lim: 2600 exec/s: 29127 rss: 219Mb
+#524288	pulse  cov: 25 ft: 25 corp: 2/3b lim: 4096 exec/s: 27594 rss: 219Mb
+#1048576	pulse  cov: 25 ft: 25 corp: 2/3b lim: 4096 exec/s: 26214 rss: 219Mb
+^C[31m[1mKeyboardInterrupt: stopping.[0m
+Exception ignored in: <module 'threading' from '/tmp/_MEIVU545q/threading.pyc'>
+Traceback (most recent call last):
+  File "threading.py", line 1541, in _shutdown
+KeyboardInterrupt: 
+▶️ 生成覆盖率报告build      python3 infra/helper.py coverage --no-serve adal...
+INFO:__main__:Running: docker build -t gcr.io/oss-fuzz/adal --file /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/adal/Dockerfile /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/adal.
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile:
+#1 transferring dockerfile: 876B done
+#1 DONE 0.6s
+
+#2 [internal] load metadata for gcr.io/oss-fuzz-base/base-builder-python:latest
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context:
+#3 transferring context: 2B done
+#3 DONE 0.5s
+
+#4 [1/4] FROM gcr.io/oss-fuzz-base/base-builder-python:latest
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 97B done
+#5 DONE 0.4s
+
+#6 [2/4] RUN git clone https://github.com/AzureAD/azure-activedirectory-library-for-python adsl
+#6 CACHED
+
+#7 [3/4] WORKDIR adsl
+#7 CACHED
+
+#8 [4/4] COPY build.sh fuzz_*.py /src/
+#8 CACHED
+
+#9 exporting to image
+#9 exporting layers done
+#9 writing image sha256:1a8615526fd500af6be03c7db703489b91716059f031f17d402b5054ec65931f 0.0s done
+#9 naming to gcr.io/oss-fuzz/adal 0.1s done
+#9 DONE 0.2s
+
+ [33m1 warning found (use docker --debug to expand):
+[0m - WorkdirRelativePath: Relative workdir "adsl" can have unexpected results if the base image changes (line 20)
+INFO:__main__:Keeping existing build artifacts as-is (if any).
+INFO:__main__:Running: docker run --privileged --shm-size=2g --platform linux/amd64 --rm -i -e FUZZING_ENGINE=libfuzzer -e SANITIZER=coverage -e ARCHITECTURE=x86_64 -e PROJECT_NAME=adal -e HELPER=True -e FUZZING_LANGUAGE=python -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/out/adal/:/out -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/work/adal:/work -t gcr.io/oss-fuzz/adal.
+---------------------------------------------------------------
+vm.mmap_rnd_bits = 28
+Compiling libFuzzer to /usr/lib/libFuzzingEngine.a...  done.
+---------------------------------------------------------------
+CC=clang
+CXX=clang++
+CFLAGS=-O1   -fno-omit-frame-pointer   -gline-tables-only   -Wno-error=enum-constexpr-conversion   -Wno-error=incompatible-function-pointer-types   -Wno-error=int-conversion   -Wno-error=deprecated-declarations   -Wno-error=implicit-function-declaration   -Wno-error=implicit-int   -Wno-error=vla-cxx-extension   -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION  -fprofile-instr-generate -fcoverage-mapping -pthread -Wl,--no-as-needed -Wl,-ldl -Wl,-lm -Wno-unused-command-line-argument -fno-sanitize=function,leak,vptr,
+CXXFLAGS=-O1   -fno-omit-frame-pointer   -gline-tables-only   -Wno-error=enum-constexpr-conversion   -Wno-error=incompatible-function-pointer-types   -Wno-error=int-conversion   -Wno-error=deprecated-declarations   -Wno-error=implicit-function-declaration   -Wno-error=implicit-int   -Wno-error=vla-cxx-extension   -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION  -fprofile-instr-generate -fcoverage-mapping -pthread -Wl,--no-as-needed -Wl,-ldl -Wl,-lm -Wno-unused-command-line-argument -stdlib=libc++ -fno-sanitize=function,leak,vptr
+RUSTFLAGS=--cfg fuzzing -Cdebuginfo=1 -Cforce-frame-pointers -Cinstrument-coverage -C link-arg=-lc++
+---------------------------------------------------------------
++ pip3 install --upgrade pip
+Requirement already satisfied: pip in /usr/local/lib/python3.11/site-packages (25.1.1)
+[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.[0m[33m
+[0m+ pip3 install .
+Processing /src/adsl
+  Installing build dependencies ... [?25l- \ done
+[?25h  Getting requirements to build wheel ... [?25l- done
+[?25h  Preparing metadata (pyproject.toml) ... [?25l- done
+[?25hCollecting PyJWT<3,>=1.0.0 (from adal==1.2.7)
+  Downloading PyJWT-2.10.1-py3-none-any.whl.metadata (4.0 kB)
+Collecting requests<3,>=2.0.0 (from adal==1.2.7)
+  Downloading requests-2.32.4-py3-none-any.whl.metadata (4.9 kB)
+Collecting python-dateutil<3,>=2.1.0 (from adal==1.2.7)
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting cryptography>=1.1.0 (from adal==1.2.7)
+  Downloading cryptography-45.0.5-cp311-abi3-manylinux_2_28_x86_64.whl.metadata (5.7 kB)
+Requirement already satisfied: six>=1.5 in /usr/local/lib/python3.11/site-packages (from python-dateutil<3,>=2.1.0->adal==1.2.7) (1.15.0)
+Collecting charset_normalizer<4,>=2 (from requests<3,>=2.0.0->adal==1.2.7)
+  Downloading charset_normalizer-3.4.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (35 kB)
+Collecting idna<4,>=2.5 (from requests<3,>=2.0.0->adal==1.2.7)
+  Downloading idna-3.10-py3-none-any.whl.metadata (10 kB)
+Collecting urllib3<3,>=1.21.1 (from requests<3,>=2.0.0->adal==1.2.7)
+  Downloading urllib3-2.5.0-py3-none-any.whl.metadata (6.5 kB)
+Collecting certifi>=2017.4.17 (from requests<3,>=2.0.0->adal==1.2.7)
+  Downloading certifi-2025.7.14-py3-none-any.whl.metadata (2.4 kB)
+Collecting cffi>=1.14 (from cryptography>=1.1.0->adal==1.2.7)
+  Downloading cffi-1.17.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting pycparser (from cffi>=1.14->cryptography>=1.1.0->adal==1.2.7)
+  Downloading pycparser-2.22-py3-none-any.whl.metadata (943 bytes)
+Downloading PyJWT-2.10.1-py3-none-any.whl (22 kB)
+Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Downloading requests-2.32.4-py3-none-any.whl (64 kB)
+Downloading charset_normalizer-3.4.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (147 kB)
+Downloading idna-3.10-py3-none-any.whl (70 kB)
+Downloading urllib3-2.5.0-py3-none-any.whl (129 kB)
+Downloading certifi-2025.7.14-py3-none-any.whl (162 kB)
+Downloading cryptography-45.0.5-cp311-abi3-manylinux_2_28_x86_64.whl (4.5 MB)
+[?25l   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/4.5 MB[0m [31m?[0m eta [36m-:--:--[0m[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m4.5/4.5 MB[0m [31m23.9 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading cffi-1.17.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (467 kB)
+Downloading pycparser-2.22-py3-none-any.whl (117 kB)
+Building wheels for collected packages: adal
+  Building wheel for adal (pyproject.toml) ... [?25l- done
+[?25h  Created wheel for adal: filename=adal-1.2.7-py2.py3-none-any.whl size=55914 sha256=d309a3cd3132a4c2cd2e8b67d029e7eb0a000a9aa36e634158f2d13ba9a9dbd0
+  Stored in directory: /tmp/pip-ephem-wheel-cache-cb5udox2/wheels/a3/cc/c5/663685137c4d451251ea50a1c5f5e40de5b451bf8ce574b9bb
+Successfully built adal
+Installing collected packages: urllib3, python-dateutil, PyJWT, pycparser, idna, charset_normalizer, certifi, requests, cffi, cryptography, adal
+[?25l[2K   [91m━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 1/11[0m [python-dateutil][2K   [91m━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/11[0m [PyJWT][2K   [91m━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 3/11[0m [pycparser][2K   [91m━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 4/11[0m [idna][2K   [91m━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━[0m [32m 5/11[0m [charset_normalizer][2K   [91m━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━[0m [32m 6/11[0m [certifi][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m 8/11[0m [cffi][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━[0m [32m 9/11[0m [cryptography][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━[0m [32m 9/11[0m [cryptography][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━[0m [32m10/11[0m [adal][2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m11/11[0m [adal]
+[?25h[1A[2KSuccessfully installed PyJWT-2.10.1 adal-1.2.7 certifi-2025.7.14 cffi-1.17.1 charset_normalizer-3.4.2 cryptography-45.0.5 idna-3.10 pycparser-2.22 python-dateutil-2.9.0.post0 requests-2.32.4 urllib3-2.5.0
+[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.[0m[33m
+[0m++ find /src -name 'fuzz_*.py'
++ for fuzzer in $(find $SRC -name 'fuzz_*.py')
++ compile_python_fuzzer /src/fuzz_util.py
++ fuzzer_path=/src/fuzz_util.py
++ shift 1
+++ basename -s .py /src/fuzz_util.py
++ fuzzer_basename=fuzz_util
++ fuzzer_package=fuzz_util.pkg
++ PYFUZZ_WORKPATH=/src/pyfuzzworkdir/
++ FUZZ_WORKPATH=/src/pyfuzzworkdir//fuzz_util
++ [[ coverage = *introspector* ]]
++ [[ coverage = *coverage* ]]
++ cat
++ cat coverage_wrapper.py /src/fuzz_util.py
++ mv tmp_fuzzer_coverage.py /src/fuzz_util.py
++ [[ 0 != \0 ]]
++ rm -rf /src/pyfuzzworkdir/
++ mkdir /src/pyfuzzworkdir/ /src/pyfuzzworkdir//fuzz_util
++ pyinstaller --distpath /out --workpath=/src/pyfuzzworkdir//fuzz_util --onefile --name fuzz_util.pkg /src/fuzz_util.py
+51 INFO: PyInstaller: 6.10.0, contrib hooks: 2025.6
+51 INFO: Python: 3.11.13
+52 INFO: Platform: Linux-5.15.0-140-generic-x86_64-with-glibc2.31
+52 INFO: Python environment: /usr/local
+52 INFO: wrote /src/adsl/fuzz_util.pkg.spec
+54 INFO: Module search paths (PYTHONPATH):
+['/usr/local/lib/python311.zip',
+ '/usr/local/lib/python3.11',
+ '/usr/local/lib/python3.11/lib-dynload',
+ '/usr/local/lib/python3.11/site-packages',
+ '/usr/local/lib/python3.11/site-packages/setuptools/_vendor',
+ '/src']
+123 INFO: checking Analysis
+123 INFO: Building Analysis because Analysis-00.toc is non existent
+123 INFO: Running Analysis Analysis-00.toc
+123 INFO: Target bytecode optimization level: 0
+124 INFO: Initializing module dependency graph...
+124 INFO: Caching module graph hooks...
+130 INFO: Analyzing base_library.zip ...
+531 INFO: Processing standard module hook 'hook-heapq.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+593 INFO: Processing standard module hook 'hook-encodings.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+1565 INFO: Processing standard module hook 'hook-pickle.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2539 INFO: Caching module dependency graph...
+2590 INFO: Looking for Python shared library...
+2599 INFO: Using Python shared library: /usr/local/lib/libpython3.11.so.1.0
+2599 INFO: Analyzing /src/fuzz_util.py
+2641 INFO: Processing standard module hook 'hook-platform.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2746 INFO: Processing standard module hook 'hook-sqlite3.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2916 INFO: Processing standard module hook 'hook-sysconfig.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3014 INFO: Processing standard module hook 'hook-xml.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3016 INFO: Processing standard module hook 'hook-xml.dom.domreg.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3368 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3601 INFO: Processing standard module hook 'hook-atheris.py' from '/usr/local/lib/python3.11/site-packages/atheris'
+3657 INFO: Processing standard module hook 'hook-urllib3.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+3725 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+3725 INFO: SetuptoolsInfo: initializing cached setuptools info...
+6570 INFO: Processing standard module hook 'hook-charset_normalizer.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+6633 INFO: Processing standard module hook 'hook-cryptography.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+6959 INFO: hook-cryptography: cryptography does not seem to be using dynamically linked OpenSSL.
+7183 INFO: Processing standard module hook 'hook-certifi.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+7299 INFO: Processing standard module hook 'hook-xml.etree.cElementTree.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7424 INFO: Processing standard module hook 'hook-dateutil.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+7568 INFO: Processing pre-safe-import-module hook 'hook-six.moves.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7661 INFO: Processing module hooks (post-graph stage)...
+7680 INFO: Performing binary vs. data reclassification (12 entries)
+7684 INFO: Looking for ctypes DLLs
+7724 WARNING: Library user32 required via ctypes not found
+7732 INFO: Analyzing run-time hooks ...
+7735 INFO: Including run-time hook 'pyi_rth_inspect.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+7737 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+7738 INFO: Including run-time hook 'pyi_rth_cryptography_openssl.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/rthooks'
+7738 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+7743 INFO: Looking for dynamic libraries
+8263 INFO: Warnings written to /src/pyfuzzworkdir/fuzz_util/fuzz_util.pkg/warn-fuzz_util.pkg.txt
+8278 INFO: Graph cross-reference written to /src/pyfuzzworkdir/fuzz_util/fuzz_util.pkg/xref-fuzz_util.pkg.html
+8288 INFO: checking PYZ
+8288 INFO: Building PYZ because PYZ-00.toc is non existent
+8288 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_util/fuzz_util.pkg/PYZ-00.pyz
+8632 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_util/fuzz_util.pkg/PYZ-00.pyz completed successfully.
+8645 INFO: checking PKG
+8645 INFO: Building PKG because PKG-00.toc is non existent
+8645 INFO: Building PKG (CArchive) fuzz_util.pkg.pkg
+21247 INFO: Building PKG (CArchive) fuzz_util.pkg.pkg completed successfully.
+21250 INFO: Bootloader /usr/local/lib/python3.11/site-packages/PyInstaller/bootloader/Linux-64bit-intel/run
+21250 INFO: checking EXE
+21250 INFO: Building EXE because EXE-00.toc is non existent
+21250 INFO: Building EXE from EXE-00.toc
+21255 INFO: Copying bootloader EXE to /out/fuzz_util.pkg
+21255 INFO: Appending PKG archive to custom ELF section in EXE
+21302 INFO: Building EXE from EXE-00.toc completed successfully.
++ chmod -x /out/fuzz_util.pkg
++ [[ coverage = *coverage* ]]
++ rm -rf /medio/
++ python3 /usr/local/bin/python_coverage_helper.py /src/pyfuzzworkdir//fuzz_util /medio
+Extracts files from the pyinstaller workpath
++ zip -r fuzz_util.pkg.deps.zip /medio
+  adding: medio/ (stored 0%)
+  adding: medio/usr/ (stored 0%)
+  adding: medio/usr/local/ (stored 0%)
+  adding: medio/usr/local/lib/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/parser/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/parser/__init__.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/parser/isoparser.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/parser/_parser.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/tz/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/tz/_common.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/tz/win.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/tz/tz.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/tz/_factories.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/tz/__init__.py (deflated 46%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/rrule.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/_common.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/__init__.py (deflated 45%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/zoneinfo/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/zoneinfo/__init__.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/_version.py (deflated 30%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/relativedelta.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/easter.py (deflated 53%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/backends/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/backends/openssl/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/backends/openssl/backend.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/backends/openssl/__init__.py (deflated 33%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/backends/__init__.py (deflated 36%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/dh.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/padding.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/dsa.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/ec.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/ed25519.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/rsa.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/x25519.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/utils.py (deflated 52%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/__init__.py (deflated 26%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/ed448.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/x448.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/types.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/ciphers/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/ciphers/modes.py (deflated 78%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/ciphers/base.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/ciphers/__init__.py (deflated 56%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/ciphers/algorithms.py (deflated 80%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/serialization/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/serialization/ssh.py (deflated 80%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/serialization/base.py (deflated 59%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/serialization/__init__.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/constant_time.py (deflated 38%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/_asymmetric.py (deflated 38%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/__init__.py (deflated 26%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/hashes.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/_serialization.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/_cipheralgorithm.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/decrepit/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/decrepit/ciphers/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/decrepit/ciphers/algorithms.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/decrepit/ciphers/__init__.py (deflated 28%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/decrepit/__init__.py (deflated 28%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/bindings/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/bindings/openssl/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/bindings/openssl/__init__.py (deflated 26%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/bindings/openssl/_conditional.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/bindings/openssl/binding.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/bindings/__init__.py (deflated 26%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/__init__.py (deflated 35%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/_oid.py (deflated 79%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/x509/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/x509/__init__.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/x509/extensions.py (deflated 86%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/x509/base.py (deflated 85%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/x509/general_name.py (deflated 83%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/x509/certificate_transparency.py (deflated 43%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/x509/oid.py (deflated 59%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/x509/name.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/x509/verification.py (deflated 59%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/__init__.py (deflated 48%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/exceptions.py (deflated 57%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/utils.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/__about__.py (deflated 37%)
+  adding: medio/usr/local/lib/python3.11/site-packages/charset_normalizer/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/charset_normalizer/constant.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/site-packages/charset_normalizer/utils.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/charset_normalizer/version.py (deflated 16%)
+  adding: medio/usr/local/lib/python3.11/site-packages/charset_normalizer/legacy.py (deflated 55%)
+  adding: medio/usr/local/lib/python3.11/site-packages/charset_normalizer/models.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/charset_normalizer/cd.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/site-packages/charset_normalizer/__init__.py (deflated 49%)
+  adding: medio/usr/local/lib/python3.11/site-packages/charset_normalizer/api.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/site-packages/setuptools/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/setuptools/_vendor/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/setuptools/_vendor/typing_extensions.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/user_realm.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/xmlutil.py (deflated 55%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/mex.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/wstrust_response.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/argument.py (deflated 56%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/cache_driver.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/util.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/log.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/authority.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/authentication_context.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/wstrust_request.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/adal_error.py (deflated 49%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/token_cache.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/constants.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/code_request.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/token_request.py (deflated 78%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/self_signed_jwt.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/__init__.py (deflated 50%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/oauth2_client.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/jwt/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/jwt/api_jwk.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/site-packages/jwt/exceptions.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/site-packages/jwt/api_jws.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/jwt/utils.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/site-packages/jwt/types.py (deflated 20%)
+  adding: medio/usr/local/lib/python3.11/site-packages/jwt/jwks_client.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/site-packages/jwt/__init__.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/jwt/warnings.py (deflated 10%)
+  adding: medio/usr/local/lib/python3.11/site-packages/jwt/jwk_set_cache.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/jwt/api_jwt.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/site-packages/jwt/algorithms.py (deflated 82%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/retry.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/util.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/request.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/ssl_match_hostname.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/wait.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/connection.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/timeout.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/proxy.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/url.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/ssltransport.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/__init__.py (deflated 59%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/ssl_.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/response.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/contrib/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/contrib/emscripten/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/contrib/emscripten/response.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/contrib/emscripten/request.py (deflated 49%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/contrib/emscripten/connection.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/contrib/emscripten/fetch.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/contrib/emscripten/__init__.py (deflated 62%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/contrib/pyopenssl.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/contrib/__init__.py (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/contrib/socks.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/response.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/connection.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/filepost.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/_base_connection.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/_version.py (deflated 49%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/_collections.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/http2/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/http2/__init__.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/http2/connection.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/http2/probe.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/fields.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/exceptions.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/poolmanager.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/connectionpool.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/_request_methods.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/__init__.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/bytecode.py (deflated 42%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/python.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/collector.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/xmlreport.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/html.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/env.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/templite.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/plugin_support.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/results.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/multiproc.py (deflated 62%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/summary.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/numbits.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/pytracer.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/files.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/report.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/phystokens.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/sqldata.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/debug.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/jsonreport.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/lcovreport.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/tomlconfig.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/__init__.py (deflated 50%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/data.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/version.py (deflated 54%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/exceptions.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/misc.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/context.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/parser.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/annotate.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/control.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/plugin.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/config.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/disposition.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/inorout.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/sessions.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/utils.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/packages.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/auth.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/adapters.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/api.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/models.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/__init__.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/cookies.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/certs.py (deflated 36%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/compat.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/status_codes.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/structures.py (deflated 62%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/__version__.py (deflated 40%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/hooks.py (deflated 51%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/_internal_utils.py (deflated 57%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/exceptions.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/rthooks/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/rthooks/pyi_rth_cryptography_openssl.py (deflated 52%)
+  adding: medio/usr/local/lib/python3.11/site-packages/idna/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/idna/core.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/site-packages/idna/uts46data.py (deflated 82%)
+  adding: medio/usr/local/lib/python3.11/site-packages/idna/package_data.py (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/idna/idnadata.py (deflated 81%)
+  adding: medio/usr/local/lib/python3.11/site-packages/idna/__init__.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/site-packages/idna/intranges.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/loader/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/loader/pyiboot01_bootstrap.py (deflated 55%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks/pyi_rth_inspect.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks/pyi_rth_pkgutil.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks/pyi_rth_multiprocessing.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/version_dependent.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/utils.py (deflated 56%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/function_hooks.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/import_hook.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/instrument_bytecode.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/__init__.py (deflated 56%)
+  adding: medio/usr/local/lib/python3.11/site-packages/certifi/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/certifi/core.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/site-packages/certifi/__init__.py (deflated 13%)
+  adding: medio/usr/local/lib/python3.11/site-packages/six.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/json/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/json/__init__.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/json/decoder.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/json/scanner.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/json/encoder.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/netrc.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/ipaddress.py (deflated 80%)
+  adding: medio/usr/local/lib/python3.11/importlib/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/importlib/_bootstrap_external.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/importlib/_bootstrap.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/readers.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/_itertools.py (deflated 55%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/_legacy.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/_adapters.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/abc.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/_common.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/__init__.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/importlib/machinery.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/importlib/util.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/__init__.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/_meta.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/_collections.py (deflated 48%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/_itertools.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/_adapters.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/_functools.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/_text.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/importlib/readers.py (deflated 39%)
+  adding: medio/usr/local/lib/python3.11/importlib/_abc.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/importlib/__init__.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/importlib/abc.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/ast.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/email/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/email/contentmanager.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/email/_header_value_parser.py (deflated 79%)
+  adding: medio/usr/local/lib/python3.11/email/_encoded_words.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/email/feedparser.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/email/encoders.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/email/headerregistry.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/email/policy.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/email/generator.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/email/header.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/email/base64mime.py (deflated 56%)
+  adding: medio/usr/local/lib/python3.11/email/_policybase.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/email/_parseaddr.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/email/__init__.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/email/quoprimime.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/email/charset.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/email/errors.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/email/iterators.py (deflated 57%)
+  adding: medio/usr/local/lib/python3.11/email/utils.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/email/message.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/email/parser.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/string.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/secrets.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/platform.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/bisect.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/xml/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/xmlreader.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/__init__.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/saxutils.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/expatreader.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/_exceptions.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/handler.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/xml/etree/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xml/etree/cElementTree.py (deflated 23%)
+  adding: medio/usr/local/lib/python3.11/xml/etree/__init__.py (deflated 47%)
+  adding: medio/usr/local/lib/python3.11/xml/etree/ElementTree.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/xml/etree/ElementInclude.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/xml/etree/ElementPath.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/__init__.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/minidom.py (deflated 80%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/expatbuilder.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/domreg.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/pulldom.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/xmlbuilder.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/NodeFilter.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/minicompat.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/xml/__init__.py (deflated 41%)
+  adding: medio/usr/local/lib/python3.11/xml/parsers/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xml/parsers/expat.py (deflated 43%)
+  adding: medio/usr/local/lib/python3.11/xml/parsers/__init__.py (deflated 22%)
+  adding: medio/usr/local/lib/python3.11/decimal.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/runpy.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/gzip.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/urllib/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/urllib/response.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/urllib/parse.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/urllib/error.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/urllib/request.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/urllib/__init__.py (stored 0%)
+  adding: medio/usr/local/lib/python3.11/zipfile.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/ctypes/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/ctypes/wintypes.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/ctypes/_endian.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/ctypes/__init__.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/popen_spawn_posix.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/shared_memory.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/forkserver.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/util.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/managers.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/spawn.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/sharedctypes.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/connection.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/dummy/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/dummy/connection.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/dummy/__init__.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/heap.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/resource_sharer.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/reduction.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/pool.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/resource_tracker.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/popen_spawn_win32.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/popen_forkserver.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/context.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/queues.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/process.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/popen_fork.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/synchronize.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/__init__.py (deflated 44%)
+  adding: medio/usr/local/lib/python3.11/gettext.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/py_compile.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/fractions.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/http/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/http/cookiejar.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/http/cookies.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/http/client.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/http/__init__.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/ssl.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/_strptime.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/dataclasses.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/argparse.py (deflated 79%)
+  adding: medio/usr/local/lib/python3.11/_pydecimal.py (deflated 79%)
+  adding: medio/usr/local/lib/python3.11/threading.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/token.py (deflated 57%)
+  adding: medio/usr/local/lib/python3.11/hashlib.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/textwrap.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/getpass.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/mimetypes.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/glob.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/statistics.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/tracemalloc.py (deflated 79%)
+  adding: medio/usr/local/lib/python3.11/pkgutil.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/quopri.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/inspect.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/numbers.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/_compat_pickle.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/bz2.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/pprint.py (deflated 79%)
+  adding: medio/usr/local/lib/python3.11/_compression.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/ftplib.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/struct.py (deflated 46%)
+  adding: medio/usr/local/lib/python3.11/tempfile.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/socket.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/pathlib.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/xmlrpc/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xmlrpc/__init__.py (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xmlrpc/client.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/__future__.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/base64.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/shlex.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/dis.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/tokenize.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/fnmatch.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/pickle.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/csv.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/getopt.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/_bootsubprocess.py (deflated 62%)
+  adding: medio/usr/local/lib/python3.11/sqlite3/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/sqlite3/__init__.py (deflated 51%)
+  adding: medio/usr/local/lib/python3.11/sqlite3/dbapi2.py (deflated 59%)
+  adding: medio/usr/local/lib/python3.11/sqlite3/dump.py (deflated 62%)
+  adding: medio/usr/local/lib/python3.11/contextvars.py (deflated 35%)
+  adding: medio/usr/local/lib/python3.11/datetime.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/hmac.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/opcode.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/tarfile.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/subprocess.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/shutil.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/uuid.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/_aix_support.py (deflated 54%)
+  adding: medio/usr/local/lib/python3.11/zipimport.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/stringprep.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/_py_abc.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/typing.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/random.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/logging/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/logging/__init__.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/selectors.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/contextlib.py (deflated 80%)
+  adding: medio/usr/local/lib/python3.11/_threading_local.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/calendar.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/nturl2path.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/signal.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/lzma.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/queue.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/copy.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/_sysconfigdata__linux_x86_64-linux-gnu.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/configparser.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/sysconfig.py (deflated 71%)
+  adding: medio/src/ (stored 0%)
+  adding: medio/src/pyfuzzworkdir/ (stored 0%)
+  adding: medio/src/pyfuzzworkdir/fuzz_util/ (stored 0%)
+  adding: medio/src/pyfuzzworkdir/fuzz_util/fuzz_util.pkg/ (stored 0%)
+  adding: medio/src/pyfuzzworkdir/fuzz_util/fuzz_util.pkg/PYZ-00.pyz (deflated 1%)
+  adding: medio/src/pyfuzzworkdir/fuzz_util/fuzz_util.pkg/localpycs/ (stored 0%)
+  adding: medio/src/pyfuzzworkdir/fuzz_util/fuzz_util.pkg/localpycs/pyimod03_ctypes.pyc (deflated 59%)
+  adding: medio/src/pyfuzzworkdir/fuzz_util/fuzz_util.pkg/localpycs/pyimod02_importers.pyc (deflated 59%)
+  adding: medio/src/pyfuzzworkdir/fuzz_util/fuzz_util.pkg/localpycs/struct.pyc (deflated 31%)
+  adding: medio/src/pyfuzzworkdir/fuzz_util/fuzz_util.pkg/localpycs/pyimod01_archive.pyc (deflated 46%)
+  adding: medio/src/fuzz_util.py (deflated 59%)
++ mv fuzz_util.pkg.deps.zip /out/
++ echo '#!/bin/sh
+# LLVMFuzzerTestOneInput for fuzzer detection.
+this_dir=$(dirname "$0")
+chmod +x $this_dir/fuzz_util.pkg
+LD_PRELOAD=$this_dir/sanitizer_with_fuzzer.so ASAN_OPTIONS=$ASAN_OPTIONS:symbolize=1:external_symbolizer_path=$this_dir/llvm-symbolizer:detect_leaks=0 $this_dir/fuzz_util.pkg $@'
++ chmod +x /out/fuzz_util
++ for fuzzer in $(find $SRC -name 'fuzz_*.py')
++ compile_python_fuzzer /src/fuzz_xmlutil.py
++ fuzzer_path=/src/fuzz_xmlutil.py
++ shift 1
+++ basename -s .py /src/fuzz_xmlutil.py
++ fuzzer_basename=fuzz_xmlutil
++ fuzzer_package=fuzz_xmlutil.pkg
++ PYFUZZ_WORKPATH=/src/pyfuzzworkdir/
++ FUZZ_WORKPATH=/src/pyfuzzworkdir//fuzz_xmlutil
++ [[ coverage = *introspector* ]]
++ [[ coverage = *coverage* ]]
++ cat
++ cat coverage_wrapper.py /src/fuzz_xmlutil.py
++ mv tmp_fuzzer_coverage.py /src/fuzz_xmlutil.py
++ [[ 0 != \0 ]]
++ rm -rf /src/pyfuzzworkdir/
++ mkdir /src/pyfuzzworkdir/ /src/pyfuzzworkdir//fuzz_xmlutil
++ pyinstaller --distpath /out --workpath=/src/pyfuzzworkdir//fuzz_xmlutil --onefile --name fuzz_xmlutil.pkg /src/fuzz_xmlutil.py
+46 INFO: PyInstaller: 6.10.0, contrib hooks: 2025.6
+47 INFO: Python: 3.11.13
+48 INFO: Platform: Linux-5.15.0-140-generic-x86_64-with-glibc2.31
+48 INFO: Python environment: /usr/local
+48 INFO: wrote /src/adsl/fuzz_xmlutil.pkg.spec
+49 INFO: Module search paths (PYTHONPATH):
+['/usr/local/lib/python311.zip',
+ '/usr/local/lib/python3.11',
+ '/usr/local/lib/python3.11/lib-dynload',
+ '/usr/local/lib/python3.11/site-packages',
+ '/usr/local/lib/python3.11/site-packages/setuptools/_vendor',
+ '/src']
+118 INFO: checking Analysis
+119 INFO: Building Analysis because Analysis-00.toc is non existent
+119 INFO: Running Analysis Analysis-00.toc
+119 INFO: Target bytecode optimization level: 0
+119 INFO: Initializing module dependency graph...
+119 INFO: Caching module graph hooks...
+124 INFO: Analyzing base_library.zip ...
+539 INFO: Processing standard module hook 'hook-heapq.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+594 INFO: Processing standard module hook 'hook-encodings.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+1560 INFO: Processing standard module hook 'hook-pickle.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2530 INFO: Caching module dependency graph...
+2582 INFO: Looking for Python shared library...
+2591 INFO: Using Python shared library: /usr/local/lib/libpython3.11.so.1.0
+2591 INFO: Analyzing /src/fuzz_xmlutil.py
+2633 INFO: Processing standard module hook 'hook-platform.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2737 INFO: Processing standard module hook 'hook-sqlite3.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2906 INFO: Processing standard module hook 'hook-sysconfig.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3003 INFO: Processing standard module hook 'hook-xml.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3005 INFO: Processing standard module hook 'hook-xml.dom.domreg.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3339 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3560 INFO: Processing standard module hook 'hook-atheris.py' from '/usr/local/lib/python3.11/site-packages/atheris'
+3603 INFO: Processing standard module hook 'hook-xml.etree.cElementTree.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3658 INFO: Processing standard module hook 'hook-urllib3.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+3730 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+3730 INFO: SetuptoolsInfo: initializing cached setuptools info...
+6500 INFO: Processing standard module hook 'hook-charset_normalizer.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+6560 INFO: Processing standard module hook 'hook-cryptography.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+6873 INFO: hook-cryptography: cryptography does not seem to be using dynamically linked OpenSSL.
+7090 INFO: Processing standard module hook 'hook-certifi.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+7285 INFO: Processing standard module hook 'hook-dateutil.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+7429 INFO: Processing pre-safe-import-module hook 'hook-six.moves.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7522 INFO: Processing module hooks (post-graph stage)...
+7542 INFO: Performing binary vs. data reclassification (12 entries)
+7546 INFO: Looking for ctypes DLLs
+7584 WARNING: Library user32 required via ctypes not found
+7592 INFO: Analyzing run-time hooks ...
+7596 INFO: Including run-time hook 'pyi_rth_inspect.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+7597 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+7598 INFO: Including run-time hook 'pyi_rth_cryptography_openssl.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/rthooks'
+7598 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+7604 INFO: Looking for dynamic libraries
+8125 INFO: Warnings written to /src/pyfuzzworkdir/fuzz_xmlutil/fuzz_xmlutil.pkg/warn-fuzz_xmlutil.pkg.txt
+8140 INFO: Graph cross-reference written to /src/pyfuzzworkdir/fuzz_xmlutil/fuzz_xmlutil.pkg/xref-fuzz_xmlutil.pkg.html
+8150 INFO: checking PYZ
+8150 INFO: Building PYZ because PYZ-00.toc is non existent
+8150 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_xmlutil/fuzz_xmlutil.pkg/PYZ-00.pyz
+8496 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_xmlutil/fuzz_xmlutil.pkg/PYZ-00.pyz completed successfully.
+8509 INFO: checking PKG
+8509 INFO: Building PKG because PKG-00.toc is non existent
+8509 INFO: Building PKG (CArchive) fuzz_xmlutil.pkg.pkg
+20968 INFO: Building PKG (CArchive) fuzz_xmlutil.pkg.pkg completed successfully.
+20971 INFO: Bootloader /usr/local/lib/python3.11/site-packages/PyInstaller/bootloader/Linux-64bit-intel/run
+20971 INFO: checking EXE
+20971 INFO: Building EXE because EXE-00.toc is non existent
+20971 INFO: Building EXE from EXE-00.toc
+20976 INFO: Copying bootloader EXE to /out/fuzz_xmlutil.pkg
+20976 INFO: Appending PKG archive to custom ELF section in EXE
+21022 INFO: Building EXE from EXE-00.toc completed successfully.
++ chmod -x /out/fuzz_xmlutil.pkg
++ [[ coverage = *coverage* ]]
++ rm -rf /medio/
++ python3 /usr/local/bin/python_coverage_helper.py /src/pyfuzzworkdir//fuzz_xmlutil /medio
+Extracts files from the pyinstaller workpath
++ zip -r fuzz_xmlutil.pkg.deps.zip /medio
+  adding: medio/ (stored 0%)
+  adding: medio/usr/ (stored 0%)
+  adding: medio/usr/local/ (stored 0%)
+  adding: medio/usr/local/lib/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/email/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/email/_parseaddr.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/email/_policybase.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/email/__init__.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/email/base64mime.py (deflated 56%)
+  adding: medio/usr/local/lib/python3.11/email/contentmanager.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/email/message.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/email/_encoded_words.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/email/_header_value_parser.py (deflated 79%)
+  adding: medio/usr/local/lib/python3.11/email/policy.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/email/generator.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/email/errors.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/email/parser.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/email/header.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/email/encoders.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/email/iterators.py (deflated 57%)
+  adding: medio/usr/local/lib/python3.11/email/headerregistry.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/email/quoprimime.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/email/feedparser.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/email/charset.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/email/utils.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/site-packages/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/jwt/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/jwt/jwks_client.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/site-packages/jwt/warnings.py (deflated 10%)
+  adding: medio/usr/local/lib/python3.11/site-packages/jwt/api_jwt.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/site-packages/jwt/__init__.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/jwt/jwk_set_cache.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/jwt/exceptions.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/site-packages/jwt/api_jws.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/jwt/utils.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/site-packages/jwt/api_jwk.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/site-packages/jwt/algorithms.py (deflated 82%)
+  adding: medio/usr/local/lib/python3.11/site-packages/jwt/types.py (deflated 20%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/x509/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/x509/general_name.py (deflated 83%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/x509/oid.py (deflated 59%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/x509/name.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/x509/verification.py (deflated 59%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/x509/base.py (deflated 85%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/x509/extensions.py (deflated 86%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/x509/__init__.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/x509/certificate_transparency.py (deflated 43%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/__init__.py (deflated 26%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/_asymmetric.py (deflated 38%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/ed448.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/types.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/ec.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/dh.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/rsa.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/x25519.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/dsa.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/utils.py (deflated 52%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/x448.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/ed25519.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/padding.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/asymmetric/__init__.py (deflated 26%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/serialization/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/serialization/__init__.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/serialization/ssh.py (deflated 80%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/serialization/base.py (deflated 59%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/_serialization.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/_cipheralgorithm.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/ciphers/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/ciphers/__init__.py (deflated 56%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/ciphers/base.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/ciphers/modes.py (deflated 78%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/ciphers/algorithms.py (deflated 80%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/hashes.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/primitives/constant_time.py (deflated 38%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/_oid.py (deflated 79%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/backends/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/backends/__init__.py (deflated 36%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/backends/openssl/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/backends/openssl/backend.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/backends/openssl/__init__.py (deflated 33%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/bindings/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/bindings/openssl/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/bindings/openssl/_conditional.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/bindings/openssl/binding.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/bindings/openssl/__init__.py (deflated 26%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/bindings/__init__.py (deflated 26%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/__init__.py (deflated 35%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/decrepit/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/decrepit/__init__.py (deflated 28%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/decrepit/ciphers/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/decrepit/ciphers/algorithms.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/hazmat/decrepit/ciphers/__init__.py (deflated 28%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/__init__.py (deflated 48%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/utils.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/exceptions.py (deflated 57%)
+  adding: medio/usr/local/lib/python3.11/site-packages/cryptography/__about__.py (deflated 37%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/__init__.py (deflated 50%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/context.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/xmlreport.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/annotate.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/phystokens.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/numbits.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/control.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/templite.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/lcovreport.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/config.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/sqldata.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/debug.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/disposition.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/summary.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/plugin_support.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/version.py (deflated 54%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/plugin.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/exceptions.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/tomlconfig.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/misc.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/multiproc.py (deflated 62%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/files.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/results.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/bytecode.py (deflated 42%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/report.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/inorout.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/data.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/jsonreport.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/parser.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/env.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/html.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/collector.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/pytracer.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/python.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/__version__.py (deflated 40%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/cookies.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/exceptions.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/models.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/adapters.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/auth.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/certs.py (deflated 36%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/_internal_utils.py (deflated 57%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/utils.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/status_codes.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/__init__.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/sessions.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/compat.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/structures.py (deflated 62%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/api.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/packages.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/site-packages/requests/hooks.py (deflated 51%)
+  adding: medio/usr/local/lib/python3.11/site-packages/idna/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/idna/uts46data.py (deflated 82%)
+  adding: medio/usr/local/lib/python3.11/site-packages/idna/__init__.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/site-packages/idna/intranges.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/site-packages/idna/package_data.py (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/idna/core.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/site-packages/idna/idnadata.py (deflated 81%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/ssltransport.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/ssl_match_hostname.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/url.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/timeout.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/ssl_.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/retry.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/request.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/connection.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/response.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/util.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/__init__.py (deflated 59%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/wait.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/util/proxy.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/contrib/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/contrib/emscripten/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/contrib/emscripten/response.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/contrib/emscripten/request.py (deflated 49%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/contrib/emscripten/__init__.py (deflated 62%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/contrib/emscripten/fetch.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/contrib/emscripten/connection.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/contrib/pyopenssl.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/contrib/__init__.py (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/contrib/socks.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/fields.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/http2/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/http2/probe.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/http2/__init__.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/http2/connection.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/poolmanager.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/_base_connection.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/connectionpool.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/_request_methods.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/response.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/connection.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/filepost.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/__init__.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/exceptions.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/_version.py (deflated 49%)
+  adding: medio/usr/local/lib/python3.11/site-packages/urllib3/_collections.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/util.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/oauth2_client.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/cache_driver.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/user_realm.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/argument.py (deflated 56%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/code_request.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/mex.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/authentication_context.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/constants.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/token_cache.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/log.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/token_request.py (deflated 78%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/wstrust_request.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/authority.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/adal_error.py (deflated 49%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/xmlutil.py (deflated 55%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/self_signed_jwt.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/__init__.py (deflated 50%)
+  adding: medio/usr/local/lib/python3.11/site-packages/adal/wstrust_response.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/rthooks/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/rthooks/pyi_rth_cryptography_openssl.py (deflated 52%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/tz/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/tz/tz.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/tz/__init__.py (deflated 46%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/tz/win.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/tz/_factories.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/tz/_common.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/_version.py (deflated 30%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/zoneinfo/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/zoneinfo/__init__.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/_common.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/parser/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/parser/isoparser.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/parser/_parser.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/parser/__init__.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/easter.py (deflated 53%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/relativedelta.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/__init__.py (deflated 45%)
+  adding: medio/usr/local/lib/python3.11/site-packages/dateutil/rrule.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/site-packages/charset_normalizer/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/charset_normalizer/utils.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/charset_normalizer/legacy.py (deflated 55%)
+  adding: medio/usr/local/lib/python3.11/site-packages/charset_normalizer/api.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/site-packages/charset_normalizer/__init__.py (deflated 49%)
+  adding: medio/usr/local/lib/python3.11/site-packages/charset_normalizer/cd.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/site-packages/charset_normalizer/models.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/charset_normalizer/constant.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/site-packages/charset_normalizer/version.py (deflated 16%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/instrument_bytecode.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/utils.py (deflated 56%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/version_dependent.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/__init__.py (deflated 56%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/import_hook.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/function_hooks.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/site-packages/certifi/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/certifi/core.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/site-packages/certifi/__init__.py (deflated 13%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/loader/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/loader/pyiboot01_bootstrap.py (deflated 55%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks/pyi_rth_inspect.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks/pyi_rth_multiprocessing.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks/pyi_rth_pkgutil.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/site-packages/six.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/setuptools/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/setuptools/_vendor/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/setuptools/_vendor/typing_extensions.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/queue.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/_py_abc.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/contextvars.py (deflated 35%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/forkserver.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/spawn.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/dummy/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/dummy/connection.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/dummy/__init__.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/connection.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/popen_fork.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/heap.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/reduction.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/context.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/popen_spawn_win32.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/managers.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/util.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/sharedctypes.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/process.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/shared_memory.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/popen_forkserver.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/resource_sharer.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/popen_spawn_posix.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/queues.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/__init__.py (deflated 44%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/pool.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/resource_tracker.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/synchronize.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/xml/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xml/__init__.py (deflated 41%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/saxutils.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/_exceptions.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/xmlreader.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/__init__.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/handler.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/expatreader.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/minicompat.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/expatbuilder.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/pulldom.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/minidom.py (deflated 80%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/domreg.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/__init__.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/NodeFilter.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/xmlbuilder.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/xml/etree/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xml/etree/ElementInclude.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/xml/etree/__init__.py (deflated 47%)
+  adding: medio/usr/local/lib/python3.11/xml/etree/cElementTree.py (deflated 23%)
+  adding: medio/usr/local/lib/python3.11/xml/etree/ElementPath.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/xml/etree/ElementTree.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/xml/parsers/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xml/parsers/expat.py (deflated 43%)
+  adding: medio/usr/local/lib/python3.11/xml/parsers/__init__.py (deflated 22%)
+  adding: medio/usr/local/lib/python3.11/importlib/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/_adapters.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/abc.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/_common.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/__init__.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/readers.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/_itertools.py (deflated 55%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/_legacy.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/importlib/abc.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/importlib/_bootstrap_external.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/importlib/__init__.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/importlib/machinery.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/_text.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/_functools.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/__init__.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/_meta.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/_adapters.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/_collections.py (deflated 48%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/_itertools.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/importlib/util.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/importlib/_abc.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/importlib/readers.py (deflated 39%)
+  adding: medio/usr/local/lib/python3.11/importlib/_bootstrap.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/ctypes/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/ctypes/__init__.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/ctypes/_endian.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/ctypes/wintypes.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/json/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/json/encoder.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/json/__init__.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/json/decoder.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/json/scanner.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/shlex.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/zipimport.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/urllib/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/urllib/__init__.py (stored 0%)
+  adding: medio/usr/local/lib/python3.11/urllib/response.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/urllib/request.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/urllib/parse.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/urllib/error.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/gzip.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/getpass.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/runpy.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/bz2.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/pickle.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/argparse.py (deflated 79%)
+  adding: medio/usr/local/lib/python3.11/py_compile.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/copy.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/bisect.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/ssl.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/ftplib.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/struct.py (deflated 46%)
+  adding: medio/usr/local/lib/python3.11/opcode.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/random.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/_bootsubprocess.py (deflated 62%)
+  adding: medio/usr/local/lib/python3.11/string.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/contextlib.py (deflated 80%)
+  adding: medio/usr/local/lib/python3.11/subprocess.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/sqlite3/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/sqlite3/dbapi2.py (deflated 59%)
+  adding: medio/usr/local/lib/python3.11/sqlite3/dump.py (deflated 62%)
+  adding: medio/usr/local/lib/python3.11/sqlite3/__init__.py (deflated 51%)
+  adding: medio/usr/local/lib/python3.11/zipfile.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/signal.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/dataclasses.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/calendar.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/shutil.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/gettext.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/threading.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/inspect.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/tokenize.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/uuid.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/pkgutil.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/socket.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/http/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/http/__init__.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/http/cookies.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/http/cookiejar.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/http/client.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/configparser.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/_pydecimal.py (deflated 79%)
+  adding: medio/usr/local/lib/python3.11/xmlrpc/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xmlrpc/client.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/xmlrpc/__init__.py (stored 0%)
+  adding: medio/usr/local/lib/python3.11/stringprep.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/_threading_local.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/secrets.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/hashlib.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/fractions.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/sysconfig.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/_sysconfigdata__linux_x86_64-linux-gnu.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/ast.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/_compression.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/tempfile.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/base64.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/getopt.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/_compat_pickle.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/fnmatch.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/typing.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/_strptime.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/selectors.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/platform.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/textwrap.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/glob.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/_aix_support.py (deflated 54%)
+  adding: medio/usr/local/lib/python3.11/numbers.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/pathlib.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/decimal.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/datetime.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/__future__.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/hmac.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/dis.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/quopri.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/csv.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/tracemalloc.py (deflated 79%)
+  adding: medio/usr/local/lib/python3.11/logging/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/logging/__init__.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/mimetypes.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/lzma.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/statistics.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/nturl2path.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/pprint.py (deflated 79%)
+  adding: medio/usr/local/lib/python3.11/netrc.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/tarfile.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/ipaddress.py (deflated 80%)
+  adding: medio/usr/local/lib/python3.11/token.py (deflated 57%)
+  adding: medio/src/ (stored 0%)
+  adding: medio/src/pyfuzzworkdir/ (stored 0%)
+  adding: medio/src/pyfuzzworkdir/fuzz_xmlutil/ (stored 0%)
+  adding: medio/src/pyfuzzworkdir/fuzz_xmlutil/fuzz_xmlutil.pkg/ (stored 0%)
+  adding: medio/src/pyfuzzworkdir/fuzz_xmlutil/fuzz_xmlutil.pkg/localpycs/ (stored 0%)
+  adding: medio/src/pyfuzzworkdir/fuzz_xmlutil/fuzz_xmlutil.pkg/localpycs/struct.pyc (deflated 31%)
+  adding: medio/src/pyfuzzworkdir/fuzz_xmlutil/fuzz_xmlutil.pkg/localpycs/pyimod02_importers.pyc (deflated 59%)
+  adding: medio/src/pyfuzzworkdir/fuzz_xmlutil/fuzz_xmlutil.pkg/localpycs/pyimod01_archive.pyc (deflated 46%)
+  adding: medio/src/pyfuzzworkdir/fuzz_xmlutil/fuzz_xmlutil.pkg/localpycs/pyimod03_ctypes.pyc (deflated 59%)
+  adding: medio/src/pyfuzzworkdir/fuzz_xmlutil/fuzz_xmlutil.pkg/PYZ-00.pyz (deflated 1%)
+  adding: medio/src/fuzz_xmlutil.py (deflated 60%)
++ mv fuzz_xmlutil.pkg.deps.zip /out/
++ echo '#!/bin/sh
+# LLVMFuzzerTestOneInput for fuzzer detection.
+this_dir=$(dirname "$0")
+chmod +x $this_dir/fuzz_xmlutil.pkg
+LD_PRELOAD=$this_dir/sanitizer_with_fuzzer.so ASAN_OPTIONS=$ASAN_OPTIONS:symbolize=1:external_symbolizer_path=$this_dir/llvm-symbolizer:detect_leaks=0 $this_dir/fuzz_xmlutil.pkg $@'
++ chmod +x /out/fuzz_xmlutil
+./script_lz4.sh: line 28: 步骤4/4:: No such file or directory
