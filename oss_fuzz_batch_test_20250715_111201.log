@@ -1,0 +1,10 @@
+==== 开始OSS-Fuzz批量测试 ====
+开始时间: Tue Jul 15 11:12:01 AM UTC 2025
+
+=== 处理项目: abseil-cpp ===
+  跳过非Python项目
+
+=== 处理项目: abseil-py ===
+  确认是Python项目，开始处理...
+  步骤1: 构建Docker镜像...
+Pull latest base images (compiler/runtime)? (y/N): 
