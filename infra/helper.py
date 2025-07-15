@@ -443,7 +443,7 @@ def get_parser():  # pylint: disable=too-many-statements,too-many-locals
                                action='store_true',
                                help='do not serve a local HTTP server.')
   coverage_parser.add_argument('--port',
-                               default='8008',
+                               default='8888', #原来是8008,因为被占用所以改了
                                help='specify port for'
                                ' a local HTTP server rendering coverage report')
   coverage_parser.add_argument('--fuzz-target',
@@ -1427,8 +1427,8 @@ def introspector(args):
 
   logger.info('Introspector run complete. Report in %s', introspector_dst)
   logger.info(
-      'To browse the report, run: `python3 -m http.server 8008 --directory %s`'
-      'and navigate to localhost:8008/fuzz_report.html in your browser',
+      'To browse the report, run: `python3 -m http.server 8888 --directory %s`'
+      'and navigate to localhost:8888/fuzz_report.html in your browser',
       introspector_dst)
   return True
 
