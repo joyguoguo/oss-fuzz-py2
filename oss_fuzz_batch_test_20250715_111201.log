@@ -7,4 +7,11 @@
 === 处理项目: abseil-py ===
   确认是Python项目，开始处理...
   步骤1: 构建Docker镜像...
-Pull latest base images (compiler/runtime)? (y/N): 
+Pull latest base images (compiler/runtime)? (y/N): Traceback (most recent call last):
+  File "/home/jiayiguo/oss-fuzz-py/oss-fuzz/infra/helper.py", line 1828, in <module>
+    sys.exit(main())
+  File "/home/jiayiguo/oss-fuzz-py/oss-fuzz/infra/helper.py", line 228, in main
+    result = build_image(args)
+  File "/home/jiayiguo/oss-fuzz-py/oss-fuzz/infra/helper.py", line 819, in build_image
+    y_or_n = raw_input('Pull latest base images (compiler/runtime)? (y/N): ')
+KeyboardInterrupt
