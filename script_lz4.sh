@@ -1,5 +1,5 @@
 #!/bin/bash
-# oss-fuzz-local-runner.sh
+# script_lz4.sh
 # 执行OSS-Fuzz本地测试全流程：自动发现目标 -> 构建镜像 -> 编译fuzzer -> 运行测试 -> 生成覆盖率报告
 # 用法：./script_lz4.sh <项目名> [sanitizer类型]
 
@@ -109,17 +109,17 @@ main() {
   done
 
   # 5. 生成覆盖率报告
-  run_command \
-    "python3 infra/helper.py build_fuzzers --sanitizer coverage $PROJECT_NAME" \
-    "步骤4/5: 编译覆盖率版本"
+  # run_command \
+  #   "python3 infra/helper.py build_fuzzers --sanitizer coverage $PROJECT_NAME" \
+  #   "步骤4/5: 编译覆盖率版本"
   
-  run_command \
-    "python3 infra/helper.py coverage --no-serve $PROJECT_NAME" \
-    "步骤5/5: 生成覆盖率报告"
+  # run_command \
+  #   "python3 infra/helper.py coverage --no-serve $PROJECT_NAME" \
+  #   "步骤5/5: 生成覆盖率报告"
 
   echo "✅ 所有步骤完成！结果查看:"
   echo "🔍 测试日志: $LOG_FILE"
-  echo "📊 覆盖率报告: $OSS_FUZZ_DIR/build/out/$PROJECT_NAME/report/coverage/index.html"
+  echo "📊 覆盖率报告(暂无): $OSS_FUZZ_DIR/build/out/$PROJECT_NAME/report/coverage/index.html"
   echo "💥 崩溃报告: $OSS_FUZZ_DIR/build/out/$PROJECT_NAME/crashes/"
 }
 

@@ -1,0 +1,129 @@
+▶️ 步骤1/5: 构建Docker镜像...
+Pull latest base images (compiler/runtime)? (y/N): INFO:__main__:Pulling latest base images...
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-image
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-image
+Digest: sha256:1cade78ed66e641f87629996a4706a399f23eb7e0b90b3ba67b4f701f807f7a4
+Status: Image is up to date for gcr.io/oss-fuzz-base/base-image:latest
+gcr.io/oss-fuzz-base/base-image:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-clang
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-clang
+Digest: sha256:e95b8465170a949326827c4eaab8c9d570bfb9d053b24152a8ab6e434f5267b2
+Status: Image is up to date for gcr.io/oss-fuzz-base/base-clang:latest
+gcr.io/oss-fuzz-base/base-clang:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-builder
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-builder
+Digest: sha256:a9e039bc862659772d09b054334613e51f6983e646b74a9bbf9394695d1e584d
+Status: Image is up to date for gcr.io/oss-fuzz-base/base-builder:latest
+gcr.io/oss-fuzz-base/base-builder:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-runner
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-runner
+Digest: sha256:163ff6f163b92e62da8efa43a846afc532776e1787ba461fec64cb5f1ccb6a77
+Status: Image is up to date for gcr.io/oss-fuzz-base/base-runner:latest
+gcr.io/oss-fuzz-base/base-runner:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-runner-debug
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-runner-debug
+Digest: sha256:d23526e7e16f31d80bc2899b1e2c080bd262bf769318f926f56c2159f01cc0ec
+Status: Image is up to date for gcr.io/oss-fuzz-base/base-runner-debug:latest
+gcr.io/oss-fuzz-base/base-runner-debug:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-builder-python
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-builder-python
+Digest: sha256:c022b322b6dddc43b26f59015eaa392ea230d00d09fea7533a21f710b283637f
+Status: Image is up to date for gcr.io/oss-fuzz-base/base-builder-python:latest
+gcr.io/oss-fuzz-base/base-builder-python:latest
+INFO:__main__:Running: docker build --no-cache -t gcr.io/oss-fuzz/python-lz4 --file /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/python-lz4/Dockerfile /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/python-lz4.
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile:
+#1 transferring dockerfile: 874B done
+#1 DONE 0.5s
+
+#2 [internal] load metadata for gcr.io/oss-fuzz-base/base-builder-python:latest
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context:
+#3 transferring context: 2B done
+#3 DONE 0.6s
+
+#4 [1/5] FROM gcr.io/oss-fuzz-base/base-builder-python:latest
+#4 CACHED
+
+#5 [internal] load build context
+#5 transferring context: 61B done
+#5 DONE 1.0s
+
+#6 [2/5] RUN git clone --depth 1 https://github.com/python-lz4/python-lz4
+#6 2.523 Cloning into 'python-lz4'...
+#6 DONE 6.4s
+
+#7 [3/5] COPY build.sh /src/
+#7 DONE 2.9s
+
+#8 [4/5] COPY fuzz_* /src/
+#8 DONE 2.4s
+
+#9 [5/5] WORKDIR /src/python-lz4
+#9 DONE 2.8s
+
+#10 exporting to image
+#10 exporting layers
+#10 exporting layers 2.8s done
+#10 writing image sha256:c46c1490c45b3af77ddd82f14bba9a4bc0ebb66f45a24f09dfcb9d45461884cb 0.0s done
+#10 naming to gcr.io/oss-fuzz/python-lz4 0.1s done
+#10 DONE 3.4s
+▶️ 步骤2/5: 编译fuzzer (sanitizer=address)...
+INFO:__main__:Running: docker build -t gcr.io/oss-fuzz/python-lz4 --file /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/python-lz4/Dockerfile /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/python-lz4.
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile:
+#1 transferring dockerfile: 874B done
+#1 DONE 1.4s
+
+#2 [internal] load metadata for gcr.io/oss-fuzz-base/base-builder-python:latest
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context:
+#3 transferring context: 2B done
+#3 DONE 0.5s
+
+#4 [1/5] FROM gcr.io/oss-fuzz-base/base-builder-python:latest
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 61B done
+#5 DONE 1.0s
+
+#6 [3/5] COPY build.sh /src/
+#6 CACHED
+
+#7 [4/5] COPY fuzz_* /src/
+#7 CACHED
+
+#8 [2/5] RUN git clone --depth 1 https://github.com/python-lz4/python-lz4
+#8 CACHED
+
+#9 [5/5] WORKDIR /src/python-lz4
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers done
+#10 writing image sha256:c46c1490c45b3af77ddd82f14bba9a4bc0ebb66f45a24f09dfcb9d45461884cb 0.1s done
+#10 naming to gcr.io/oss-fuzz/python-lz4 0.1s done
+#10 DONE 0.3s
+INFO:__main__:Keeping existing build artifacts as-is (if any).
+INFO:__main__:Running: docker run --privileged --shm-size=2g --platform linux/amd64 --rm -i -e FUZZING_ENGINE=libfuzzer -e SANITIZER=address -e ARCHITECTURE=x86_64 -e PROJECT_NAME=python-lz4 -e HELPER=True -e FUZZING_LANGUAGE=python -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/out/python-lz4/:/out -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/work/python-lz4:/work -t gcr.io/oss-fuzz/python-lz4.
+---------------------------------------------------------------
+vm.mmap_rnd_bits = 28
+Compiling libFuzzer to /usr/lib/libFuzzingEngine.a...  done.
+cp: cannot create regular file '/out/llvm-symbolizer': Text file busy
+ERROR:__main__:Building fuzzers failed.
+❌ 命令执行失败: python3 infra/helper.py build_fuzzers --sanitizer address python-lz4 (退出码: 1)

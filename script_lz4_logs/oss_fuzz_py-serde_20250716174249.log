@@ -1,0 +1,1113 @@
+▶️ 步骤1/5: 构建Docker镜像...
+Pull latest base images (compiler/runtime)? (y/N): INFO:__main__:Pulling latest base images...
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-image
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-image
+b549f31133a9: Already exists
+679301d53e74: Pulling fs layer
+b8d6251e658a: Pulling fs layer
+b8d6251e658a: Verifying Checksum
+679301d53e74: Download complete
+679301d53e74: Pull complete
+b8d6251e658a: Pull complete
+Digest: sha256:1cade78ed66e641f87629996a4706a399f23eb7e0b90b3ba67b4f701f807f7a4
+Status: Downloaded newer image for gcr.io/oss-fuzz-base/base-image:latest
+gcr.io/oss-fuzz-base/base-image:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-clang
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-clang
+b549f31133a9: Already exists
+679301d53e74: Already exists
+b8d6251e658a: Already exists
+07ca57942a13: Pulling fs layer
+c8f029b509f5: Pulling fs layer
+c31ec0f94d1d: Pulling fs layer
+056d47f3facb: Pulling fs layer
+0301bc78b787: Pulling fs layer
+056d47f3facb: Waiting
+0301bc78b787: Waiting
+c31ec0f94d1d: Download complete
+c8f029b509f5: Verifying Checksum
+c8f029b509f5: Download complete
+0301bc78b787: Verifying Checksum
+0301bc78b787: Download complete
+07ca57942a13: Verifying Checksum
+07ca57942a13: Download complete
+07ca57942a13: Pull complete
+c8f029b509f5: Pull complete
+056d47f3facb: Verifying Checksum
+056d47f3facb: Download complete
+c31ec0f94d1d: Pull complete
+056d47f3facb: Pull complete
+0301bc78b787: Pull complete
+Digest: sha256:e95b8465170a949326827c4eaab8c9d570bfb9d053b24152a8ab6e434f5267b2
+Status: Downloaded newer image for gcr.io/oss-fuzz-base/base-clang:latest
+gcr.io/oss-fuzz-base/base-clang:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-builder
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-builder
+b549f31133a9: Already exists
+679301d53e74: Already exists
+b8d6251e658a: Already exists
+07ca57942a13: Already exists
+c8f029b509f5: Already exists
+c31ec0f94d1d: Already exists
+056d47f3facb: Already exists
+0301bc78b787: Already exists
+c9d665c73e7b: Pulling fs layer
+99db2ca8b617: Pulling fs layer
+926051091f81: Pulling fs layer
+01089e460be3: Pulling fs layer
+5ee49c24c3be: Pulling fs layer
+1d74672fb3b8: Pulling fs layer
+5a2a030eab96: Pulling fs layer
+9ca6667fcd9d: Pulling fs layer
+b5699ea8f8e7: Pulling fs layer
+75652918905c: Pulling fs layer
+e3eb9fec1347: Pulling fs layer
+bbeef1c76a84: Pulling fs layer
+bcdcd3cd6603: Pulling fs layer
+92fd538de052: Pulling fs layer
+2cf4e64a7929: Pulling fs layer
+1d74672fb3b8: Waiting
+5a2a030eab96: Waiting
+9ca6667fcd9d: Waiting
+9619409bea3e: Pulling fs layer
+f95dac3c34c4: Pulling fs layer
+b5699ea8f8e7: Waiting
+75652918905c: Waiting
+8b433ea4cdea: Pulling fs layer
+e3eb9fec1347: Waiting
+9a0a01d97ce1: Pulling fs layer
+785e2d045c61: Pulling fs layer
+d9b57b837a78: Pulling fs layer
+bbeef1c76a84: Waiting
+ea71bda1d4d9: Pulling fs layer
+bcdcd3cd6603: Waiting
+89444447fb1d: Pulling fs layer
+92fd538de052: Waiting
+2cf4e64a7929: Waiting
+c088be222c5f: Pulling fs layer
+9619409bea3e: Waiting
+01089e460be3: Waiting
+a5648306927d: Pulling fs layer
+f95dac3c34c4: Waiting
+580d49dd56ed: Pulling fs layer
+8b433ea4cdea: Waiting
+9a0a01d97ce1: Waiting
+56753dc84b57: Pulling fs layer
+5ef631f26477: Pulling fs layer
+b20909939641: Pulling fs layer
+a5648306927d: Waiting
+ec704a961cde: Pulling fs layer
+89444447fb1d: Waiting
+5ef631f26477: Waiting
+ec704a961cde: Waiting
+56753dc84b57: Waiting
+5ee49c24c3be: Waiting
+580d49dd56ed: Waiting
+d9b57b837a78: Waiting
+c088be222c5f: Waiting
+ea71bda1d4d9: Waiting
+b20909939641: Waiting
+c9d665c73e7b: Verifying Checksum
+c9d665c73e7b: Download complete
+c9d665c73e7b: Pull complete
+01089e460be3: Verifying Checksum
+01089e460be3: Download complete
+926051091f81: Verifying Checksum
+926051091f81: Download complete
+5ee49c24c3be: Verifying Checksum
+5ee49c24c3be: Download complete
+1d74672fb3b8: Verifying Checksum
+1d74672fb3b8: Download complete
+5a2a030eab96: Verifying Checksum
+9ca6667fcd9d: Verifying Checksum
+5a2a030eab96: Download complete
+9ca6667fcd9d: Download complete
+75652918905c: Verifying Checksum
+75652918905c: Download complete
+b5699ea8f8e7: Verifying Checksum
+b5699ea8f8e7: Download complete
+99db2ca8b617: Verifying Checksum
+99db2ca8b617: Download complete
+e3eb9fec1347: Verifying Checksum
+e3eb9fec1347: Download complete
+bbeef1c76a84: Verifying Checksum
+bbeef1c76a84: Download complete
+92fd538de052: Verifying Checksum
+92fd538de052: Download complete
+bcdcd3cd6603: Verifying Checksum
+bcdcd3cd6603: Download complete
+9619409bea3e: Verifying Checksum
+9619409bea3e: Download complete
+f95dac3c34c4: Verifying Checksum
+f95dac3c34c4: Download complete
+2cf4e64a7929: Verifying Checksum
+2cf4e64a7929: Download complete
+8b433ea4cdea: Verifying Checksum
+8b433ea4cdea: Download complete
+9a0a01d97ce1: Verifying Checksum
+9a0a01d97ce1: Download complete
+785e2d045c61: Verifying Checksum
+785e2d045c61: Download complete
+d9b57b837a78: Verifying Checksum
+d9b57b837a78: Download complete
+89444447fb1d: Verifying Checksum
+89444447fb1d: Download complete
+ea71bda1d4d9: Verifying Checksum
+ea71bda1d4d9: Download complete
+c088be222c5f: Verifying Checksum
+c088be222c5f: Download complete
+a5648306927d: Download complete
+580d49dd56ed: Verifying Checksum
+580d49dd56ed: Download complete
+5ef631f26477: Verifying Checksum
+5ef631f26477: Download complete
+99db2ca8b617: Pull complete
+56753dc84b57: Verifying Checksum
+56753dc84b57: Download complete
+b20909939641: Verifying Checksum
+b20909939641: Download complete
+ec704a961cde: Verifying Checksum
+ec704a961cde: Download complete
+926051091f81: Pull complete
+01089e460be3: Pull complete
+5ee49c24c3be: Pull complete
+1d74672fb3b8: Pull complete
+5a2a030eab96: Pull complete
+9ca6667fcd9d: Pull complete
+b5699ea8f8e7: Pull complete
+75652918905c: Pull complete
+e3eb9fec1347: Pull complete
+bbeef1c76a84: Pull complete
+bcdcd3cd6603: Pull complete
+92fd538de052: Pull complete
+2cf4e64a7929: Pull complete
+9619409bea3e: Pull complete
+f95dac3c34c4: Pull complete
+8b433ea4cdea: Pull complete
+9a0a01d97ce1: Pull complete
+785e2d045c61: Pull complete
+d9b57b837a78: Pull complete
+ea71bda1d4d9: Pull complete
+89444447fb1d: Pull complete
+c088be222c5f: Pull complete
+a5648306927d: Pull complete
+580d49dd56ed: Pull complete
+56753dc84b57: Pull complete
+5ef631f26477: Pull complete
+b20909939641: Pull complete
+ec704a961cde: Pull complete
+Digest: sha256:a9e039bc862659772d09b054334613e51f6983e646b74a9bbf9394695d1e584d
+Status: Downloaded newer image for gcr.io/oss-fuzz-base/base-builder:latest
+gcr.io/oss-fuzz-base/base-builder:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-runner
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-runner
+b549f31133a9: Already exists
+679301d53e74: Already exists
+b8d6251e658a: Already exists
+40b855a0fcf8: Pulling fs layer
+7a0f072266bc: Pulling fs layer
+5a693a5553b8: Pulling fs layer
+0cbb690fcf06: Pulling fs layer
+ce8259f40aa2: Pulling fs layer
+a4e33af8bad0: Pulling fs layer
+1743b6e1af4b: Pulling fs layer
+488d916f7e8c: Pulling fs layer
+0d78d6c0fe61: Pulling fs layer
+2b2b9d8b1e5d: Pulling fs layer
+0578947b2bfd: Pulling fs layer
+67a7f50c0ed3: Pulling fs layer
+4bd1ef2fe08c: Pulling fs layer
+8e295e1d5375: Pulling fs layer
+7da7fd358082: Pulling fs layer
+2b2b9d8b1e5d: Waiting
+b47531f91464: Pulling fs layer
+0578947b2bfd: Waiting
+67a7f50c0ed3: Waiting
+a4e33af8bad0: Waiting
+4bd1ef2fe08c: Waiting
+797155632de5: Pulling fs layer
+1743b6e1af4b: Waiting
+82308f4683a9: Pulling fs layer
+488d916f7e8c: Waiting
+0d78d6c0fe61: Waiting
+abfaa02be4c1: Pulling fs layer
+f4d0d1c24cff: Pulling fs layer
+7da7fd358082: Waiting
+53dfb2c57d66: Pulling fs layer
+b47531f91464: Waiting
+99f7400e022a: Pulling fs layer
+82308f4683a9: Waiting
+797155632de5: Waiting
+abfaa02be4c1: Waiting
+53dfb2c57d66: Waiting
+a678d54b8556: Pulling fs layer
+0cbb690fcf06: Waiting
+99f7400e022a: Waiting
+8e295e1d5375: Waiting
+ce8259f40aa2: Waiting
+f4d0d1c24cff: Waiting
+a678d54b8556: Waiting
+5a693a5553b8: Verifying Checksum
+5a693a5553b8: Download complete
+40b855a0fcf8: Download complete
+7a0f072266bc: Verifying Checksum
+7a0f072266bc: Download complete
+0cbb690fcf06: Verifying Checksum
+0cbb690fcf06: Download complete
+ce8259f40aa2: Verifying Checksum
+ce8259f40aa2: Download complete
+1743b6e1af4b: Download complete
+488d916f7e8c: Verifying Checksum
+488d916f7e8c: Download complete
+a4e33af8bad0: Verifying Checksum
+a4e33af8bad0: Download complete
+0d78d6c0fe61: Verifying Checksum
+0d78d6c0fe61: Download complete
+67a7f50c0ed3: Verifying Checksum
+67a7f50c0ed3: Download complete
+40b855a0fcf8: Pull complete
+0578947b2bfd: Verifying Checksum
+0578947b2bfd: Download complete
+4bd1ef2fe08c: Download complete
+2b2b9d8b1e5d: Verifying Checksum
+2b2b9d8b1e5d: Download complete
+7a0f072266bc: Pull complete
+7da7fd358082: Verifying Checksum
+7da7fd358082: Download complete
+5a693a5553b8: Pull complete
+8e295e1d5375: Verifying Checksum
+8e295e1d5375: Download complete
+797155632de5: Verifying Checksum
+797155632de5: Download complete
+82308f4683a9: Download complete
+0cbb690fcf06: Pull complete
+ce8259f40aa2: Pull complete
+b47531f91464: Verifying Checksum
+b47531f91464: Download complete
+abfaa02be4c1: Download complete
+53dfb2c57d66: Verifying Checksum
+53dfb2c57d66: Download complete
+99f7400e022a: Verifying Checksum
+99f7400e022a: Download complete
+a678d54b8556: Verifying Checksum
+a678d54b8556: Download complete
+a4e33af8bad0: Pull complete
+1743b6e1af4b: Pull complete
+f4d0d1c24cff: Verifying Checksum
+f4d0d1c24cff: Download complete
+488d916f7e8c: Pull complete
+0d78d6c0fe61: Pull complete
+2b2b9d8b1e5d: Pull complete
+0578947b2bfd: Pull complete
+67a7f50c0ed3: Pull complete
+4bd1ef2fe08c: Pull complete
+8e295e1d5375: Pull complete
+7da7fd358082: Pull complete
+b47531f91464: Pull complete
+797155632de5: Pull complete
+82308f4683a9: Pull complete
+abfaa02be4c1: Pull complete
+f4d0d1c24cff: Pull complete
+53dfb2c57d66: Pull complete
+99f7400e022a: Pull complete
+a678d54b8556: Pull complete
+Digest: sha256:163ff6f163b92e62da8efa43a846afc532776e1787ba461fec64cb5f1ccb6a77
+Status: Downloaded newer image for gcr.io/oss-fuzz-base/base-runner:latest
+gcr.io/oss-fuzz-base/base-runner:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-runner-debug
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-runner-debug
+b549f31133a9: Already exists
+679301d53e74: Already exists
+b8d6251e658a: Already exists
+40b855a0fcf8: Already exists
+7a0f072266bc: Already exists
+5a693a5553b8: Already exists
+0cbb690fcf06: Already exists
+ce8259f40aa2: Already exists
+a4e33af8bad0: Already exists
+1743b6e1af4b: Already exists
+488d916f7e8c: Already exists
+0d78d6c0fe61: Already exists
+2b2b9d8b1e5d: Already exists
+0578947b2bfd: Already exists
+67a7f50c0ed3: Already exists
+4bd1ef2fe08c: Already exists
+8e295e1d5375: Already exists
+7da7fd358082: Already exists
+b47531f91464: Already exists
+797155632de5: Already exists
+82308f4683a9: Already exists
+abfaa02be4c1: Already exists
+f4d0d1c24cff: Already exists
+53dfb2c57d66: Already exists
+99f7400e022a: Already exists
+a678d54b8556: Already exists
+6f8dd9d9fa26: Pulling fs layer
+b553e1fc2178: Pulling fs layer
+b553e1fc2178: Verifying Checksum
+6f8dd9d9fa26: Verifying Checksum
+6f8dd9d9fa26: Download complete
+6f8dd9d9fa26: Pull complete
+b553e1fc2178: Pull complete
+Digest: sha256:d23526e7e16f31d80bc2899b1e2c080bd262bf769318f926f56c2159f01cc0ec
+Status: Downloaded newer image for gcr.io/oss-fuzz-base/base-runner-debug:latest
+gcr.io/oss-fuzz-base/base-runner-debug:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-builder-python
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-builder-python
+b549f31133a9: Already exists
+679301d53e74: Already exists
+b8d6251e658a: Already exists
+07ca57942a13: Already exists
+c8f029b509f5: Already exists
+c31ec0f94d1d: Already exists
+056d47f3facb: Already exists
+0301bc78b787: Already exists
+c9d665c73e7b: Already exists
+99db2ca8b617: Already exists
+926051091f81: Already exists
+01089e460be3: Already exists
+5ee49c24c3be: Already exists
+1d74672fb3b8: Already exists
+5a2a030eab96: Already exists
+9ca6667fcd9d: Already exists
+b5699ea8f8e7: Already exists
+75652918905c: Already exists
+e3eb9fec1347: Already exists
+bbeef1c76a84: Already exists
+bcdcd3cd6603: Already exists
+92fd538de052: Already exists
+2cf4e64a7929: Already exists
+9619409bea3e: Already exists
+f95dac3c34c4: Already exists
+8b433ea4cdea: Already exists
+9a0a01d97ce1: Already exists
+785e2d045c61: Already exists
+d9b57b837a78: Already exists
+ea71bda1d4d9: Already exists
+89444447fb1d: Already exists
+c088be222c5f: Already exists
+a5648306927d: Already exists
+580d49dd56ed: Already exists
+56753dc84b57: Already exists
+5ef631f26477: Already exists
+b20909939641: Already exists
+ec704a961cde: Already exists
+2ff9d57bd6d8: Pulling fs layer
+2ff9d57bd6d8: Verifying Checksum
+2ff9d57bd6d8: Download complete
+2ff9d57bd6d8: Pull complete
+Digest: sha256:c022b322b6dddc43b26f59015eaa392ea230d00d09fea7533a21f710b283637f
+Status: Downloaded newer image for gcr.io/oss-fuzz-base/base-builder-python:latest
+gcr.io/oss-fuzz-base/base-builder-python:latest
+INFO:__main__:Running: docker build --no-cache -t gcr.io/oss-fuzz/py-serde --file /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/py-serde/Dockerfile /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/py-serde.
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile:
+#1 transferring dockerfile: 918B done
+#1 DONE 1.3s
+
+#2 [internal] load metadata for gcr.io/oss-fuzz-base/base-builder-python:latest
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context:
+#3 transferring context: 2B done
+#3 DONE 1.1s
+
+#4 [1/5] FROM gcr.io/oss-fuzz-base/base-builder-python:latest
+#4 ...
+
+#5 [internal] load build context
+#5 transferring context: 2.42kB done
+#5 DONE 2.7s
+
+#4 [1/5] FROM gcr.io/oss-fuzz-base/base-builder-python:latest
+#4 DONE 39.8s
+
+#6 [2/5] RUN apt-get update && apt-get install -y make autoconf automake libtool
+#6 3.684 Hit:1 http://archive.ubuntu.com/ubuntu focal InRelease
+#6 3.684 Get:2 http://security.ubuntu.com/ubuntu focal-security InRelease [128 kB]
+#6 3.818 Get:3 http://archive.ubuntu.com/ubuntu focal-updates InRelease [128 kB]
+#6 4.443 Get:4 http://archive.ubuntu.com/ubuntu focal-backports InRelease [128 kB]
+#6 4.658 Fetched 383 kB in 1s (301 kB/s)
+#6 4.658 Reading package lists...
+#6 5.662 Reading package lists...
+#6 6.606 Building dependency tree...
+#6 6.750 Reading state information...
+#6 6.865 make is already the newest version (4.2.1-1.2).
+#6 6.865 make set to manually installed.
+#6 6.865 The following additional packages will be installed:
+#6 6.865   file libltdl-dev libltdl7 libmagic-mgc libmagic1
+#6 6.866 Suggested packages:
+#6 6.866   autoconf-archive gnu-standards autoconf-doc gettext libtool-doc gfortran
+#6 6.866   | fortran95-compiler gcj-jdk
+#6 6.895 The following NEW packages will be installed:
+#6 6.895   autoconf automake file libltdl-dev libltdl7 libmagic-mgc libmagic1 libtool
+#6 7.116 0 upgraded, 8 newly installed, 0 to remove and 0 not upgraded.
+#6 7.116 Need to get 1522 kB of archives.
+#6 7.116 After this operation, 12.3 MB of additional disk space will be used.
+#6 7.116 Get:1 http://archive.ubuntu.com/ubuntu focal/main amd64 libmagic-mgc amd64 1:5.38-4 [218 kB]
+#6 7.595 Get:2 http://archive.ubuntu.com/ubuntu focal/main amd64 libmagic1 amd64 1:5.38-4 [75.9 kB]
+#6 7.623 Get:3 http://archive.ubuntu.com/ubuntu focal/main amd64 file amd64 1:5.38-4 [23.3 kB]
+#6 7.623 Get:4 http://archive.ubuntu.com/ubuntu focal/main amd64 autoconf all 2.69-11.1 [321 kB]
+#6 7.787 Get:5 http://archive.ubuntu.com/ubuntu focal/main amd64 automake all 1:1.16.1-4ubuntu6 [522 kB]
+#6 7.790 Get:6 http://archive.ubuntu.com/ubuntu focal/main amd64 libltdl7 amd64 2.4.6-14 [38.5 kB]
+#6 7.797 Get:7 http://archive.ubuntu.com/ubuntu focal/main amd64 libltdl-dev amd64 2.4.6-14 [162 kB]
+#6 7.854 Get:8 http://archive.ubuntu.com/ubuntu focal/main amd64 libtool all 2.4.6-14 [161 kB]
+#6 8.022 debconf: delaying package configuration, since apt-utils is not installed
+#6 8.058 Fetched 1522 kB in 1s (1593 kB/s)
+#6 8.212 Selecting previously unselected package libmagic-mgc.
+#6 8.212 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 17483 files and directories currently installed.)
+#6 8.233 Preparing to unpack .../0-libmagic-mgc_1%3a5.38-4_amd64.deb ...
+#6 8.603 Unpacking libmagic-mgc (1:5.38-4) ...
+#6 9.136 Selecting previously unselected package libmagic1:amd64.
+#6 9.140 Preparing to unpack .../1-libmagic1_1%3a5.38-4_amd64.deb ...
+#6 9.269 Unpacking libmagic1:amd64 (1:5.38-4) ...
+#6 10.05 Selecting previously unselected package file.
+#6 10.06 Preparing to unpack .../2-file_1%3a5.38-4_amd64.deb ...
+#6 10.22 Unpacking file (1:5.38-4) ...
+#6 11.06 Selecting previously unselected package autoconf.
+#6 11.06 Preparing to unpack .../3-autoconf_2.69-11.1_all.deb ...
+#6 11.20 Unpacking autoconf (2.69-11.1) ...
+#6 12.13 Selecting previously unselected package automake.
+#6 12.14 Preparing to unpack .../4-automake_1%3a1.16.1-4ubuntu6_all.deb ...
+#6 12.29 Unpacking automake (1:1.16.1-4ubuntu6) ...
+#6 13.15 Selecting previously unselected package libltdl7:amd64.
+#6 13.15 Preparing to unpack .../5-libltdl7_2.4.6-14_amd64.deb ...
+#6 13.31 Unpacking libltdl7:amd64 (2.4.6-14) ...
+#6 14.67 Selecting previously unselected package libltdl-dev:amd64.
+#6 14.68 Preparing to unpack .../6-libltdl-dev_2.4.6-14_amd64.deb ...
+#6 14.82 Unpacking libltdl-dev:amd64 (2.4.6-14) ...
+#6 15.52 Selecting previously unselected package libtool.
+#6 15.53 Preparing to unpack .../7-libtool_2.4.6-14_all.deb ...
+#6 15.59 Unpacking libtool (2.4.6-14) ...
+#6 16.32 Setting up libmagic-mgc (1:5.38-4) ...
+#6 16.53 Setting up libmagic1:amd64 (1:5.38-4) ...
+#6 16.82 Setting up file (1:5.38-4) ...
+#6 17.06 Setting up libltdl7:amd64 (2.4.6-14) ...
+#6 17.27 Setting up autoconf (2.69-11.1) ...
+#6 17.67 Setting up automake (1:1.16.1-4ubuntu6) ...
+#6 17.82 update-alternatives: using /usr/bin/automake-1.16 to provide /usr/bin/automake (automake) in auto mode
+#6 17.82 update-alternatives: warning: skip creation of /usr/share/man/man1/automake.1.gz because associated file /usr/share/man/man1/automake-1.16.1.gz (of link group automake) doesn't exist
+#6 17.82 update-alternatives: warning: skip creation of /usr/share/man/man1/aclocal.1.gz because associated file /usr/share/man/man1/aclocal-1.16.1.gz (of link group automake) doesn't exist
+#6 17.95 Setting up libtool (2.4.6-14) ...
+#6 18.17 Setting up libltdl-dev:amd64 (2.4.6-14) ...
+#6 18.40 Processing triggers for libc-bin (2.31-0ubuntu9.18) ...
+#6 DONE 19.7s
+
+#7 [3/5] RUN git clone --depth 1 https://github.com/rossmacarthur/serde
+#7 2.305 Cloning into 'serde'...
+#7 DONE 4.9s
+
+#8 [4/5] WORKDIR serde
+#8 DONE 2.3s
+
+#9 [5/5] COPY build.sh *.py /src/
+#9 DONE 2.3s
+
+#10 exporting to image
+#10 exporting layers
+#10 exporting layers 2.4s done
+#10 writing image sha256:ab1753d724fb293f2499f818719cebf8a9f29756024387d780437f3bf49b3c16 0.0s done
+#10 naming to gcr.io/oss-fuzz/py-serde 0.1s done
+#10 DONE 2.9s
+
+ [33m1 warning found (use docker --debug to expand):
+[0m - WorkdirRelativePath: Relative workdir "serde" can have unexpected results if the base image changes (line 20)
+▶️ 步骤2/5: 编译fuzzer (sanitizer=address)...
+INFO:__main__:Running: docker build -t gcr.io/oss-fuzz/py-serde --file /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/py-serde/Dockerfile /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/py-serde.
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile:
+#1 transferring dockerfile: 918B done
+#1 DONE 1.4s
+
+#2 [internal] load metadata for gcr.io/oss-fuzz-base/base-builder-python:latest
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context:
+#3 transferring context: 2B done
+#3 DONE 0.4s
+
+#4 [1/5] FROM gcr.io/oss-fuzz-base/base-builder-python:latest
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 63B done
+#5 DONE 0.9s
+
+#6 [2/5] RUN apt-get update && apt-get install -y make autoconf automake libtool
+#6 CACHED
+
+#7 [3/5] RUN git clone --depth 1 https://github.com/rossmacarthur/serde
+#7 CACHED
+
+#8 [4/5] WORKDIR serde
+#8 CACHED
+
+#9 [5/5] COPY build.sh *.py /src/
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers done
+#10 writing image sha256:ab1753d724fb293f2499f818719cebf8a9f29756024387d780437f3bf49b3c16 0.1s done
+#10 naming to gcr.io/oss-fuzz/py-serde 0.1s done
+#10 DONE 0.3s
+
+ [33m1 warning found (use docker --debug to expand):
+[0m - WorkdirRelativePath: Relative workdir "serde" can have unexpected results if the base image changes (line 20)
+INFO:__main__:Keeping existing build artifacts as-is (if any).
+INFO:__main__:Running: docker run --privileged --shm-size=2g --platform linux/amd64 --rm -i -e FUZZING_ENGINE=libfuzzer -e SANITIZER=address -e ARCHITECTURE=x86_64 -e PROJECT_NAME=py-serde -e HELPER=True -e FUZZING_LANGUAGE=python -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/out/py-serde/:/out -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/work/py-serde:/work -t gcr.io/oss-fuzz/py-serde.
+---------------------------------------------------------------
+vm.mmap_rnd_bits = 28
+Compiling libFuzzer to /usr/lib/libFuzzingEngine.a...  done.
+---------------------------------------------------------------
+CC=clang
+CXX=clang++
+CFLAGS=-O1   -fno-omit-frame-pointer   -gline-tables-only   -Wno-error=enum-constexpr-conversion   -Wno-error=incompatible-function-pointer-types   -Wno-error=int-conversion   -Wno-error=deprecated-declarations   -Wno-error=implicit-function-declaration   -Wno-error=implicit-int   -Wno-error=vla-cxx-extension   -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -fno-sanitize=function,leak,vptr,
+CXXFLAGS=-O1   -fno-omit-frame-pointer   -gline-tables-only   -Wno-error=enum-constexpr-conversion   -Wno-error=incompatible-function-pointer-types   -Wno-error=int-conversion   -Wno-error=deprecated-declarations   -Wno-error=implicit-function-declaration   -Wno-error=implicit-int   -Wno-error=vla-cxx-extension   -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -stdlib=libc++ -fno-sanitize=function,leak,vptr
+RUSTFLAGS=--cfg fuzzing -Zsanitizer=address -Cdebuginfo=1 -Cforce-frame-pointers
+---------------------------------------------------------------
++ pip3 install .
+Processing /src/serde
+  Installing build dependencies ... [?25l- \ done
+[?25h  Getting requirements to build wheel ... [?25l- done
+[?25h  Preparing metadata (pyproject.toml) ... [?25l- done
+[?25hBuilding wheels for collected packages: serde
+  Building wheel for serde (pyproject.toml) ... [?25l- done
+[?25h  Created wheel for serde: filename=serde-0.9.0-py3-none-any.whl size=26501 sha256=6230d2d7c46a1f362c8b96bd73c699e4e94c1ffaa0e5fab196186d4375a9bb02
+  Stored in directory: /tmp/pip-ephem-wheel-cache-j6vkdw7m/wheels/8e/c8/c5/434795b18078b7fa2347054e6cfe92aa37b251f52820fd788a
+Successfully built serde
+Installing collected packages: serde
+Successfully installed serde-0.9.0
+[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.[0m[33m
+[0m++ find /src -name 'fuzz_*.py'
++ for fuzzer in $(find $SRC -name 'fuzz_*.py')
++ compile_python_fuzzer /src/fuzz_model.py
++ fuzzer_path=/src/fuzz_model.py
++ shift 1
+++ basename -s .py /src/fuzz_model.py
++ fuzzer_basename=fuzz_model
++ fuzzer_package=fuzz_model.pkg
++ PYFUZZ_WORKPATH=/src/pyfuzzworkdir/
++ FUZZ_WORKPATH=/src/pyfuzzworkdir//fuzz_model
++ [[ address = *introspector* ]]
++ [[ address = *coverage* ]]
++ [[ 0 != \0 ]]
++ rm -rf /src/pyfuzzworkdir/
++ mkdir /src/pyfuzzworkdir/ /src/pyfuzzworkdir//fuzz_model
++ pyinstaller --distpath /out --workpath=/src/pyfuzzworkdir//fuzz_model --onefile --name fuzz_model.pkg /src/fuzz_model.py
+50 INFO: PyInstaller: 6.10.0, contrib hooks: 2025.6
+50 INFO: Python: 3.11.13
+51 INFO: Platform: Linux-5.15.0-140-generic-x86_64-with-glibc2.31
+52 INFO: Python environment: /usr/local
+52 INFO: wrote /src/serde/fuzz_model.pkg.spec
+54 INFO: Module search paths (PYTHONPATH):
+['/usr/local/lib/python311.zip',
+ '/usr/local/lib/python3.11',
+ '/usr/local/lib/python3.11/lib-dynload',
+ '/usr/local/lib/python3.11/site-packages',
+ '/usr/local/lib/python3.11/site-packages/setuptools/_vendor',
+ '/src']
+124 INFO: checking Analysis
+124 INFO: Building Analysis because Analysis-00.toc is non existent
+124 INFO: Running Analysis Analysis-00.toc
+124 INFO: Target bytecode optimization level: 0
+124 INFO: Initializing module dependency graph...
+124 INFO: Caching module graph hooks...
+130 INFO: Analyzing base_library.zip ...
+537 INFO: Processing standard module hook 'hook-heapq.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+630 INFO: Processing standard module hook 'hook-encodings.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+1628 INFO: Processing standard module hook 'hook-pickle.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2631 INFO: Caching module dependency graph...
+2681 INFO: Looking for Python shared library...
+2690 INFO: Using Python shared library: /usr/local/lib/libpython3.11.so.1.0
+2690 INFO: Analyzing /src/fuzz_model.py
+2692 INFO: Processing standard module hook 'hook-atheris.py' from '/usr/local/lib/python3.11/site-packages/atheris'
+2804 INFO: Processing standard module hook 'hook-platform.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2813 INFO: Processing module hooks (post-graph stage)...
+2818 INFO: Performing binary vs. data reclassification (2 entries)
+2820 INFO: Looking for ctypes DLLs
+2828 INFO: Analyzing run-time hooks ...
+2829 INFO: Including run-time hook 'pyi_rth_inspect.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+2832 INFO: Looking for dynamic libraries
+3209 INFO: Warnings written to /src/pyfuzzworkdir/fuzz_model/fuzz_model.pkg/warn-fuzz_model.pkg.txt
+3215 INFO: Graph cross-reference written to /src/pyfuzzworkdir/fuzz_model/fuzz_model.pkg/xref-fuzz_model.pkg.html
+3223 INFO: checking PYZ
+3223 INFO: Building PYZ because PYZ-00.toc is non existent
+3223 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_model/fuzz_model.pkg/PYZ-00.pyz
+3378 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_model/fuzz_model.pkg/PYZ-00.pyz completed successfully.
+3389 INFO: checking PKG
+3389 INFO: Building PKG because PKG-00.toc is non existent
+3389 INFO: Building PKG (CArchive) fuzz_model.pkg.pkg
+13125 INFO: Building PKG (CArchive) fuzz_model.pkg.pkg completed successfully.
+13127 INFO: Bootloader /usr/local/lib/python3.11/site-packages/PyInstaller/bootloader/Linux-64bit-intel/run
+13127 INFO: checking EXE
+13127 INFO: Building EXE because EXE-00.toc is non existent
+13127 INFO: Building EXE from EXE-00.toc
+13127 INFO: Copying bootloader EXE to /out/fuzz_model.pkg
+13128 INFO: Appending PKG archive to custom ELF section in EXE
+13160 INFO: Building EXE from EXE-00.toc completed successfully.
++ chmod -x /out/fuzz_model.pkg
++ [[ address = *coverage* ]]
++ echo '#!/bin/sh
+# LLVMFuzzerTestOneInput for fuzzer detection.
+this_dir=$(dirname "$0")
+chmod +x $this_dir/fuzz_model.pkg
+LD_PRELOAD=$this_dir/sanitizer_with_fuzzer.so ASAN_OPTIONS=$ASAN_OPTIONS:symbolize=1:external_symbolizer_path=$this_dir/llvm-symbolizer:detect_leaks=0 $this_dir/fuzz_model.pkg $@'
++ chmod +x /out/fuzz_model
+✅ 发现目标: fuzz_model
+▶️ 步骤3/5: 运行目标 [fuzz_model] (∞分钟超时)...
+INFO:__main__:Running: docker run --privileged --shm-size=2g --platform linux/amd64 --rm -i -e FUZZING_ENGINE=libfuzzer -e SANITIZER=address -e RUN_FUZZER_MODE=interactive -e HELPER=True -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/out/py-serde:/out -t gcr.io/oss-fuzz-base/base-runner run_fuzzer fuzz_model.
+unable to setup input stream: unable to set IO streams as raw terminal: input/output error
+ℹ️ 命令以预期状态退出: 124
+▶️ 步骤4/5: 编译覆盖率版本...
+INFO:__main__:Running: docker build -t gcr.io/oss-fuzz/py-serde --file /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/py-serde/Dockerfile /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/py-serde.
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile:
+#1 transferring dockerfile: 918B done
+#1 DONE 0.6s
+
+#2 [internal] load metadata for gcr.io/oss-fuzz-base/base-builder-python:latest
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context:
+#3 transferring context: 2B done
+#3 DONE 0.4s
+
+#4 [1/5] FROM gcr.io/oss-fuzz-base/base-builder-python:latest
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 63B done
+#5 DONE 0.4s
+
+#6 [2/5] RUN apt-get update && apt-get install -y make autoconf automake libtool
+#6 CACHED
+
+#7 [3/5] RUN git clone --depth 1 https://github.com/rossmacarthur/serde
+#7 CACHED
+
+#8 [4/5] WORKDIR serde
+#8 CACHED
+
+#9 [5/5] COPY build.sh *.py /src/
+#9 CACHED
+
+#10 exporting to image
+#10 exporting layers done
+#10 writing image sha256:ab1753d724fb293f2499f818719cebf8a9f29756024387d780437f3bf49b3c16 0.0s done
+#10 naming to gcr.io/oss-fuzz/py-serde 0.0s done
+#10 DONE 0.2s
+
+ [33m1 warning found (use docker --debug to expand):
+[0m - WorkdirRelativePath: Relative workdir "serde" can have unexpected results if the base image changes (line 20)
+INFO:__main__:Keeping existing build artifacts as-is (if any).
+INFO:__main__:Running: docker run --privileged --shm-size=2g --platform linux/amd64 --rm -i -e FUZZING_ENGINE=libfuzzer -e SANITIZER=coverage -e ARCHITECTURE=x86_64 -e PROJECT_NAME=py-serde -e HELPER=True -e FUZZING_LANGUAGE=python -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/out/py-serde/:/out -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/work/py-serde:/work -t gcr.io/oss-fuzz/py-serde.
+---------------------------------------------------------------
+vm.mmap_rnd_bits = 28
+Compiling libFuzzer to /usr/lib/libFuzzingEngine.a...  done.
+---------------------------------------------------------------
+CC=clang
+CXX=clang++
+CFLAGS=-O1   -fno-omit-frame-pointer   -gline-tables-only   -Wno-error=enum-constexpr-conversion   -Wno-error=incompatible-function-pointer-types   -Wno-error=int-conversion   -Wno-error=deprecated-declarations   -Wno-error=implicit-function-declaration   -Wno-error=implicit-int   -Wno-error=vla-cxx-extension   -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION  -fprofile-instr-generate -fcoverage-mapping -pthread -Wl,--no-as-needed -Wl,-ldl -Wl,-lm -Wno-unused-command-line-argument -fno-sanitize=function,leak,vptr,
+CXXFLAGS=-O1   -fno-omit-frame-pointer   -gline-tables-only   -Wno-error=enum-constexpr-conversion   -Wno-error=incompatible-function-pointer-types   -Wno-error=int-conversion   -Wno-error=deprecated-declarations   -Wno-error=implicit-function-declaration   -Wno-error=implicit-int   -Wno-error=vla-cxx-extension   -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION  -fprofile-instr-generate -fcoverage-mapping -pthread -Wl,--no-as-needed -Wl,-ldl -Wl,-lm -Wno-unused-command-line-argument -stdlib=libc++ -fno-sanitize=function,leak,vptr
+RUSTFLAGS=--cfg fuzzing -Cdebuginfo=1 -Cforce-frame-pointers -Cinstrument-coverage -C link-arg=-lc++
+---------------------------------------------------------------
++ pip3 install .
+Processing /src/serde
+  Installing build dependencies ... [?25l- \ done
+[?25h  Getting requirements to build wheel ... [?25l- done
+[?25h  Preparing metadata (pyproject.toml) ... [?25l- done
+[?25hBuilding wheels for collected packages: serde
+  Building wheel for serde (pyproject.toml) ... [?25l- done
+[?25h  Created wheel for serde: filename=serde-0.9.0-py3-none-any.whl size=26501 sha256=3172e97785d09869d38052410fe6fd2ae44f772f274d4c5b650aa6d1d24a51fd
+  Stored in directory: /tmp/pip-ephem-wheel-cache-nthn12u9/wheels/8e/c8/c5/434795b18078b7fa2347054e6cfe92aa37b251f52820fd788a
+Successfully built serde
+Installing collected packages: serde
+Successfully installed serde-0.9.0
+[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.[0m[33m
+[0m++ find /src -name 'fuzz_*.py'
++ for fuzzer in $(find $SRC -name 'fuzz_*.py')
++ compile_python_fuzzer /src/fuzz_model.py
++ fuzzer_path=/src/fuzz_model.py
++ shift 1
+++ basename -s .py /src/fuzz_model.py
++ fuzzer_basename=fuzz_model
++ fuzzer_package=fuzz_model.pkg
++ PYFUZZ_WORKPATH=/src/pyfuzzworkdir/
++ FUZZ_WORKPATH=/src/pyfuzzworkdir//fuzz_model
++ [[ coverage = *introspector* ]]
++ [[ coverage = *coverage* ]]
++ cat
++ cat coverage_wrapper.py /src/fuzz_model.py
++ mv tmp_fuzzer_coverage.py /src/fuzz_model.py
++ [[ 0 != \0 ]]
++ rm -rf /src/pyfuzzworkdir/
++ mkdir /src/pyfuzzworkdir/ /src/pyfuzzworkdir//fuzz_model
++ pyinstaller --distpath /out --workpath=/src/pyfuzzworkdir//fuzz_model --onefile --name fuzz_model.pkg /src/fuzz_model.py
+49 INFO: PyInstaller: 6.10.0, contrib hooks: 2025.6
+49 INFO: Python: 3.11.13
+50 INFO: Platform: Linux-5.15.0-140-generic-x86_64-with-glibc2.31
+50 INFO: Python environment: /usr/local
+51 INFO: wrote /src/serde/fuzz_model.pkg.spec
+52 INFO: Module search paths (PYTHONPATH):
+['/usr/local/lib/python311.zip',
+ '/usr/local/lib/python3.11',
+ '/usr/local/lib/python3.11/lib-dynload',
+ '/usr/local/lib/python3.11/site-packages',
+ '/usr/local/lib/python3.11/site-packages/setuptools/_vendor',
+ '/src']
+122 INFO: checking Analysis
+122 INFO: Building Analysis because Analysis-00.toc is non existent
+122 INFO: Running Analysis Analysis-00.toc
+122 INFO: Target bytecode optimization level: 0
+122 INFO: Initializing module dependency graph...
+122 INFO: Caching module graph hooks...
+128 INFO: Analyzing base_library.zip ...
+441 INFO: Processing standard module hook 'hook-heapq.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+593 INFO: Processing standard module hook 'hook-encodings.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+1555 INFO: Processing standard module hook 'hook-pickle.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2530 INFO: Caching module dependency graph...
+2587 INFO: Looking for Python shared library...
+2595 INFO: Using Python shared library: /usr/local/lib/libpython3.11.so.1.0
+2595 INFO: Analyzing /src/fuzz_model.py
+2630 INFO: Processing standard module hook 'hook-platform.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2733 INFO: Processing standard module hook 'hook-sqlite3.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2901 INFO: Processing standard module hook 'hook-sysconfig.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2998 INFO: Processing standard module hook 'hook-xml.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2999 INFO: Processing standard module hook 'hook-xml.dom.domreg.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3331 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3552 INFO: Processing standard module hook 'hook-atheris.py' from '/usr/local/lib/python3.11/site-packages/atheris'
+3632 INFO: Processing module hooks (post-graph stage)...
+3649 INFO: Performing binary vs. data reclassification (2 entries)
+3652 INFO: Looking for ctypes DLLs
+3662 INFO: Analyzing run-time hooks ...
+3664 INFO: Including run-time hook 'pyi_rth_inspect.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+3666 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+3666 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+3670 INFO: Looking for dynamic libraries
+4103 INFO: Warnings written to /src/pyfuzzworkdir/fuzz_model/fuzz_model.pkg/warn-fuzz_model.pkg.txt
+4112 INFO: Graph cross-reference written to /src/pyfuzzworkdir/fuzz_model/fuzz_model.pkg/xref-fuzz_model.pkg.html
+4120 INFO: checking PYZ
+4120 INFO: Building PYZ because PYZ-00.toc is non existent
+4120 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_model/fuzz_model.pkg/PYZ-00.pyz
+4354 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_model/fuzz_model.pkg/PYZ-00.pyz completed successfully.
+4365 INFO: checking PKG
+4365 INFO: Building PKG because PKG-00.toc is non existent
+4365 INFO: Building PKG (CArchive) fuzz_model.pkg.pkg
+14832 INFO: Building PKG (CArchive) fuzz_model.pkg.pkg completed successfully.
+14833 INFO: Bootloader /usr/local/lib/python3.11/site-packages/PyInstaller/bootloader/Linux-64bit-intel/run
+14834 INFO: checking EXE
+14834 INFO: Building EXE because EXE-00.toc is non existent
+14834 INFO: Building EXE from EXE-00.toc
+14834 INFO: Copying bootloader EXE to /out/fuzz_model.pkg
+14834 INFO: Appending PKG archive to custom ELF section in EXE
+14874 INFO: Building EXE from EXE-00.toc completed successfully.
++ chmod -x /out/fuzz_model.pkg
++ [[ coverage = *coverage* ]]
++ rm -rf /medio/
++ python3 /usr/local/bin/python_coverage_helper.py /src/pyfuzzworkdir//fuzz_model /medio
+Extracts files from the pyinstaller workpath
++ zip -r fuzz_model.pkg.deps.zip /medio
+  adding: medio/ (stored 0%)
+  adding: medio/usr/ (stored 0%)
+  adding: medio/usr/local/ (stored 0%)
+  adding: medio/usr/local/lib/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xml/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/expatreader.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/_exceptions.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/xmlreader.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/__init__.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/saxutils.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/xml/sax/handler.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/xml/__init__.py (deflated 41%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/xmlbuilder.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/expatbuilder.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/minicompat.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/pulldom.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/domreg.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/__init__.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/minidom.py (deflated 80%)
+  adding: medio/usr/local/lib/python3.11/xml/dom/NodeFilter.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/xml/parsers/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xml/parsers/expat.py (deflated 43%)
+  adding: medio/usr/local/lib/python3.11/xml/parsers/__init__.py (deflated 22%)
+  adding: medio/usr/local/lib/python3.11/glob.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/importlib/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/_functools.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/_collections.py (deflated 48%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/_itertools.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/_meta.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/__init__.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/_text.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/importlib/metadata/_adapters.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/abc.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/_common.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/__init__.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/_adapters.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/_legacy.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/readers.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/importlib/resources/_itertools.py (deflated 55%)
+  adding: medio/usr/local/lib/python3.11/importlib/abc.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/importlib/util.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/importlib/readers.py (deflated 39%)
+  adding: medio/usr/local/lib/python3.11/importlib/_abc.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/importlib/machinery.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/importlib/_bootstrap_external.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/importlib/_bootstrap.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/importlib/__init__.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/site-packages/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/__init__.py (deflated 56%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/function_hooks.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/import_hook.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/instrument_bytecode.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/version_dependent.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/atheris/utils.py (deflated 56%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks/pyi_rth_pkgutil.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks/pyi_rth_inspect.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks/pyi_rth_multiprocessing.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/loader/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/PyInstaller/loader/pyiboot01_bootstrap.py (deflated 55%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/context.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/misc.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/jsonreport.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/bytecode.py (deflated 42%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/lcovreport.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/templite.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/version.py (deflated 54%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/control.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/disposition.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/tomlconfig.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/env.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/pytracer.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/files.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/phystokens.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/sqldata.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/__init__.py (deflated 50%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/config.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/data.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/summary.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/python.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/xmlreport.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/multiproc.py (deflated 62%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/parser.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/plugin_support.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/report.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/inorout.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/annotate.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/results.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/exceptions.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/collector.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/numbits.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/plugin.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/debug.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/coverage/html.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/site-packages/serde/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/site-packages/serde/exceptions.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/site-packages/serde/utils.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/site-packages/serde/fields.py (deflated 81%)
+  adding: medio/usr/local/lib/python3.11/site-packages/serde/model.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/site-packages/serde/__init__.py (deflated 45%)
+  adding: medio/usr/local/lib/python3.11/site-packages/six.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/email/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/email/policy.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/email/quoprimime.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/email/_policybase.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/email/headerregistry.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/email/generator.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/email/_parseaddr.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/email/parser.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/email/feedparser.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/email/errors.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/email/encoders.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/email/header.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/email/_encoded_words.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/email/_header_value_parser.py (deflated 79%)
+  adding: medio/usr/local/lib/python3.11/email/__init__.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/email/utils.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/email/message.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/email/charset.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/email/iterators.py (deflated 57%)
+  adding: medio/usr/local/lib/python3.11/email/contentmanager.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/email/base64mime.py (deflated 56%)
+  adding: medio/usr/local/lib/python3.11/_compression.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/reduction.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/synchronize.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/process.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/queues.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/context.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/forkserver.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/resource_sharer.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/__init__.py (deflated 44%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/util.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/popen_forkserver.py (deflated 61%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/managers.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/popen_spawn_posix.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/connection.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/popen_spawn_win32.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/shared_memory.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/pool.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/dummy/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/dummy/__init__.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/dummy/connection.py (deflated 63%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/resource_tracker.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/spawn.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/popen_fork.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/heap.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/multiprocessing/sharedctypes.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/datetime.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/urllib/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/urllib/error.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/urllib/response.py (deflated 65%)
+  adding: medio/usr/local/lib/python3.11/urllib/__init__.py (stored 0%)
+  adding: medio/usr/local/lib/python3.11/urllib/parse.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/urllib/request.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/sqlite3/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/sqlite3/__init__.py (deflated 51%)
+  adding: medio/usr/local/lib/python3.11/sqlite3/dbapi2.py (deflated 59%)
+  adding: medio/usr/local/lib/python3.11/sqlite3/dump.py (deflated 62%)
+  adding: medio/usr/local/lib/python3.11/json/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/json/encoder.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/json/__init__.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/json/scanner.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/json/decoder.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/fnmatch.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/quopri.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/xmlrpc/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/xmlrpc/client.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/xmlrpc/__init__.py (stored 0%)
+  adding: medio/usr/local/lib/python3.11/_compat_pickle.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/hmac.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/inspect.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/mimetypes.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/random.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/bz2.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/struct.py (deflated 46%)
+  adding: medio/usr/local/lib/python3.11/__future__.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/zipimport.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/opcode.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/platform.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/_sysconfigdata__linux_x86_64-linux-gnu.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/_aix_support.py (deflated 54%)
+  adding: medio/usr/local/lib/python3.11/ast.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/textwrap.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/http/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/http/__init__.py (deflated 60%)
+  adding: medio/usr/local/lib/python3.11/http/client.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/http/cookiejar.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/netrc.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/queue.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/threading.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/gettext.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/argparse.py (deflated 79%)
+  adding: medio/usr/local/lib/python3.11/stringprep.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/signal.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/socket.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/getopt.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/ctypes/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/ctypes/_endian.py (deflated 68%)
+  adding: medio/usr/local/lib/python3.11/ctypes/__init__.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/contextlib.py (deflated 80%)
+  adding: medio/usr/local/lib/python3.11/pkgutil.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/secrets.py (deflated 58%)
+  adding: medio/usr/local/lib/python3.11/tarfile.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/sysconfig.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/subprocess.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/getpass.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/pathlib.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/selectors.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/_pydecimal.py (deflated 79%)
+  adding: medio/usr/local/lib/python3.11/dataclasses.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/pprint.py (deflated 79%)
+  adding: medio/usr/local/lib/python3.11/pickle.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/string.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/copy.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/dis.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/lzma.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/fractions.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/statistics.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/token.py (deflated 57%)
+  adding: medio/usr/local/lib/python3.11/py_compile.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/csv.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/shlex.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/contextvars.py (deflated 35%)
+  adding: medio/usr/local/lib/python3.11/nturl2path.py (deflated 64%)
+  adding: medio/usr/local/lib/python3.11/decimal.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/tracemalloc.py (deflated 79%)
+  adding: medio/usr/local/lib/python3.11/calendar.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/gzip.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/logging/ (stored 0%)
+  adding: medio/usr/local/lib/python3.11/logging/__init__.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/zipfile.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/_bootsubprocess.py (deflated 62%)
+  adding: medio/usr/local/lib/python3.11/ipaddress.py (deflated 80%)
+  adding: medio/usr/local/lib/python3.11/_threading_local.py (deflated 66%)
+  adding: medio/usr/local/lib/python3.11/ftplib.py (deflated 72%)
+  adding: medio/usr/local/lib/python3.11/base64.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/configparser.py (deflated 77%)
+  adding: medio/usr/local/lib/python3.11/_strptime.py (deflated 71%)
+  adding: medio/usr/local/lib/python3.11/tempfile.py (deflated 73%)
+  adding: medio/usr/local/lib/python3.11/hashlib.py (deflated 67%)
+  adding: medio/usr/local/lib/python3.11/ssl.py (deflated 75%)
+  adding: medio/usr/local/lib/python3.11/bisect.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/runpy.py (deflated 69%)
+  adding: medio/usr/local/lib/python3.11/shutil.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/tokenize.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/typing.py (deflated 74%)
+  adding: medio/usr/local/lib/python3.11/numbers.py (deflated 76%)
+  adding: medio/usr/local/lib/python3.11/uuid.py (deflated 70%)
+  adding: medio/usr/local/lib/python3.11/_py_abc.py (deflated 70%)
+  adding: medio/src/ (stored 0%)
+  adding: medio/src/fuzz_model.py (deflated 51%)
+  adding: medio/src/pyfuzzworkdir/ (stored 0%)
+  adding: medio/src/pyfuzzworkdir/fuzz_model/ (stored 0%)
+  adding: medio/src/pyfuzzworkdir/fuzz_model/fuzz_model.pkg/ (stored 0%)
+  adding: medio/src/pyfuzzworkdir/fuzz_model/fuzz_model.pkg/PYZ-00.pyz (deflated 0%)
+  adding: medio/src/pyfuzzworkdir/fuzz_model/fuzz_model.pkg/localpycs/ (stored 0%)
+  adding: medio/src/pyfuzzworkdir/fuzz_model/fuzz_model.pkg/localpycs/struct.pyc (deflated 31%)
+  adding: medio/src/pyfuzzworkdir/fuzz_model/fuzz_model.pkg/localpycs/pyimod02_importers.pyc (deflated 59%)
+  adding: medio/src/pyfuzzworkdir/fuzz_model/fuzz_model.pkg/localpycs/pyimod03_ctypes.pyc (deflated 59%)
+  adding: medio/src/pyfuzzworkdir/fuzz_model/fuzz_model.pkg/localpycs/pyimod01_archive.pyc (deflated 46%)
++ mv fuzz_model.pkg.deps.zip /out/
++ echo '#!/bin/sh
+# LLVMFuzzerTestOneInput for fuzzer detection.
+this_dir=$(dirname "$0")
+chmod +x $this_dir/fuzz_model.pkg
+LD_PRELOAD=$this_dir/sanitizer_with_fuzzer.so ASAN_OPTIONS=$ASAN_OPTIONS:symbolize=1:external_symbolizer_path=$this_dir/llvm-symbolizer:detect_leaks=0 $this_dir/fuzz_model.pkg $@'
++ chmod +x /out/fuzz_model
+▶️ 步骤5/5: 生成覆盖率报告...
+INFO:__main__:Downloading corpora for py-serde project to /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/corpus/py-serde.
+ServiceException: 401 Anonymous caller does not have storage.objects.get access to the Google Cloud Storage object. Permission 'storage.objects.get' denied on resource (or it may not exist).
+ServiceException: 401 Anonymous caller does not have storage.objects.get access to the Google Cloud Storage object. Permission 'storage.objects.get' denied on resource (or it may not exist).
+WARNING:__main__:Corpus for py-serde_sanitizer_with_fuzzer-so not found:
+
+WARNING:__main__:Corpus for py-serde_fuzz_model not found:
+
+INFO:__main__:Running: docker run --privileged --shm-size=2g --platform linux/amd64 --rm -i -e FUZZING_ENGINE=libfuzzer -e HELPER=True -e FUZZING_LANGUAGE=python -e PROJECT=py-serde -e SANITIZER=coverage -e 'COVERAGE_EXTRA_ARGS= ' -e ARCHITECTURE=x86_64 -p 8888:8888 -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/corpus/py-serde:/corpus -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/out/py-serde:/out -t gcr.io/oss-fuzz-base/base-runner coverage.
+Entering python fuzzing
+^CERROR:__main__:Failed to generate clang code coverage report.
+❌ 命令执行失败: python3 infra/helper.py coverage --no-serve py-serde (退出码: 1)
