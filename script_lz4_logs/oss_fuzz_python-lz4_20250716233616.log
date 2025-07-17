@@ -1,0 +1,4 @@
+✅ 发现目标: fuzz_lz4
+▶️ 步骤3/5: 运行目标 [fuzz_lz4] (120秒超时)...
+INFO:__main__:Running: docker run --privileged --shm-size=2g --platform linux/amd64 --rm -i -e FUZZING_ENGINE=libfuzzer -e SANITIZER=address -e RUN_FUZZER_MODE=interactive -e HELPER=True -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/out/python-lz4:/out -t gcr.io/oss-fuzz-base/base-runner run_fuzzer fuzz_lz4.
+❌ 命令执行失败: timeout -s SIGKILL 120s python3 infra/helper.py run_fuzzer python-lz4 fuzz_lz4 (退出码: 141)

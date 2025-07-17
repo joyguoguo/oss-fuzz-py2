@@ -1,0 +1,1904 @@
+▶️ 步骤1/5: 构建Docker镜像...
+Pull latest base images (compiler/runtime)? (y/N): INFO:__main__:Pulling latest base images...
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-image
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-image
+Digest: sha256:1cade78ed66e641f87629996a4706a399f23eb7e0b90b3ba67b4f701f807f7a4
+Status: Image is up to date for gcr.io/oss-fuzz-base/base-image:latest
+gcr.io/oss-fuzz-base/base-image:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-clang
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-clang
+Digest: sha256:e95b8465170a949326827c4eaab8c9d570bfb9d053b24152a8ab6e434f5267b2
+Status: Image is up to date for gcr.io/oss-fuzz-base/base-clang:latest
+gcr.io/oss-fuzz-base/base-clang:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-builder
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-builder
+Digest: sha256:a9e039bc862659772d09b054334613e51f6983e646b74a9bbf9394695d1e584d
+Status: Image is up to date for gcr.io/oss-fuzz-base/base-builder:latest
+gcr.io/oss-fuzz-base/base-builder:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-runner
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-runner
+Digest: sha256:163ff6f163b92e62da8efa43a846afc532776e1787ba461fec64cb5f1ccb6a77
+Status: Image is up to date for gcr.io/oss-fuzz-base/base-runner:latest
+gcr.io/oss-fuzz-base/base-runner:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-runner-debug
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-runner-debug
+Digest: sha256:d23526e7e16f31d80bc2899b1e2c080bd262bf769318f926f56c2159f01cc0ec
+Status: Image is up to date for gcr.io/oss-fuzz-base/base-runner-debug:latest
+gcr.io/oss-fuzz-base/base-runner-debug:latest
+INFO:__main__:Running: docker pull gcr.io/oss-fuzz-base/base-builder-python
+Using default tag: latest
+latest: Pulling from oss-fuzz-base/base-builder-python
+Digest: sha256:c022b322b6dddc43b26f59015eaa392ea230d00d09fea7533a21f710b283637f
+Status: Image is up to date for gcr.io/oss-fuzz-base/base-builder-python:latest
+gcr.io/oss-fuzz-base/base-builder-python:latest
+INFO:__main__:Running: docker build --no-cache -t gcr.io/oss-fuzz/aiohttp --file /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/aiohttp/Dockerfile /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/aiohttp.
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile:
+#1 transferring dockerfile: 1.22kB done
+#1 DONE 0.4s
+
+#2 [internal] load metadata for gcr.io/oss-fuzz-base/base-builder-python:latest
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.4s
+
+#4 [1/9] FROM gcr.io/oss-fuzz-base/base-builder-python:latest
+#4 CACHED
+
+#5 [internal] load build context
+#5 transferring context: 231B done
+#5 DONE 0.8s
+
+#6 [2/9] RUN apt-get update && apt-get install -y   pkg-config   zlib1g   zlib1g-dev   libjpeg-dev   libpng-dev   libffi-dev   make   autoconf   libtool
+#6 2.484 Get:1 http://security.ubuntu.com/ubuntu focal-security InRelease [128 kB]
+#6 2.522 Hit:2 http://archive.ubuntu.com/ubuntu focal InRelease
+#6 2.621 Get:3 http://archive.ubuntu.com/ubuntu focal-updates InRelease [128 kB]
+#6 2.985 Get:4 http://archive.ubuntu.com/ubuntu focal-backports InRelease [128 kB]
+#6 3.148 Fetched 383 kB in 1s (404 kB/s)
+#6 3.148 Reading package lists...
+#6 4.144 Reading package lists...
+#6 5.088 Building dependency tree...
+#6 5.230 Reading state information...
+#6 5.349 make is already the newest version (4.2.1-1.2).
+#6 5.349 make set to manually installed.
+#6 5.349 zlib1g is already the newest version (1:1.2.11.dfsg-2ubuntu1.5).
+#6 5.349 The following additional packages will be installed:
+#6 5.350   automake file libglib2.0-0 libglib2.0-data libicu66 libjpeg-turbo8
+#6 5.350   libjpeg-turbo8-dev libjpeg8 libjpeg8-dev libltdl-dev libltdl7 libmagic-mgc
+#6 5.350   libmagic1 libpng-tools libpng16-16 libxml2 shared-mime-info xdg-user-dirs
+#6 5.350 Suggested packages:
+#6 5.350   autoconf-archive gnu-standards autoconf-doc gettext libtool-doc gfortran
+#6 5.350   | fortran95-compiler gcj-jdk
+#6 5.407 The following NEW packages will be installed:
+#6 5.407   autoconf automake file libffi-dev libglib2.0-0 libglib2.0-data libicu66
+#6 5.407   libjpeg-dev libjpeg-turbo8 libjpeg-turbo8-dev libjpeg8 libjpeg8-dev
+#6 5.407   libltdl-dev libltdl7 libmagic-mgc libmagic1 libpng-dev libpng-tools
+#6 5.407   libpng16-16 libtool libxml2 pkg-config shared-mime-info xdg-user-dirs
+#6 5.407   zlib1g-dev
+#6 5.683 0 upgraded, 25 newly installed, 0 to remove and 0 not upgraded.
+#6 5.683 Need to get 13.5 MB of archives.
+#6 5.683 After this operation, 59.2 MB of additional disk space will be used.
+#6 5.683 Get:1 http://archive.ubuntu.com/ubuntu focal/main amd64 libmagic-mgc amd64 1:5.38-4 [218 kB]
+#6 6.269 Get:2 http://archive.ubuntu.com/ubuntu focal/main amd64 libmagic1 amd64 1:5.38-4 [75.9 kB]
+#6 6.302 Get:3 http://archive.ubuntu.com/ubuntu focal/main amd64 file amd64 1:5.38-4 [23.3 kB]
+#6 6.302 Get:4 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libglib2.0-0 amd64 2.64.6-1~ubuntu20.04.9 [1290 kB]
+#6 6.544 Get:5 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libglib2.0-data all 2.64.6-1~ubuntu20.04.9 [5836 B]
+#6 6.544 Get:6 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libicu66 amd64 66.1-2ubuntu2.1 [8515 kB]
+#6 6.784 Get:7 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libxml2 amd64 2.9.10+dfsg-5ubuntu0.20.04.10 [640 kB]
+#6 6.798 Get:8 http://archive.ubuntu.com/ubuntu focal/main amd64 shared-mime-info amd64 1.15-1 [430 kB]
+#6 6.809 Get:9 http://archive.ubuntu.com/ubuntu focal/main amd64 xdg-user-dirs amd64 0.17-2ubuntu1 [48.3 kB]
+#6 6.810 Get:10 http://archive.ubuntu.com/ubuntu focal/main amd64 libpng16-16 amd64 1.6.37-2 [179 kB]
+#6 6.814 Get:11 http://archive.ubuntu.com/ubuntu focal/main amd64 autoconf all 2.69-11.1 [321 kB]
+#6 6.820 Get:12 http://archive.ubuntu.com/ubuntu focal/main amd64 automake all 1:1.16.1-4ubuntu6 [522 kB]
+#6 6.831 Get:13 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libjpeg-turbo8 amd64 2.0.3-0ubuntu1.20.04.3 [118 kB]
+#6 6.833 Get:14 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libjpeg-turbo8-dev amd64 2.0.3-0ubuntu1.20.04.3 [238 kB]
+#6 6.838 Get:15 http://archive.ubuntu.com/ubuntu focal/main amd64 libjpeg8 amd64 8c-2ubuntu8 [2194 B]
+#6 6.898 Get:16 http://archive.ubuntu.com/ubuntu focal/main amd64 libjpeg8-dev amd64 8c-2ubuntu8 [1552 B]
+#6 6.898 Get:17 http://archive.ubuntu.com/ubuntu focal/main amd64 libjpeg-dev amd64 8c-2ubuntu8 [1546 B]
+#6 6.997 Get:18 http://archive.ubuntu.com/ubuntu focal/main amd64 libltdl7 amd64 2.4.6-14 [38.5 kB]
+#6 6.998 Get:19 http://archive.ubuntu.com/ubuntu focal/main amd64 libltdl-dev amd64 2.4.6-14 [162 kB]
+#6 7.000 Get:20 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 zlib1g-dev amd64 1:1.2.11.dfsg-2ubuntu1.5 [155 kB]
+#6 7.002 Get:21 http://archive.ubuntu.com/ubuntu focal/main amd64 libpng-dev amd64 1.6.37-2 [175 kB]
+#6 7.004 Get:22 http://archive.ubuntu.com/ubuntu focal/main amd64 libpng-tools amd64 1.6.37-2 [26.1 kB]
+#6 7.004 Get:23 http://archive.ubuntu.com/ubuntu focal/main amd64 libtool all 2.4.6-14 [161 kB]
+#6 7.006 Get:24 http://archive.ubuntu.com/ubuntu focal/main amd64 pkg-config amd64 0.29.1-0ubuntu4 [45.5 kB]
+#6 7.007 Get:25 http://archive.ubuntu.com/ubuntu focal/main amd64 libffi-dev amd64 3.3-4 [57.0 kB]
+#6 7.128 debconf: delaying package configuration, since apt-utils is not installed
+#6 7.162 Fetched 13.5 MB in 2s (8445 kB/s)
+#6 7.457 Selecting previously unselected package libmagic-mgc.
+#6 7.457 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 17483 files and directories currently installed.)
+#6 7.472 Preparing to unpack .../00-libmagic-mgc_1%3a5.38-4_amd64.deb ...
+#6 7.540 Unpacking libmagic-mgc (1:5.38-4) ...
+#6 8.281 Selecting previously unselected package libmagic1:amd64.
+#6 8.286 Preparing to unpack .../01-libmagic1_1%3a5.38-4_amd64.deb ...
+#6 8.406 Unpacking libmagic1:amd64 (1:5.38-4) ...
+#6 8.739 Selecting previously unselected package file.
+#6 8.744 Preparing to unpack .../02-file_1%3a5.38-4_amd64.deb ...
+#6 8.806 Unpacking file (1:5.38-4) ...
+#6 9.339 Selecting previously unselected package libglib2.0-0:amd64.
+#6 9.343 Preparing to unpack .../03-libglib2.0-0_2.64.6-1~ubuntu20.04.9_amd64.deb ...
+#6 9.406 Unpacking libglib2.0-0:amd64 (2.64.6-1~ubuntu20.04.9) ...
+#6 9.947 Selecting previously unselected package libglib2.0-data.
+#6 9.951 Preparing to unpack .../04-libglib2.0-data_2.64.6-1~ubuntu20.04.9_all.deb ...
+#6 10.05 Unpacking libglib2.0-data (2.64.6-1~ubuntu20.04.9) ...
+#6 10.47 Selecting previously unselected package libicu66:amd64.
+#6 10.48 Preparing to unpack .../05-libicu66_66.1-2ubuntu2.1_amd64.deb ...
+#6 10.54 Unpacking libicu66:amd64 (66.1-2ubuntu2.1) ...
+#6 11.46 Selecting previously unselected package libxml2:amd64.
+#6 11.47 Preparing to unpack .../06-libxml2_2.9.10+dfsg-5ubuntu0.20.04.10_amd64.deb ...
+#6 11.52 Unpacking libxml2:amd64 (2.9.10+dfsg-5ubuntu0.20.04.10) ...
+#6 11.99 Selecting previously unselected package shared-mime-info.
+#6 11.99 Preparing to unpack .../07-shared-mime-info_1.15-1_amd64.deb ...
+#6 12.05 Unpacking shared-mime-info (1.15-1) ...
+#6 12.58 Selecting previously unselected package xdg-user-dirs.
+#6 12.58 Preparing to unpack .../08-xdg-user-dirs_0.17-2ubuntu1_amd64.deb ...
+#6 12.64 Unpacking xdg-user-dirs (0.17-2ubuntu1) ...
+#6 13.07 Selecting previously unselected package libpng16-16:amd64.
+#6 13.07 Preparing to unpack .../09-libpng16-16_1.6.37-2_amd64.deb ...
+#6 13.15 Unpacking libpng16-16:amd64 (1.6.37-2) ...
+#6 13.94 Selecting previously unselected package autoconf.
+#6 13.95 Preparing to unpack .../10-autoconf_2.69-11.1_all.deb ...
+#6 13.99 Unpacking autoconf (2.69-11.1) ...
+#6 14.49 Selecting previously unselected package automake.
+#6 14.49 Preparing to unpack .../11-automake_1%3a1.16.1-4ubuntu6_all.deb ...
+#6 14.55 Unpacking automake (1:1.16.1-4ubuntu6) ...
+#6 15.09 Selecting previously unselected package libjpeg-turbo8:amd64.
+#6 15.09 Preparing to unpack .../12-libjpeg-turbo8_2.0.3-0ubuntu1.20.04.3_amd64.deb ...
+#6 15.14 Unpacking libjpeg-turbo8:amd64 (2.0.3-0ubuntu1.20.04.3) ...
+#6 15.51 Selecting previously unselected package libjpeg-turbo8-dev:amd64.
+#6 15.51 Preparing to unpack .../13-libjpeg-turbo8-dev_2.0.3-0ubuntu1.20.04.3_amd64.deb ...
+#6 15.59 Unpacking libjpeg-turbo8-dev:amd64 (2.0.3-0ubuntu1.20.04.3) ...
+#6 15.97 Selecting previously unselected package libjpeg8:amd64.
+#6 15.97 Preparing to unpack .../14-libjpeg8_8c-2ubuntu8_amd64.deb ...
+#6 16.03 Unpacking libjpeg8:amd64 (8c-2ubuntu8) ...
+#6 16.37 Selecting previously unselected package libjpeg8-dev:amd64.
+#6 16.37 Preparing to unpack .../15-libjpeg8-dev_8c-2ubuntu8_amd64.deb ...
+#6 16.45 Unpacking libjpeg8-dev:amd64 (8c-2ubuntu8) ...
+#6 16.76 Selecting previously unselected package libjpeg-dev:amd64.
+#6 16.76 Preparing to unpack .../16-libjpeg-dev_8c-2ubuntu8_amd64.deb ...
+#6 16.82 Unpacking libjpeg-dev:amd64 (8c-2ubuntu8) ...
+#6 17.26 Selecting previously unselected package libltdl7:amd64.
+#6 17.26 Preparing to unpack .../17-libltdl7_2.4.6-14_amd64.deb ...
+#6 17.33 Unpacking libltdl7:amd64 (2.4.6-14) ...
+#6 17.73 Selecting previously unselected package libltdl-dev:amd64.
+#6 17.73 Preparing to unpack .../18-libltdl-dev_2.4.6-14_amd64.deb ...
+#6 17.80 Unpacking libltdl-dev:amd64 (2.4.6-14) ...
+#6 18.24 Selecting previously unselected package zlib1g-dev:amd64.
+#6 18.25 Preparing to unpack .../19-zlib1g-dev_1%3a1.2.11.dfsg-2ubuntu1.5_amd64.deb ...
+#6 18.31 Unpacking zlib1g-dev:amd64 (1:1.2.11.dfsg-2ubuntu1.5) ...
+#6 18.64 Selecting previously unselected package libpng-dev:amd64.
+#6 18.65 Preparing to unpack .../20-libpng-dev_1.6.37-2_amd64.deb ...
+#6 18.71 Unpacking libpng-dev:amd64 (1.6.37-2) ...
+#6 19.11 Selecting previously unselected package libpng-tools.
+#6 19.11 Preparing to unpack .../21-libpng-tools_1.6.37-2_amd64.deb ...
+#6 19.18 Unpacking libpng-tools (1.6.37-2) ...
+#6 19.50 Selecting previously unselected package libtool.
+#6 19.50 Preparing to unpack .../22-libtool_2.4.6-14_all.deb ...
+#6 19.57 Unpacking libtool (2.4.6-14) ...
+#6 20.20 Selecting previously unselected package pkg-config.
+#6 20.20 Preparing to unpack .../23-pkg-config_0.29.1-0ubuntu4_amd64.deb ...
+#6 20.27 Unpacking pkg-config (0.29.1-0ubuntu4) ...
+#6 20.59 Selecting previously unselected package libffi-dev:amd64.
+#6 20.60 Preparing to unpack .../24-libffi-dev_3.3-4_amd64.deb ...
+#6 20.65 Unpacking libffi-dev:amd64 (3.3-4) ...
+#6 21.40 Setting up xdg-user-dirs (0.17-2ubuntu1) ...
+#6 21.84 Setting up libmagic-mgc (1:5.38-4) ...
+#6 22.03 Setting up libglib2.0-0:amd64 (2.64.6-1~ubuntu20.04.9) ...
+#6 22.18 No schema files found: doing nothing.
+#6 22.25 Setting up libicu66:amd64 (66.1-2ubuntu2.1) ...
+#6 22.41 Setting up libmagic1:amd64 (1:5.38-4) ...
+#6 23.12 Setting up file (1:5.38-4) ...
+#6 24.44 Setting up libffi-dev:amd64 (3.3-4) ...
+#6 24.82 Setting up libglib2.0-data (2.64.6-1~ubuntu20.04.9) ...
+#6 25.04 Setting up libpng16-16:amd64 (1.6.37-2) ...
+#6 25.22 Setting up pkg-config (0.29.1-0ubuntu4) ...
+#6 25.55 Setting up libjpeg-turbo8:amd64 (2.0.3-0ubuntu1.20.04.3) ...
+#6 25.84 Setting up libltdl7:amd64 (2.4.6-14) ...
+#6 26.11 Setting up autoconf (2.69-11.1) ...
+#6 26.46 Setting up zlib1g-dev:amd64 (1:1.2.11.dfsg-2ubuntu1.5) ...
+#6 26.78 Setting up libxml2:amd64 (2.9.10+dfsg-5ubuntu0.20.04.10) ...
+#6 27.01 Setting up libjpeg8:amd64 (8c-2ubuntu8) ...
+#6 27.28 Setting up automake (1:1.16.1-4ubuntu6) ...
+#6 27.44 update-alternatives: using /usr/bin/automake-1.16 to provide /usr/bin/automake (automake) in auto mode
+#6 27.44 update-alternatives: warning: skip creation of /usr/share/man/man1/automake.1.gz because associated file /usr/share/man/man1/automake-1.16.1.gz (of link group automake) doesn't exist
+#6 27.44 update-alternatives: warning: skip creation of /usr/share/man/man1/aclocal.1.gz because associated file /usr/share/man/man1/aclocal-1.16.1.gz (of link group automake) doesn't exist
+#6 27.58 Setting up libjpeg-turbo8-dev:amd64 (2.0.3-0ubuntu1.20.04.3) ...
+#6 27.83 Setting up libpng-tools (1.6.37-2) ...
+#6 28.07 Setting up libtool (2.4.6-14) ...
+#6 28.32 Setting up libpng-dev:amd64 (1.6.37-2) ...
+#6 28.62 Setting up libltdl-dev:amd64 (2.4.6-14) ...
+#6 28.86 Setting up shared-mime-info (1.15-1) ...
+#6 63.33 Setting up libjpeg8-dev:amd64 (8c-2ubuntu8) ...
+#6 63.54 Setting up libjpeg-dev:amd64 (8c-2ubuntu8) ...
+#6 63.77 Processing triggers for libc-bin (2.31-0ubuntu9.18) ...
+#6 DONE 65.4s
+
+#7 [3/9] RUN python3 -m pip install --upgrade pip
+#7 2.652 Requirement already satisfied: pip in /usr/local/lib/python3.11/site-packages (25.1.1)
+#7 2.780 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#7 DONE 4.0s
+
+#8 [4/9] RUN curl -sL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
+#8 DONE 3.6s
+
+#9 [5/9] RUN bash nodesource_setup.sh && apt-get install -y nodejs
+#9 2.450 [38;5;79m2025-07-16 23:00:52 - Installing pre-requisites[0m
+#9 2.771 Hit:1 http://security.ubuntu.com/ubuntu focal-security InRelease
+#9 2.823 Hit:2 http://archive.ubuntu.com/ubuntu focal InRelease
+#9 2.966 Hit:3 http://archive.ubuntu.com/ubuntu focal-updates InRelease
+#9 3.111 Hit:4 http://archive.ubuntu.com/ubuntu focal-backports InRelease
+#9 3.214 Reading package lists...
+#9 4.209 Reading package lists...
+#9 5.162 Building dependency tree...
+#9 5.307 Reading state information...
+#9 5.460 ca-certificates is already the newest version (20240203~20.04.1).
+#9 5.460 ca-certificates set to manually installed.
+#9 5.460 curl is already the newest version (7.68.0-1ubuntu2.25).
+#9 5.460 gnupg is already the newest version (2.2.19-3ubuntu2.5).
+#9 5.460 gnupg set to manually installed.
+#9 5.460 The following NEW packages will be installed:
+#9 5.460   apt-transport-https
+#9 5.783 0 upgraded, 1 newly installed, 0 to remove and 0 not upgraded.
+#9 5.783 Need to get 1704 B of archives.
+#9 5.783 After this operation, 162 kB of additional disk space will be used.
+#9 5.783 Get:1 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 apt-transport-https all 2.0.11 [1704 B]
+#9 6.023 debconf: delaying package configuration, since apt-utils is not installed
+#9 6.094 Fetched 1704 B in 0s (5337 B/s)
+#9 6.219 Selecting previously unselected package apt-transport-https.
+#9 6.219 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 18296 files and directories currently installed.)
+#9 6.237 Preparing to unpack .../apt-transport-https_2.0.11_all.deb ...
+#9 6.741 Unpacking apt-transport-https (2.0.11) ...
+#9 7.266 Setting up apt-transport-https (2.0.11) ...
+#9 8.072 Hit:1 http://security.ubuntu.com/ubuntu focal-security InRelease
+#9 8.138 Get:2 https://deb.nodesource.com/node_22.x nodistro InRelease [12.1 kB]
+#9 8.142 Hit:3 http://archive.ubuntu.com/ubuntu focal InRelease
+#9 8.230 Hit:4 http://archive.ubuntu.com/ubuntu focal-updates InRelease
+#9 8.263 Get:5 https://deb.nodesource.com/node_22.x nodistro/main amd64 Packages [6786 B]
+#9 8.312 Hit:6 http://archive.ubuntu.com/ubuntu focal-backports InRelease
+#9 8.532 Fetched 18.9 kB in 1s (27.3 kB/s)
+#9 8.532 Reading package lists...
+#9 9.486 [1;34m2025-07-16 23:00:59 - Repository configured successfully.[0m
+#9 9.488 [38;5;79m2025-07-16 23:00:59 - To install Node.js, run: apt-get install nodejs -y[0m
+#9 9.489 [38;5;79m2025-07-16 23:00:59 - You can use N|solid Runtime as a node.js alternative[0m
+#9 9.490 [1;32m2025-07-16 23:00:59 - To install N|solid Runtime, run: apt-get install nsolid -y 
+#9 9.490 [0m
+#9 9.527 Reading package lists...
+#9 10.48 Building dependency tree...
+#9 10.62 Reading state information...
+#9 10.74 The following additional packages will be installed:
+#9 10.74   libmpdec2 libpython3-stdlib libpython3.8-minimal libpython3.8-stdlib
+#9 10.74   mime-support python3 python3-minimal python3.8 python3.8-minimal
+#9 10.74 Suggested packages:
+#9 10.74   python3-doc python3-tk python3-venv python3.8-venv python3.8-doc
+#9 10.74   binfmt-support
+#9 10.81 The following NEW packages will be installed:
+#9 10.81   libmpdec2 libpython3-stdlib libpython3.8-minimal libpython3.8-stdlib
+#9 10.81   mime-support nodejs python3 python3-minimal python3.8 python3.8-minimal
+#9 11.01 0 upgraded, 10 newly installed, 0 to remove and 0 not upgraded.
+#9 11.01 Need to get 41.9 MB of archives.
+#9 11.01 After this operation, 245 MB of additional disk space will be used.
+#9 11.01 Get:1 https://deb.nodesource.com/node_22.x nodistro/main amd64 nodejs amd64 22.17.1-1nodesource1 [37.0 MB]
+#9 11.20 Get:2 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libpython3.8-minimal amd64 3.8.10-0ubuntu1~20.04.18 [721 kB]
+#9 12.38 Get:3 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 python3.8-minimal amd64 3.8.10-0ubuntu1~20.04.18 [1900 kB]
+#9 12.68 Get:4 http://archive.ubuntu.com/ubuntu focal/main amd64 python3-minimal amd64 3.8.2-0ubuntu2 [23.6 kB]
+#9 12.68 Get:5 http://archive.ubuntu.com/ubuntu focal/main amd64 mime-support all 3.64ubuntu1 [30.6 kB]
+#9 12.68 Get:6 http://archive.ubuntu.com/ubuntu focal/main amd64 libmpdec2 amd64 2.4.2-3 [81.1 kB]
+#9 12.68 Get:7 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libpython3.8-stdlib amd64 3.8.10-0ubuntu1~20.04.18 [1676 kB]
+#9 12.83 Get:8 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 python3.8 amd64 3.8.10-0ubuntu1~20.04.18 [387 kB]
+#9 12.83 Get:9 http://archive.ubuntu.com/ubuntu focal/main amd64 libpython3-stdlib amd64 3.8.2-0ubuntu2 [7068 B]
+#9 12.83 Get:10 http://archive.ubuntu.com/ubuntu focal/main amd64 python3 amd64 3.8.2-0ubuntu2 [47.6 kB]
+#9 12.94 debconf: delaying package configuration, since apt-utils is not installed
+#9 12.97 Fetched 41.9 MB in 2s (20.7 MB/s)
+#9 13.34 Selecting previously unselected package libpython3.8-minimal:amd64.
+#9 13.34 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 18300 files and directories currently installed.)
+#9 13.35 Preparing to unpack .../libpython3.8-minimal_3.8.10-0ubuntu1~20.04.18_amd64.deb ...
+#9 13.41 Unpacking libpython3.8-minimal:amd64 (3.8.10-0ubuntu1~20.04.18) ...
+#9 13.90 Selecting previously unselected package python3.8-minimal.
+#9 13.90 Preparing to unpack .../python3.8-minimal_3.8.10-0ubuntu1~20.04.18_amd64.deb ...
+#9 13.98 Unpacking python3.8-minimal (3.8.10-0ubuntu1~20.04.18) ...
+#9 14.61 Setting up libpython3.8-minimal:amd64 (3.8.10-0ubuntu1~20.04.18) ...
+#9 14.82 Setting up python3.8-minimal (3.8.10-0ubuntu1~20.04.18) ...
+#9 15.87 Selecting previously unselected package python3-minimal.
+#9 15.87 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 18583 files and directories currently installed.)
+#9 15.88 Preparing to unpack .../0-python3-minimal_3.8.2-0ubuntu2_amd64.deb ...
+#9 15.94 Unpacking python3-minimal (3.8.2-0ubuntu2) ...
+#9 16.37 Selecting previously unselected package mime-support.
+#9 16.38 Preparing to unpack .../1-mime-support_3.64ubuntu1_all.deb ...
+#9 16.43 Unpacking mime-support (3.64ubuntu1) ...
+#9 16.95 Selecting previously unselected package libmpdec2:amd64.
+#9 16.95 Preparing to unpack .../2-libmpdec2_2.4.2-3_amd64.deb ...
+#9 17.20 Unpacking libmpdec2:amd64 (2.4.2-3) ...
+#9 17.56 Selecting previously unselected package libpython3.8-stdlib:amd64.
+#9 17.57 Preparing to unpack .../3-libpython3.8-stdlib_3.8.10-0ubuntu1~20.04.18_amd64.deb ...
+#9 17.63 Unpacking libpython3.8-stdlib:amd64 (3.8.10-0ubuntu1~20.04.18) ...
+#9 18.17 Selecting previously unselected package python3.8.
+#9 18.17 Preparing to unpack .../4-python3.8_3.8.10-0ubuntu1~20.04.18_amd64.deb ...
+#9 18.26 Unpacking python3.8 (3.8.10-0ubuntu1~20.04.18) ...
+#9 18.68 Selecting previously unselected package libpython3-stdlib:amd64.
+#9 18.68 Preparing to unpack .../5-libpython3-stdlib_3.8.2-0ubuntu2_amd64.deb ...
+#9 18.74 Unpacking libpython3-stdlib:amd64 (3.8.2-0ubuntu2) ...
+#9 19.27 Setting up python3-minimal (3.8.2-0ubuntu2) ...
+#9 20.02 Selecting previously unselected package python3.
+#9 20.02 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 18985 files and directories currently installed.)
+#9 20.03 Preparing to unpack .../python3_3.8.2-0ubuntu2_amd64.deb ...
+#9 20.07 Unpacking python3 (3.8.2-0ubuntu2) ...
+#9 20.57 Selecting previously unselected package nodejs.
+#9 20.57 Preparing to unpack .../nodejs_22.17.1-1nodesource1_amd64.deb ...
+#9 20.65 Unpacking nodejs (22.17.1-1nodesource1) ...
+#9 25.34 Setting up mime-support (3.64ubuntu1) ...
+#9 25.67 Setting up libmpdec2:amd64 (2.4.2-3) ...
+#9 25.82 Setting up libpython3.8-stdlib:amd64 (3.8.10-0ubuntu1~20.04.18) ...
+#9 25.97 Setting up python3.8 (3.8.10-0ubuntu1~20.04.18) ...
+#9 26.68 Setting up libpython3-stdlib:amd64 (3.8.2-0ubuntu2) ...
+#9 26.83 Setting up python3 (3.8.2-0ubuntu2) ...
+#9 27.11 Setting up nodejs (22.17.1-1nodesource1) ...
+#9 27.40 Processing triggers for libc-bin (2.31-0ubuntu9.18) ...
+#9 DONE 38.9s
+
+#10 [6/9] RUN git clone --recurse-submodules https://github.com/aio-libs/aiohttp
+#10 1.889 Cloning into 'aiohttp'...
+#10 4.186 Submodule 'vendor/llhttp' (https://github.com/nodejs/llhttp.git) registered for path 'vendor/llhttp'
+#10 4.190 Cloning into '/src/aiohttp/vendor/llhttp'...
+#10 6.055 Submodule path 'vendor/llhttp': checked out '36151b9a7d6320072e24e472a769a5e09f9e969d'
+#10 DONE 8.0s
+
+#11 [7/9] COPY build.sh /src/
+#11 DONE 2.5s
+
+#12 [8/9] COPY fuzz_* /src/aiohttp/
+#12 DONE 2.4s
+
+#13 [9/9] WORKDIR /src/aiohttp
+#13 DONE 2.4s
+
+#14 exporting to image
+#14 exporting layers
+#14 exporting layers 3.0s done
+#14 writing image sha256:4c0941e0e0f40ad5c27a5ee54f6f2e83357d438b913d31f96706af0474ad6d0f 0.0s done
+#14 naming to gcr.io/oss-fuzz/aiohttp 0.1s done
+#14 DONE 3.4s
+▶️ 步骤2/5: 编译fuzzer (sanitizer=address)...
+INFO:__main__:Running: docker build -t gcr.io/oss-fuzz/aiohttp --file /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/aiohttp/Dockerfile /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/aiohttp.
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile:
+#1 transferring dockerfile: 1.22kB done
+#1 DONE 1.5s
+
+#2 [internal] load metadata for gcr.io/oss-fuzz-base/base-builder-python:latest
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.5s
+
+#4 [1/9] FROM gcr.io/oss-fuzz-base/base-builder-python:latest
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 231B done
+#5 DONE 0.8s
+
+#6 [5/9] RUN bash nodesource_setup.sh && apt-get install -y nodejs
+#6 CACHED
+
+#7 [6/9] RUN git clone --recurse-submodules https://github.com/aio-libs/aiohttp
+#7 CACHED
+
+#8 [7/9] COPY build.sh /src/
+#8 CACHED
+
+#9 [8/9] COPY fuzz_* /src/aiohttp/
+#9 CACHED
+
+#10 [2/9] RUN apt-get update && apt-get install -y   pkg-config   zlib1g   zlib1g-dev   libjpeg-dev   libpng-dev   libffi-dev   make   autoconf   libtool
+#10 CACHED
+
+#11 [3/9] RUN python3 -m pip install --upgrade pip
+#11 CACHED
+
+#12 [4/9] RUN curl -sL https://deb.nodesource.com/setup_22.x -o nodesource_setup.sh
+#12 CACHED
+
+#13 [9/9] WORKDIR /src/aiohttp
+#13 CACHED
+
+#14 exporting to image
+#14 exporting layers done
+#14 writing image sha256:4c0941e0e0f40ad5c27a5ee54f6f2e83357d438b913d31f96706af0474ad6d0f 0.1s done
+#14 naming to gcr.io/oss-fuzz/aiohttp
+#14 naming to gcr.io/oss-fuzz/aiohttp 0.1s done
+#14 DONE 0.4s
+INFO:__main__:Keeping existing build artifacts as-is (if any).
+INFO:__main__:Running: docker run --privileged --shm-size=2g --platform linux/amd64 --rm -i -e FUZZING_ENGINE=libfuzzer -e SANITIZER=address -e ARCHITECTURE=x86_64 -e PROJECT_NAME=aiohttp -e HELPER=True -e FUZZING_LANGUAGE=python -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/out/aiohttp/:/out -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/work/aiohttp:/work -t gcr.io/oss-fuzz/aiohttp.
+---------------------------------------------------------------
+vm.mmap_rnd_bits = 28
+Compiling libFuzzer to /usr/lib/libFuzzingEngine.a...  done.
+---------------------------------------------------------------
+CC=clang
+CXX=clang++
+CFLAGS=-O1   -fno-omit-frame-pointer   -gline-tables-only   -Wno-error=enum-constexpr-conversion   -Wno-error=incompatible-function-pointer-types   -Wno-error=int-conversion   -Wno-error=deprecated-declarations   -Wno-error=implicit-function-declaration   -Wno-error=implicit-int   -Wno-error=vla-cxx-extension   -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -fno-sanitize=function,leak,vptr,
+CXXFLAGS=-O1   -fno-omit-frame-pointer   -gline-tables-only   -Wno-error=enum-constexpr-conversion   -Wno-error=incompatible-function-pointer-types   -Wno-error=int-conversion   -Wno-error=deprecated-declarations   -Wno-error=implicit-function-declaration   -Wno-error=implicit-int   -Wno-error=vla-cxx-extension   -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -stdlib=libc++ -fno-sanitize=function,leak,vptr
+RUSTFLAGS=--cfg fuzzing -Zsanitizer=address -Cdebuginfo=1 -Cforce-frame-pointers
+---------------------------------------------------------------
++ git submodule update --init --recursive
++ pushd /src/aiohttp/vendor/llhttp/
+/src/aiohttp/vendor/llhttp /src/aiohttp
++ npm ci
+[1G[0K\[1G[0K|[1G[0K/[1G[0K-[1G[0K\[1G[0K|[1G[0K/[1G[0K-[1G[0K\[1G[0K|[1G[0K/[1G[0K-[1G[0K
+> llhttp@9.3.0 prepare
+> npm run clean && npm run build-ts
+
+[1G[0K-[1G[0K
+> llhttp@9.3.0 clean
+> rm -rf lib && rm -rf test/tmp
+
+[1G[0K[1G[0K\[1G[0K
+> llhttp@9.3.0 build-ts
+> tsc
+
+[1G[0K[1G[0K\[1G[0K[1G[0K\[1G[0K
+added 168 packages, and audited 169 packages in 3s
+[1G[0K\[1G[0K
+[1G[0K\[1G[0K39 packages are looking for funding
+[1G[0K\[1G[0K  run `npm fund` for details
+[1G[0K\[1G[0K
+[31m[1m3[22m[39m vulnerabilities (1 [1mlow[22m, 2 [33m[1mmoderate[22m[39m)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+Some issues need review, and may require choosing
+a different dependency.
+
+Run `npm audit` for details.
+[1G[0K\[1G[0K[1mnpm[22m [96mnotice[39m
+[1mnpm[22m [96mnotice[39m New [31mmajor[39m version of npm available! [31m10.9.2[39m -> [34m11.4.2[39m
+[1mnpm[22m [96mnotice[39m Changelog: [34mhttps://github.com/npm/cli/releases/tag/v11.4.2[39m
+[1mnpm[22m [96mnotice[39m To update run: [4mnpm install -g npm@11.4.2[24m
+[1mnpm[22m [96mnotice[39m
+[1G[0K\[1G[0K+ make
+npx ts-node bin/generate.ts
+[1G[0K\[1G[0K|[1G[0K[1G[0JNeed to install the following packages:
+ts-node@10.9.2
+Ok to proceed? (y) [20Gy
+
+[1G[0K\[1G[0K|[1G[0K/[1G[0K-[1G[0K\[1G[0K|[1G[0K/[1G[0K-[1G[0K\[1G[0K|[1G[0K/[1G[0K-[1G[0K\[1G[0K[1G[0K\[1G[0Kclang -O1   -fno-omit-frame-pointer   -gline-tables-only   -Wno-error=enum-constexpr-conversion   -Wno-error=incompatible-function-pointer-types   -Wno-error=int-conversion   -Wno-error=deprecated-declarations   -Wno-error=implicit-function-declaration   -Wno-error=implicit-int   -Wno-error=vla-cxx-extension   -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -fno-sanitize=function,leak,vptr, -Os -g3 -Wall -Wextra -Wno-unused-parameter -fPIC -Ibuild/ -c build/c/llhttp.c -o build/c/llhttp.o
+mkdir -p build/native
+clang -O1   -fno-omit-frame-pointer   -gline-tables-only   -Wno-error=enum-constexpr-conversion   -Wno-error=incompatible-function-pointer-types   -Wno-error=int-conversion   -Wno-error=deprecated-declarations   -Wno-error=implicit-function-declaration   -Wno-error=implicit-int   -Wno-error=vla-cxx-extension   -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -fno-sanitize=function,leak,vptr, -Os -g3 -Wall -Wextra -Wno-unused-parameter -fPIC -Ibuild/ -c src/native/api.c -o build/native/api.o
+clang -O1   -fno-omit-frame-pointer   -gline-tables-only   -Wno-error=enum-constexpr-conversion   -Wno-error=incompatible-function-pointer-types   -Wno-error=int-conversion   -Wno-error=deprecated-declarations   -Wno-error=implicit-function-declaration   -Wno-error=implicit-int   -Wno-error=vla-cxx-extension   -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -fno-sanitize=function,leak,vptr, -Os -g3 -Wall -Wextra -Wno-unused-parameter -fPIC -Ibuild/ -c src/native/http.c -o build/native/http.o
+ar rcs build/libllhttp.a build/c/llhttp.o build/native/api.o build/native/http.o
+clang -shared build/c/llhttp.o build/native/api.o build/native/http.o -o build/libllhttp.so
++ popd
+/src/aiohttp
++ make cythonize
+make: command: Command not found
+Requirement already satisfied: pip in /usr/local/lib/python3.11/site-packages (25.1.1)
+[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.[0m[33m
+[0mre-hash 4b0e9b816f2f194c32bd641585ee85a2063111dcd3a75984cb819198adb6c2e2
+Collecting multidict (from -r /src/aiohttp/requirements/multidict.in (line 1))
+  Downloading multidict-6.6.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (5.3 kB)
+Collecting Cython (from -r requirements/cython.in (line 3))
+  Downloading cython-3.1.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.9 kB)
+Downloading multidict-6.6.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (246 kB)
+Downloading cython-3.1.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.2 MB)
+[?25l   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/3.2 MB[0m [31m?[0m eta [36m-:--:--[0m[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m3.2/3.2 MB[0m [31m19.6 MB/s[0m eta [36m0:00:00[0m
+[?25hInstalling collected packages: multidict, Cython
+[?25l[2K   [91m━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━[0m [32m1/2[0m [Cython][2K   [91m━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━[0m [32m1/2[0m [Cython][2K   [91m━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━[0m [32m1/2[0m [Cython][2K   [91m━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━[0m [32m1/2[0m [Cython][2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m2/2[0m [Cython]
+[?25h[1A[2KSuccessfully installed Cython-3.1.2 multidict-6.6.3
+[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.[0m[33m
+[0mre-hash 3455ae767987c6e566212ce5b622d49cbe163ad81277d3eee2364fe09a553356
+re-hash dab8f933203eeb245d60f856e542a45b888d5a110094620e4811f90f816628d1
+./tools/gen.py
+re-hash f7ab1e2628277b82772d59c1dc3033c13495d769df67b1d1d49b1a474a75dd52
+re-hash 6fe0b035d49e8daeb9d14e982336ec7c45bd9295a99be1409fdd259fadac4873
+re-hash 5276d46021e0e0d7577e0c9155800cbf62932d60a50783fec42aefb63febedec
+re-hash d067f01423cddb3c442933b5fcc039b18ab651fcec1bc91c577693aafc25cf78
+re-hash 0478ceb55d0ed30ef1a7da742cd003449bc69a07cf9fdb06789bd2b347cbfffe
+re-hash b01999d409b29bd916e067bc963d5f2d9ee63cfc9ae0bccb769910131417bf93
+re-hash ae4dc94af367b65591a779f76fd0185837425c70a6d85ae27186c2f07465e99c
+cython -3 -o aiohttp/_http_writer.c aiohttp/_http_writer.pyx -I aiohttp -Werror
+cython -3 -o aiohttp/_http_parser.c aiohttp/_http_parser.pyx -I aiohttp -Werror
+cython -3 -o aiohttp/_websocket/mask.c aiohttp/_websocket/mask.pyx -I aiohttp -Werror
+cython -3 -o aiohttp/_websocket/reader_c.c aiohttp/_websocket/reader_c.py -I aiohttp -Werror
++ make install-dev
+make: command: Command not found
+Requirement already satisfied: pip in /usr/local/lib/python3.11/site-packages (25.1.1)
+[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.[0m[33m
+[0mRequirement already satisfied: multidict in /usr/local/lib/python3.11/site-packages (from -r /src/aiohttp/requirements/multidict.in (line 1)) (6.6.3)
+Requirement already satisfied: Cython in /usr/local/lib/python3.11/site-packages (from -r requirements/cython.in (line 3)) (3.1.2)
+[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.[0m[33m
+[0mIgnoring async-timeout: markers 'python_version < "3.11"' don't match your environment
+Ignoring brotlicffi: markers 'platform_python_implementation != "CPython"' don't match your environment
+Ignoring winloop: markers 'platform_system == "Windows" and implementation_name == "cpython"' don't match your environment
+Collecting aiodns (from -r /src/aiohttp/requirements/lint.in (line 1))
+  Downloading aiodns-3.5.0-py3-none-any.whl.metadata (5.8 kB)
+Collecting blockbuster (from -r /src/aiohttp/requirements/lint.in (line 2))
+  Downloading blockbuster-1.5.25-py3-none-any.whl.metadata (10 kB)
+Collecting freezegun (from -r /src/aiohttp/requirements/lint.in (line 3))
+  Downloading freezegun-1.5.3-py3-none-any.whl.metadata (13 kB)
+Collecting isal (from -r /src/aiohttp/requirements/lint.in (line 4))
+  Downloading isal-1.7.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (11 kB)
+Collecting mypy (from -r /src/aiohttp/requirements/lint.in (line 5))
+  Downloading mypy-1.17.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.2 kB)
+Collecting pre-commit (from -r /src/aiohttp/requirements/lint.in (line 6))
+  Downloading pre_commit-4.2.0-py2.py3-none-any.whl.metadata (1.3 kB)
+Collecting proxy.py (from -r /src/aiohttp/requirements/lint.in (line 7))
+  Downloading proxy.py-2.4.10-py3-none-any.whl.metadata (110 kB)
+Collecting pytest (from -r /src/aiohttp/requirements/lint.in (line 8))
+  Downloading pytest-8.4.1-py3-none-any.whl.metadata (7.7 kB)
+Collecting pytest-mock (from -r /src/aiohttp/requirements/lint.in (line 9))
+  Downloading pytest_mock-3.14.1-py3-none-any.whl.metadata (3.9 kB)
+Collecting pytest_codspeed (from -r /src/aiohttp/requirements/lint.in (line 10))
+  Downloading pytest_codspeed-4.0.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_28_x86_64.whl.metadata (7.3 kB)
+Collecting python-on-whales (from -r /src/aiohttp/requirements/lint.in (line 11))
+  Downloading python_on_whales-0.78.0-py3-none-any.whl.metadata (18 kB)
+Collecting slotscheck (from -r /src/aiohttp/requirements/lint.in (line 12))
+  Downloading slotscheck-0.19.1-py3-none-any.whl.metadata (5.1 kB)
+Collecting trustme (from -r /src/aiohttp/requirements/lint.in (line 13))
+  Downloading trustme-1.2.1-py3-none-any.whl.metadata (5.7 kB)
+Collecting uvloop (from -r /src/aiohttp/requirements/lint.in (line 14))
+  Downloading uvloop-0.21.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+Collecting valkey (from -r /src/aiohttp/requirements/lint.in (line 15))
+  Downloading valkey-6.1.0-py3-none-any.whl.metadata (8.3 kB)
+Collecting zlib_ng (from -r /src/aiohttp/requirements/lint.in (line 16))
+  Downloading zlib_ng-0.5.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.8 kB)
+Collecting zstandard (from -r /src/aiohttp/requirements/lint.in (line 17))
+  Downloading zstandard-0.23.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (3.0 kB)
+Collecting aiohappyeyeballs>=2.5.0 (from -r /src/aiohttp/requirements/runtime-deps.in (line 4))
+  Downloading aiohappyeyeballs-2.6.1-py3-none-any.whl.metadata (5.9 kB)
+Collecting aiosignal>=1.4.0 (from -r /src/aiohttp/requirements/runtime-deps.in (line 5))
+  Downloading aiosignal-1.4.0-py3-none-any.whl.metadata (3.7 kB)
+Collecting Brotli (from -r /src/aiohttp/requirements/runtime-deps.in (line 7))
+  Downloading Brotli-1.1.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (5.5 kB)
+Collecting frozenlist>=1.1.1 (from -r /src/aiohttp/requirements/runtime-deps.in (line 9))
+  Downloading frozenlist-1.7.0-cp311-cp311-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (18 kB)
+Requirement already satisfied: multidict<7.0,>=4.5 in /usr/local/lib/python3.11/site-packages (from -r /src/aiohttp/requirements/runtime-deps.in (line 10)) (6.6.3)
+Collecting propcache>=0.2.0 (from -r /src/aiohttp/requirements/runtime-deps.in (line 11))
+  Downloading propcache-0.3.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (12 kB)
+Collecting yarl<2.0,>=1.17.0 (from -r /src/aiohttp/requirements/runtime-deps.in (line 12))
+  Downloading yarl-1.20.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (73 kB)
+Collecting gunicorn (from -r /src/aiohttp/requirements/base.in (line 3))
+  Downloading gunicorn-23.0.0-py3-none-any.whl.metadata (4.4 kB)
+Collecting coverage (from -r /src/aiohttp/requirements/test.in (line 4))
+  Downloading coverage-7.9.2-cp311-cp311-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (8.9 kB)
+Collecting pkgconfig (from -r /src/aiohttp/requirements/test.in (line 8))
+  Downloading pkgconfig-1.5.5-py3-none-any.whl.metadata (4.0 kB)
+Collecting pytest-cov (from -r /src/aiohttp/requirements/test.in (line 11))
+  Downloading pytest_cov-6.2.1-py3-none-any.whl.metadata (30 kB)
+Collecting pytest-xdist (from -r /src/aiohttp/requirements/test.in (line 13))
+  Downloading pytest_xdist-3.8.0-py3-none-any.whl.metadata (3.0 kB)
+Collecting setuptools-git (from -r /src/aiohttp/requirements/test.in (line 16))
+  Downloading setuptools_git-1.2-py2.py3-none-any.whl.metadata (5.8 kB)
+Collecting wait-for-it (from -r /src/aiohttp/requirements/test.in (line 18))
+  Downloading wait_for_it-2.3.0-py3-none-any.whl.metadata (5.7 kB)
+Collecting aiohttp-theme (from -r /src/aiohttp/requirements/doc.in (line 1))
+  Downloading aiohttp_theme-0.1.7-py2.py3-none-any.whl.metadata (738 bytes)
+Collecting sphinx (from -r /src/aiohttp/requirements/doc.in (line 2))
+  Downloading sphinx-8.1.3-py3-none-any.whl.metadata (6.4 kB)
+Collecting sphinxcontrib-towncrier (from -r /src/aiohttp/requirements/doc.in (line 3))
+  Downloading sphinxcontrib_towncrier-0.5.0a0-py3-none-any.whl.metadata (4.6 kB)
+Collecting towncrier (from -r /src/aiohttp/requirements/doc.in (line 4))
+  Downloading towncrier-23.11.0-py3-none-any.whl.metadata (4.2 kB)
+Collecting cherry_picker (from -r requirements/dev.in (line 5))
+  Downloading cherry_picker-2.5.0-py3-none-any.whl.metadata (13 kB)
+Collecting pip-tools (from -r requirements/dev.in (line 6))
+  Downloading pip_tools-7.4.1-py3-none-any.whl.metadata (26 kB)
+Collecting idna>=2.0 (from yarl<2.0,>=1.17.0->-r /src/aiohttp/requirements/runtime-deps.in (line 12))
+  Downloading idna-3.6-py3-none-any.whl.metadata (9.9 kB)
+Collecting pycares>=4.9.0 (from aiodns->-r /src/aiohttp/requirements/lint.in (line 1))
+  Downloading pycares-4.9.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.3 kB)
+Collecting forbiddenfruit>=0.1.4 (from blockbuster->-r /src/aiohttp/requirements/lint.in (line 2))
+  Downloading forbiddenfruit-0.1.4.tar.gz (43 kB)
+  Installing build dependencies ... [?25l- \ done
+[?25h  Getting requirements to build wheel ... [?25l- done
+[?25h  Preparing metadata (pyproject.toml) ... [?25l- done
+[?25hCollecting python-dateutil>=2.7 (from freezegun->-r /src/aiohttp/requirements/lint.in (line 3))
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting typing_extensions>=4.6.0 (from mypy->-r /src/aiohttp/requirements/lint.in (line 5))
+  Downloading typing_extensions-4.14.1-py3-none-any.whl.metadata (3.0 kB)
+Collecting mypy_extensions>=1.0.0 (from mypy->-r /src/aiohttp/requirements/lint.in (line 5))
+  Downloading mypy_extensions-1.1.0-py3-none-any.whl.metadata (1.1 kB)
+Collecting pathspec>=0.9.0 (from mypy->-r /src/aiohttp/requirements/lint.in (line 5))
+  Downloading pathspec-0.12.1-py3-none-any.whl.metadata (21 kB)
+Collecting cfgv>=2.0.0 (from pre-commit->-r /src/aiohttp/requirements/lint.in (line 6))
+  Downloading cfgv-3.4.0-py2.py3-none-any.whl.metadata (8.5 kB)
+Collecting identify>=1.0.0 (from pre-commit->-r /src/aiohttp/requirements/lint.in (line 6))
+  Downloading identify-2.6.12-py2.py3-none-any.whl.metadata (4.4 kB)
+Collecting nodeenv>=0.11.1 (from pre-commit->-r /src/aiohttp/requirements/lint.in (line 6))
+  Downloading nodeenv-1.9.1-py2.py3-none-any.whl.metadata (21 kB)
+Collecting pyyaml>=5.1 (from pre-commit->-r /src/aiohttp/requirements/lint.in (line 6))
+  Downloading PyYAML-6.0.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (2.1 kB)
+Collecting virtualenv>=20.10.0 (from pre-commit->-r /src/aiohttp/requirements/lint.in (line 6))
+  Downloading virtualenv-20.31.2-py3-none-any.whl.metadata (4.5 kB)
+Collecting iniconfig>=1 (from pytest->-r /src/aiohttp/requirements/lint.in (line 8))
+  Downloading iniconfig-2.1.0-py3-none-any.whl.metadata (2.7 kB)
+Requirement already satisfied: packaging>=20 in /usr/local/lib/python3.11/site-packages (from pytest->-r /src/aiohttp/requirements/lint.in (line 8)) (25.0)
+Collecting pluggy<2,>=1.5 (from pytest->-r /src/aiohttp/requirements/lint.in (line 8))
+  Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+Collecting pygments>=2.7.2 (from pytest->-r /src/aiohttp/requirements/lint.in (line 8))
+  Downloading pygments-2.19.2-py3-none-any.whl.metadata (2.5 kB)
+Collecting cffi>=1.17.1 (from pytest_codspeed->-r /src/aiohttp/requirements/lint.in (line 10))
+  Downloading cffi-1.17.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting rich>=13.8.1 (from pytest_codspeed->-r /src/aiohttp/requirements/lint.in (line 10))
+  Downloading rich-14.0.0-py3-none-any.whl.metadata (18 kB)
+Collecting pydantic!=2.0.*,<3,>=2 (from python-on-whales->-r /src/aiohttp/requirements/lint.in (line 11))
+  Downloading pydantic-2.11.7-py3-none-any.whl.metadata (67 kB)
+Collecting annotated-types>=0.6.0 (from pydantic!=2.0.*,<3,>=2->python-on-whales->-r /src/aiohttp/requirements/lint.in (line 11))
+  Downloading annotated_types-0.7.0-py3-none-any.whl.metadata (15 kB)
+Collecting pydantic-core==2.33.2 (from pydantic!=2.0.*,<3,>=2->python-on-whales->-r /src/aiohttp/requirements/lint.in (line 11))
+  Downloading pydantic_core-2.33.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.8 kB)
+Collecting typing-inspection>=0.4.0 (from pydantic!=2.0.*,<3,>=2->python-on-whales->-r /src/aiohttp/requirements/lint.in (line 11))
+  Downloading typing_inspection-0.4.1-py3-none-any.whl.metadata (2.6 kB)
+Collecting click<9.0,>=8.0 (from slotscheck->-r /src/aiohttp/requirements/lint.in (line 12))
+  Downloading click-8.1.8-py3-none-any.whl.metadata (2.3 kB)
+Collecting cryptography>=3.1 (from trustme->-r /src/aiohttp/requirements/lint.in (line 13))
+  Downloading cryptography-45.0.5-cp311-abi3-manylinux_2_28_x86_64.whl.metadata (5.7 kB)
+Collecting async-timeout>=4.0.3 (from valkey->-r /src/aiohttp/requirements/lint.in (line 15))
+  Downloading async_timeout-5.0.1-py3-none-any.whl.metadata (5.1 kB)
+Collecting execnet>=2.1 (from pytest-xdist->-r /src/aiohttp/requirements/test.in (line 13))
+  Downloading execnet-2.1.1-py3-none-any.whl.metadata (2.9 kB)
+Collecting sphinxcontrib-applehelp>=1.0.7 (from sphinx->-r /src/aiohttp/requirements/doc.in (line 2))
+  Downloading sphinxcontrib_applehelp-2.0.0-py3-none-any.whl.metadata (2.3 kB)
+Collecting sphinxcontrib-devhelp>=1.0.6 (from sphinx->-r /src/aiohttp/requirements/doc.in (line 2))
+  Downloading sphinxcontrib_devhelp-2.0.0-py3-none-any.whl.metadata (2.3 kB)
+Collecting sphinxcontrib-htmlhelp>=2.0.6 (from sphinx->-r /src/aiohttp/requirements/doc.in (line 2))
+  Downloading sphinxcontrib_htmlhelp-2.1.0-py3-none-any.whl.metadata (2.3 kB)
+Collecting sphinxcontrib-jsmath>=1.0.1 (from sphinx->-r /src/aiohttp/requirements/doc.in (line 2))
+  Downloading sphinxcontrib_jsmath-1.0.1-py2.py3-none-any.whl.metadata (1.4 kB)
+Collecting sphinxcontrib-qthelp>=1.0.6 (from sphinx->-r /src/aiohttp/requirements/doc.in (line 2))
+  Downloading sphinxcontrib_qthelp-2.0.0-py3-none-any.whl.metadata (2.3 kB)
+Collecting sphinxcontrib-serializinghtml>=1.1.9 (from sphinx->-r /src/aiohttp/requirements/doc.in (line 2))
+  Downloading sphinxcontrib_serializinghtml-2.0.0-py3-none-any.whl.metadata (2.4 kB)
+Collecting Jinja2>=3.1 (from sphinx->-r /src/aiohttp/requirements/doc.in (line 2))
+  Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting docutils<0.22,>=0.20 (from sphinx->-r /src/aiohttp/requirements/doc.in (line 2))
+  Downloading docutils-0.21.2-py3-none-any.whl.metadata (2.8 kB)
+Collecting snowballstemmer>=2.2 (from sphinx->-r /src/aiohttp/requirements/doc.in (line 2))
+  Downloading snowballstemmer-3.0.1-py3-none-any.whl.metadata (7.9 kB)
+Collecting babel>=2.13 (from sphinx->-r /src/aiohttp/requirements/doc.in (line 2))
+  Downloading babel-2.17.0-py3-none-any.whl.metadata (2.0 kB)
+Collecting alabaster>=0.7.14 (from sphinx->-r /src/aiohttp/requirements/doc.in (line 2))
+  Downloading alabaster-1.0.0-py3-none-any.whl.metadata (2.8 kB)
+Collecting imagesize>=1.3 (from sphinx->-r /src/aiohttp/requirements/doc.in (line 2))
+  Downloading imagesize-1.4.1-py2.py3-none-any.whl.metadata (1.5 kB)
+Collecting requests>=2.30.0 (from sphinx->-r /src/aiohttp/requirements/doc.in (line 2))
+  Downloading requests-2.32.4-py3-none-any.whl.metadata (4.9 kB)
+Collecting incremental (from towncrier->-r /src/aiohttp/requirements/doc.in (line 4))
+  Downloading incremental-24.7.2-py3-none-any.whl.metadata (8.1 kB)
+Collecting gidgethub (from cherry_picker->-r requirements/dev.in (line 5))
+  Downloading gidgethub-5.4.0-py3-none-any.whl.metadata (4.0 kB)
+Collecting stamina (from cherry_picker->-r requirements/dev.in (line 5))
+  Downloading stamina-25.1.0-py3-none-any.whl.metadata (5.9 kB)
+Collecting build>=1.0.0 (from pip-tools->-r requirements/dev.in (line 6))
+  Downloading build-1.2.2.post1-py3-none-any.whl.metadata (6.5 kB)
+Requirement already satisfied: pip>=22.2 in /usr/local/lib/python3.11/site-packages (from pip-tools->-r requirements/dev.in (line 6)) (25.1.1)
+Collecting pyproject-hooks (from pip-tools->-r requirements/dev.in (line 6))
+  Downloading pyproject_hooks-1.2.0-py3-none-any.whl.metadata (1.3 kB)
+Collecting setuptools (from pip-tools->-r requirements/dev.in (line 6))
+  Using cached setuptools-80.9.0-py3-none-any.whl.metadata (6.6 kB)
+Collecting wheel (from pip-tools->-r requirements/dev.in (line 6))
+  Downloading wheel-0.46.0-py3-none-any.whl.metadata (2.4 kB)
+Collecting pycparser (from cffi>=1.17.1->pytest_codspeed->-r /src/aiohttp/requirements/lint.in (line 10))
+  Downloading pycparser-2.22-py3-none-any.whl.metadata (943 bytes)
+Collecting MarkupSafe>=2.0 (from Jinja2>=3.1->sphinx->-r /src/aiohttp/requirements/doc.in (line 2))
+  Downloading MarkupSafe-3.0.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.0 kB)
+Collecting six>=1.5 (from python-dateutil>=2.7->freezegun->-r /src/aiohttp/requirements/lint.in (line 3))
+  Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Collecting charset_normalizer<4,>=2 (from requests>=2.30.0->sphinx->-r /src/aiohttp/requirements/doc.in (line 2))
+  Downloading charset_normalizer-3.4.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (35 kB)
+Collecting urllib3<3,>=1.21.1 (from requests>=2.30.0->sphinx->-r /src/aiohttp/requirements/doc.in (line 2))
+  Downloading urllib3-2.5.0-py3-none-any.whl.metadata (6.5 kB)
+Collecting certifi>=2017.4.17 (from requests>=2.30.0->sphinx->-r /src/aiohttp/requirements/doc.in (line 2))
+  Downloading certifi-2025.7.14-py3-none-any.whl.metadata (2.4 kB)
+Collecting markdown-it-py>=2.2.0 (from rich>=13.8.1->pytest_codspeed->-r /src/aiohttp/requirements/lint.in (line 10))
+  Downloading markdown_it_py-3.0.0-py3-none-any.whl.metadata (6.9 kB)
+Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich>=13.8.1->pytest_codspeed->-r /src/aiohttp/requirements/lint.in (line 10))
+  Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Collecting distlib<1,>=0.3.7 (from virtualenv>=20.10.0->pre-commit->-r /src/aiohttp/requirements/lint.in (line 6))
+  Downloading distlib-0.3.9-py2.py3-none-any.whl.metadata (5.2 kB)
+Collecting filelock<4,>=3.12.2 (from virtualenv>=20.10.0->pre-commit->-r /src/aiohttp/requirements/lint.in (line 6))
+  Downloading filelock-3.18.0-py3-none-any.whl.metadata (2.9 kB)
+Collecting platformdirs<5,>=3.9.1 (from virtualenv>=20.10.0->pre-commit->-r /src/aiohttp/requirements/lint.in (line 6))
+  Downloading platformdirs-4.3.8-py3-none-any.whl.metadata (12 kB)
+Collecting uritemplate>=3.0.1 (from gidgethub->cherry_picker->-r requirements/dev.in (line 5))
+  Downloading uritemplate-4.2.0-py3-none-any.whl.metadata (2.6 kB)
+Collecting PyJWT>=2.4.0 (from PyJWT[crypto]>=2.4.0->gidgethub->cherry_picker->-r requirements/dev.in (line 5))
+  Downloading PyJWT-2.8.0-py3-none-any.whl.metadata (4.2 kB)
+Collecting tenacity (from stamina->cherry_picker->-r requirements/dev.in (line 5))
+  Downloading tenacity-9.1.2-py3-none-any.whl.metadata (1.2 kB)
+[33mWARNING: The candidate selected for download or install is a yanked version: 'wheel' candidate (version 0.46.0 at https://files.pythonhosted.org/packages/f2/67/b488d1c2408bc619bdd9f8c929e67d7743087dfa00bbdc0c0c5db70161f9/wheel-0.46.0-py3-none-any.whl (from https://pypi.org/simple/wheel/) (requires-python:>=3.9))
+Reason for being yanked: Causes problems with setuptools on macOS[0m[33m
+[0mDownloading yarl-1.20.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (348 kB)
+Downloading aiodns-3.5.0-py3-none-any.whl (8.1 kB)
+Downloading blockbuster-1.5.25-py3-none-any.whl (13 kB)
+Downloading freezegun-1.5.3-py3-none-any.whl (19 kB)
+Downloading isal-1.7.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (260 kB)
+Downloading mypy-1.17.0-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (12.6 MB)
+[?25l   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/12.6 MB[0m [31m?[0m eta [36m-:--:--[0m[2K   [91m━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━[0m [32m7.1/12.6 MB[0m [31m38.3 MB/s[0m eta [36m0:00:01[0m[2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m [32m12.3/12.6 MB[0m [31m39.0 MB/s[0m eta [36m0:00:01[0m[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m12.6/12.6 MB[0m [31m24.5 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading pre_commit-4.2.0-py2.py3-none-any.whl (220 kB)
+Downloading proxy.py-2.4.10-py3-none-any.whl (227 kB)
+Downloading pytest-8.4.1-py3-none-any.whl (365 kB)
+Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
+Downloading pytest_mock-3.14.1-py3-none-any.whl (9.9 kB)
+Downloading pytest_codspeed-4.0.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.manylinux_2_28_x86_64.whl (221 kB)
+Downloading python_on_whales-0.78.0-py3-none-any.whl (118 kB)
+Downloading pydantic-2.11.7-py3-none-any.whl (444 kB)
+Downloading pydantic_core-2.33.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.0 MB)
+[?25l   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/2.0 MB[0m [31m?[0m eta [36m-:--:--[0m[2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━[0m [32m1.6/2.0 MB[0m [31m8.1 MB/s[0m eta [36m0:00:01[0m[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m2.0/2.0 MB[0m [31m5.0 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading slotscheck-0.19.1-py3-none-any.whl (16 kB)
+Downloading click-8.1.8-py3-none-any.whl (98 kB)
+Downloading trustme-1.2.1-py3-none-any.whl (16 kB)
+Downloading uvloop-0.21.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (4.0 MB)
+[?25l   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/4.0 MB[0m [31m?[0m eta [36m-:--:--[0m[2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m [32m3.9/4.0 MB[0m [31m46.8 MB/s[0m eta [36m0:00:01[0m[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m4.0/4.0 MB[0m [31m19.9 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading valkey-6.1.0-py3-none-any.whl (259 kB)
+Downloading zlib_ng-0.5.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (108 kB)
+Downloading zstandard-0.23.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (5.4 MB)
+[?25l   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/5.4 MB[0m [31m?[0m eta [36m-:--:--[0m[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m5.4/5.4 MB[0m [31m26.3 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading aiohappyeyeballs-2.6.1-py3-none-any.whl (15 kB)
+Downloading aiosignal-1.4.0-py3-none-any.whl (7.5 kB)
+Downloading Brotli-1.1.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.9 MB)
+[?25l   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/2.9 MB[0m [31m?[0m eta [36m-:--:--[0m[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m2.9/2.9 MB[0m [31m19.7 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading frozenlist-1.7.0-cp311-cp311-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (235 kB)
+Downloading propcache-0.3.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (213 kB)
+Downloading gunicorn-23.0.0-py3-none-any.whl (85 kB)
+Downloading coverage-7.9.2-cp311-cp311-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (244 kB)
+Downloading pkgconfig-1.5.5-py3-none-any.whl (6.7 kB)
+Downloading pytest_cov-6.2.1-py3-none-any.whl (24 kB)
+Downloading pytest_xdist-3.8.0-py3-none-any.whl (46 kB)
+Downloading setuptools_git-1.2-py2.py3-none-any.whl (10 kB)
+Downloading wait_for_it-2.3.0-py3-none-any.whl (8.1 kB)
+Downloading aiohttp_theme-0.1.7-py2.py3-none-any.whl (12 kB)
+Downloading sphinx-8.1.3-py3-none-any.whl (3.5 MB)
+[?25l   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/3.5 MB[0m [31m?[0m eta [36m-:--:--[0m[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m3.5/3.5 MB[0m [31m23.0 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading docutils-0.21.2-py3-none-any.whl (587 kB)
+[?25l   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/587.4 kB[0m [31m?[0m eta [36m-:--:--[0m[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m587.4/587.4 kB[0m [31m4.6 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading sphinxcontrib_towncrier-0.5.0a0-py3-none-any.whl (12 kB)
+Downloading towncrier-23.11.0-py3-none-any.whl (49 kB)
+Downloading cherry_picker-2.5.0-py3-none-any.whl (27 kB)
+Downloading pip_tools-7.4.1-py3-none-any.whl (61 kB)
+Downloading alabaster-1.0.0-py3-none-any.whl (13 kB)
+Downloading annotated_types-0.7.0-py3-none-any.whl (13 kB)
+Downloading async_timeout-5.0.1-py3-none-any.whl (6.2 kB)
+Downloading babel-2.17.0-py3-none-any.whl (10.2 MB)
+[?25l   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/10.2 MB[0m [31m?[0m eta [36m-:--:--[0m[2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m [32m10.0/10.2 MB[0m [31m73.0 MB/s[0m eta [36m0:00:01[0m[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m10.2/10.2 MB[0m [31m31.4 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading build-1.2.2.post1-py3-none-any.whl (22 kB)
+Downloading cffi-1.17.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (467 kB)
+Downloading cfgv-3.4.0-py2.py3-none-any.whl (7.2 kB)
+Downloading cryptography-45.0.5-cp311-abi3-manylinux_2_28_x86_64.whl (4.5 MB)
+[?25l   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/4.5 MB[0m [31m?[0m eta [36m-:--:--[0m[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m4.5/4.5 MB[0m [31m25.8 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading execnet-2.1.1-py3-none-any.whl (40 kB)
+Downloading identify-2.6.12-py2.py3-none-any.whl (99 kB)
+Downloading idna-3.6-py3-none-any.whl (61 kB)
+Downloading imagesize-1.4.1-py2.py3-none-any.whl (8.8 kB)
+Downloading iniconfig-2.1.0-py3-none-any.whl (6.0 kB)
+Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+Downloading MarkupSafe-3.0.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (23 kB)
+Downloading mypy_extensions-1.1.0-py3-none-any.whl (5.0 kB)
+Downloading nodeenv-1.9.1-py2.py3-none-any.whl (22 kB)
+Downloading pathspec-0.12.1-py3-none-any.whl (31 kB)
+Downloading pycares-4.9.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (627 kB)
+[?25l   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/628.0 kB[0m [31m?[0m eta [36m-:--:--[0m[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m628.0/628.0 kB[0m [31m4.1 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading pygments-2.19.2-py3-none-any.whl (1.2 MB)
+[?25l   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/1.2 MB[0m [31m?[0m eta [36m-:--:--[0m[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m1.2/1.2 MB[0m [31m10.9 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Downloading PyYAML-6.0.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (762 kB)
+[?25l   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/763.0 kB[0m [31m?[0m eta [36m-:--:--[0m[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m763.0/763.0 kB[0m [31m6.8 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading requests-2.32.4-py3-none-any.whl (64 kB)
+Downloading charset_normalizer-3.4.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (147 kB)
+Downloading urllib3-2.5.0-py3-none-any.whl (129 kB)
+Downloading certifi-2025.7.14-py3-none-any.whl (162 kB)
+Downloading rich-14.0.0-py3-none-any.whl (243 kB)
+Downloading markdown_it_py-3.0.0-py3-none-any.whl (87 kB)
+Downloading mdurl-0.1.2-py3-none-any.whl (10.0 kB)
+Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+Downloading snowballstemmer-3.0.1-py3-none-any.whl (103 kB)
+Downloading sphinxcontrib_applehelp-2.0.0-py3-none-any.whl (119 kB)
+Downloading sphinxcontrib_devhelp-2.0.0-py3-none-any.whl (82 kB)
+Downloading sphinxcontrib_htmlhelp-2.1.0-py3-none-any.whl (98 kB)
+Downloading sphinxcontrib_jsmath-1.0.1-py2.py3-none-any.whl (5.1 kB)
+Downloading sphinxcontrib_qthelp-2.0.0-py3-none-any.whl (88 kB)
+Downloading sphinxcontrib_serializinghtml-2.0.0-py3-none-any.whl (92 kB)
+Downloading typing_extensions-4.14.1-py3-none-any.whl (43 kB)
+Downloading typing_inspection-0.4.1-py3-none-any.whl (14 kB)
+Downloading virtualenv-20.31.2-py3-none-any.whl (6.1 MB)
+[?25l   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/6.1 MB[0m [31m?[0m eta [36m-:--:--[0m[2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m6.1/6.1 MB[0m [31m31.7 MB/s[0m eta [36m0:00:00[0m
+[?25hDownloading distlib-0.3.9-py2.py3-none-any.whl (468 kB)
+Downloading filelock-3.18.0-py3-none-any.whl (16 kB)
+Downloading platformdirs-4.3.8-py3-none-any.whl (18 kB)
+Downloading gidgethub-5.4.0-py3-none-any.whl (21 kB)
+Downloading PyJWT-2.8.0-py3-none-any.whl (22 kB)
+Downloading uritemplate-4.2.0-py3-none-any.whl (11 kB)
+Downloading incremental-24.7.2-py3-none-any.whl (20 kB)
+Using cached setuptools-80.9.0-py3-none-any.whl (1.2 MB)
+Downloading pycparser-2.22-py3-none-any.whl (117 kB)
+Downloading pyproject_hooks-1.2.0-py3-none-any.whl (10 kB)
+Downloading stamina-25.1.0-py3-none-any.whl (17 kB)
+Downloading tenacity-9.1.2-py3-none-any.whl (28 kB)
+Downloading wheel-0.46.0-py3-none-any.whl (18 kB)
+Building wheels for collected packages: forbiddenfruit
+  Building wheel for forbiddenfruit (pyproject.toml) ... [?25l- done
+[?25h  Created wheel for forbiddenfruit: filename=forbiddenfruit-0.1.4-py3-none-any.whl size=21878 sha256=25f2292774ecdf7ac0181e9685c3ede3ed7d84c667476486556e78941e5ac1c8
+  Stored in directory: /root/.cache/pip/wheels/a3/09/38/5a94e2df4ae8f2cfc8053997507ad46b07009af3afc34a9a9c
+Successfully built forbiddenfruit
+Installing collected packages: setuptools-git, forbiddenfruit, distlib, Brotli, aiohttp-theme, zstandard, zlib_ng, wheel, uvloop, urllib3, uritemplate, typing_extensions, tenacity, sphinxcontrib-serializinghtml, sphinxcontrib-qthelp, sphinxcontrib-jsmath, sphinxcontrib-htmlhelp, sphinxcontrib-devhelp, sphinxcontrib-applehelp, snowballstemmer, six, setuptools, pyyaml, pyproject-hooks, PyJWT, pygments, pycparser, proxy.py, propcache, pluggy, platformdirs, pkgconfig, pathspec, nodeenv, mypy_extensions, mdurl, MarkupSafe, isal, iniconfig, imagesize, idna, identify, gunicorn, frozenlist, filelock, execnet, docutils, coverage, click, charset_normalizer, cfgv, certifi, blockbuster, babel, async-timeout, annotated-types, alabaster, aiohappyeyeballs, yarl, wait-for-it, virtualenv, valkey, typing-inspection, stamina, slotscheck, requests, python-dateutil, pytest, pydantic-core, mypy, markdown-it-py, Jinja2, incremental, cffi, build, aiosignal, towncrier, sphinx, rich, pytest-xdist, pytest-mock, pytest-cov, pydantic, pycares, pre-commit, pip-tools, freezegun, cryptography, trustme, sphinxcontrib-towncrier, python-on-whales, pytest_codspeed, aiodns, gidgethub, cherry_picker
+[?25l[2K   [91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/95[0m [distlib][2K   [91m━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 3/95[0m [Brotli][2K   [91m━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 5/95[0m [zstandard][2K   [91m━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 8/95[0m [uvloop][2K   [91m━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 9/95[0m [urllib3][2K   [91m━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m11/95[0m [typing_extensions][2K   [91m━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m13/95[0m [sphinxcontrib-serializinghtml][2K   [91m━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m15/95[0m [sphinxcontrib-jsmath][2K   [91m━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m17/95[0m [sphinxcontrib-devhelp][2K   [91m━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m19/95[0m [snowballstemmer][2K  Attempting uninstall: six
+   [91m━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m19/95[0m [snowballstemmer][2K    Found existing installation: six 1.15.0
+   [91m━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m19/95[0m [snowballstemmer][2K    Uninstalling six-1.15.0:
+   [91m━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m19/95[0m [snowballstemmer][2K      Successfully uninstalled six-1.15.0
+   [91m━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m19/95[0m [snowballstemmer][2K   [91m━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m20/95[0m [six][2K  Attempting uninstall: setuptools
+   [91m━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m20/95[0m [six][2K    Found existing installation: setuptools 72.1.0
+   [91m━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m20/95[0m [six][2K    Uninstalling setuptools-72.1.0:
+   [91m━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m20/95[0m [six][2K   [91m━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m21/95[0m [setuptools][2K   [91m━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m21/95[0m [setuptools][2K   [91m━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m21/95[0m [setuptools][2K   [91m━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m21/95[0m [setuptools][2K   [91m━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m21/95[0m [setuptools][2K      Successfully uninstalled setuptools-72.1.0
+   [91m━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m21/95[0m [setuptools][2K   [91m━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m21/95[0m [setuptools][2K   [91m━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m21/95[0m [setuptools][2K   [91m━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m21/95[0m [setuptools][2K   [91m━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m21/95[0m [setuptools][2K   [91m━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m22/95[0m [pyyaml][2K   [91m━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m23/95[0m [pyproject-hooks][2K   [91m━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m25/95[0m [pygments][2K   [91m━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m25/95[0m [pygments][2K   [91m━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m25/95[0m [pygments][2K   [91m━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m25/95[0m [pygments][2K   [91m━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m26/95[0m [pycparser][2K   [91m━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m27/95[0m [proxy.py][2K   [91m━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m29/95[0m [pluggy][2K   [91m━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m31/95[0m [pkgconfig][2K   [91m━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m33/95[0m [nodeenv][2K   [91m━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m35/95[0m [mdurl][2K   [91m━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━━━[0m [32m38/95[0m [iniconfig][2K   [91m━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━━━[0m [32m40/95[0m [idna][2K   [91m━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━━[0m [32m41/95[0m [identify][2K   [91m━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━━[0m [32m43/95[0m [frozenlist][2K   [91m━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━━[0m [32m45/95[0m [execnet][2K   [91m━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━[0m [32m46/95[0m [docutils][2K  Attempting uninstall: coverage
+   [91m━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━[0m [32m46/95[0m [docutils][2K    Found existing installation: coverage 6.3.2
+   [91m━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━[0m [32m46/95[0m [docutils][2K    Uninstalling coverage-6.3.2:
+   [91m━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━━[0m [32m46/95[0m [docutils][2K   [91m━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━[0m [32m47/95[0m [coverage][2K      Successfully uninstalled coverage-6.3.2
+   [91m━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━[0m [32m47/95[0m [coverage][2K   [91m━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━━[0m [32m47/95[0m [coverage][2K   [91m━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━━[0m [32m48/95[0m [click][2K   [91m━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━━━[0m [32m49/95[0m [charset_normalizer][2K   [91m━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━━[0m [32m51/95[0m [certifi][2K   [91m━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━[0m [32m53/95[0m [babel][2K   [91m━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━━[0m [32m53/95[0m [babel][2K   [91m━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━━[0m [32m54/95[0m [async-timeout][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━━[0m [32m55/95[0m [annotated-types][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━[0m [32m56/95[0m [alabaster][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━━[0m [32m56/95[0m [alabaster][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━[0m [32m57/95[0m [aiohappyeyeballs][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━[0m [32m57/95[0m [aiohappyeyeballs][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━[0m [32m57/95[0m [aiohappyeyeballs][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━[0m [32m58/95[0m [yarl][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━━[0m [32m58/95[0m [yarl][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━[0m [32m59/95[0m [wait-for-it][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━━[0m [32m59/95[0m [wait-for-it][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━[0m [32m60/95[0m [virtualenv][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━[0m [32m60/95[0m [virtualenv][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━[0m [32m60/95[0m [virtualenv][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━[0m [32m60/95[0m [virtualenv][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━━[0m [32m60/95[0m [virtualenv][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━[0m [32m61/95[0m [valkey][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━[0m [32m61/95[0m [valkey][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━[0m [32m61/95[0m [valkey][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━━[0m [32m61/95[0m [valkey][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━[0m [32m62/95[0m [typing-inspection][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━[0m [32m62/95[0m [typing-inspection][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━━[0m [32m62/95[0m [typing-inspection][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━[0m [32m63/95[0m [stamina][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━[0m [32m64/95[0m [slotscheck][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━━[0m [32m64/95[0m [slotscheck][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━[0m [32m65/95[0m [requests][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━━[0m [32m65/95[0m [requests][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━━[0m [32m66/95[0m [python-dateutil][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━━[0m [32m67/95[0m [pytest][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━━[0m [32m68/95[0m [pydantic-core][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m69/95[0m [mypy][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m69/95[0m [mypy][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m69/95[0m [mypy][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m69/95[0m [mypy][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m69/95[0m [mypy][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m69/95[0m [mypy][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m69/95[0m [mypy][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m69/95[0m [mypy][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m69/95[0m [mypy][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m69/95[0m [mypy][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m69/95[0m [mypy][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m69/95[0m [mypy][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m69/95[0m [mypy][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m69/95[0m [mypy][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m69/95[0m [mypy][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m69/95[0m [mypy][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m69/95[0m [mypy][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m69/95[0m [mypy][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m69/95[0m [mypy][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m69/95[0m [mypy][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m69/95[0m [mypy][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m69/95[0m [mypy][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━━[0m [32m70/95[0m [markdown-it-py][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━━━━[0m [32m71/95[0m [Jinja2][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━━[0m [32m72/95[0m [incremental][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━━[0m [32m74/95[0m [build][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━[0m [32m76/95[0m [towncrier][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━[0m [32m77/95[0m [sphinx][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━[0m [32m77/95[0m [sphinx][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━━━━[0m [32m77/95[0m [sphinx][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━[0m [32m78/95[0m [rich][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━━[0m [32m78/95[0m [rich][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━━[0m [32m80/95[0m [pytest-mock][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━[0m [32m82/95[0m [pydantic][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━[0m [32m82/95[0m [pydantic][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━━━[0m [32m83/95[0m [pycares][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━━[0m [32m84/95[0m [pre-commit][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━━[0m [32m86/95[0m [freezegun][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━━[0m [32m87/95[0m [cryptography][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[90m╺[0m[90m━━[0m [32m89/95[0m [sphinxcontrib-towncrier][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━━[0m [32m90/95[0m [python-on-whales][2K   [91m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[91m╸[0m[90m━[0m [32m92/95[0m [aiodns][2K   [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m95/95[0m [cherry_picker]
+[?25h[1A[2KSuccessfully installed Brotli-1.1.0 Jinja2-3.1.6 MarkupSafe-3.0.2 PyJWT-2.8.0 aiodns-3.5.0 aiohappyeyeballs-2.6.1 aiohttp-theme-0.1.7 aiosignal-1.4.0 alabaster-1.0.0 annotated-types-0.7.0 async-timeout-5.0.1 babel-2.17.0 blockbuster-1.5.25 build-1.2.2.post1 certifi-2025.7.14 cffi-1.17.1 cfgv-3.4.0 charset_normalizer-3.4.2 cherry_picker-2.5.0 click-8.1.8 coverage-7.9.2 cryptography-45.0.5 distlib-0.3.9 docutils-0.21.2 execnet-2.1.1 filelock-3.18.0 forbiddenfruit-0.1.4 freezegun-1.5.3 frozenlist-1.7.0 gidgethub-5.4.0 gunicorn-23.0.0 identify-2.6.12 idna-3.6 imagesize-1.4.1 incremental-24.7.2 iniconfig-2.1.0 isal-1.7.2 markdown-it-py-3.0.0 mdurl-0.1.2 mypy-1.17.0 mypy_extensions-1.1.0 nodeenv-1.9.1 pathspec-0.12.1 pip-tools-7.4.1 pkgconfig-1.5.5 platformdirs-4.3.8 pluggy-1.6.0 pre-commit-4.2.0 propcache-0.3.2 proxy.py-2.4.10 pycares-4.9.0 pycparser-2.22 pydantic-2.11.7 pydantic-core-2.33.2 pygments-2.19.2 pyproject-hooks-1.2.0 pytest-8.4.1 pytest-cov-6.2.1 pytest-mock-3.14.1 pytest-xdist-3.8.0 pytest_codspeed-4.0.0 python-dateutil-2.9.0.post0 python-on-whales-0.78.0 pyyaml-6.0.2 requests-2.32.4 rich-14.0.0 setuptools-80.9.0 setuptools-git-1.2 six-1.17.0 slotscheck-0.19.1 snowballstemmer-3.0.1 sphinx-8.1.3 sphinxcontrib-applehelp-2.0.0 sphinxcontrib-devhelp-2.0.0 sphinxcontrib-htmlhelp-2.1.0 sphinxcontrib-jsmath-1.0.1 sphinxcontrib-qthelp-2.0.0 sphinxcontrib-serializinghtml-2.0.0 sphinxcontrib-towncrier-0.5.0a0 stamina-25.1.0 tenacity-9.1.2 towncrier-23.11.0 trustme-1.2.1 typing-inspection-0.4.1 typing_extensions-4.14.1 uritemplate-4.2.0 urllib3-2.5.0 uvloop-0.21.0 valkey-6.1.0 virtualenv-20.31.2 wait-for-it-2.3.0 wheel-0.46.0 yarl-1.20.1 zlib_ng-0.5.1 zstandard-0.23.0
+[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.[0m[33m
+[0mmake -C vendor/llhttp generate
+make[1]: Entering directory '/src/aiohttp/vendor/llhttp'
+npx ts-node bin/generate.ts
+[1G[0K\[1G[0K|[1G[0K[1G[0K\[1G[0Kmake[1]: Leaving directory '/src/aiohttp/vendor/llhttp'
+re-hash ff54696f226d6d8e36faacb94c662f11ad0f5d98c0b0599fd42317a7effadba5
+re-hash 2281b674082dc491663b1274cf7d935623dbd69f25933b680abfc0f582bddd2c
+re-hash bbfee50ff1d1c121850fd328abadfcffcdf65e131d394a47366eb953e6156e8d
+re-hash 6a461694210a895dfda5013f8957f6487feba632f2af8d52acf96b5dffa8e491
+re-hash 3bb6abeab788b209687a78b7842fc8319b81fe1a500d52d78dad2d1ebe46dcb7
+re-hash 7294a8649b3e7596bc00b1d90c43361bbd1c7069bb5622962e16b7e1a1f2095c
+re-hash 0fe39617a320bcd27a18a5b4be943c5fc24f57ef165bc29536483adcb0d75432
+re-hash 9304170cd8c066d1b4a6786c52bb1d007bc39ce11836407430812cdb57abc4b4
+re-hash 05b34ac7d7b754c226d31623648d087010684bbc2375e21e49a88913bfaa2b68
+re-hash 8e1818dc975407eb93a52d2594890e72f6bea8989775aaef7290e8ef4936fa78
+re-hash cb5efaae86abdb63de77d45f4ca1d69b38c9f521a1c90b8e11274b061fbf1d95
+re-hash 21ec812bc6487135e64d62c1fc00f86b8ec3fdae8afef232bf52849577a2971e
+re-hash c1496ac1ef4cc3d5bc8d3dc7b1825c624d34a8fdc430fcf79d39185e678d378f
+re-hash c52547d2296f2c7a97d90e0c720c15dbd7035a095d82036c28d4231b197dc44a
+re-hash b1e8cd59f0f6f2e92b9ffe78219dca2573aa17c96d338410f1d7e009b1404121
+re-hash a7a64a89d56df1495645519c66911794ef157c73723a3e2146788fcd4a6671ee
+re-hash 4d56e82d18e55b2464bf6c00396df49302ef067ea180bbfa0fa14efc61484d15
+re-hash 8efb87b44513b0b1feefff200b62c115d5d92078ff11df5fd48e66edcd951e0f
+re-hash b70b0f1baafe35f9715b10177fed051992d8b1ba473c8ff56f056fa58d20804c
+re-hash 90fe4df4233340f3063c813275e55488b5132ecc3c565f06af8a8059876edef3
+re-hash c6309564aad021f1f56f037951e36b7a6f247af9d7c19701a0d63de32ca4f107
+re-hash a9d901f8c93e05fbf43e6bfed14ccfc6332d734ccefcee42c32a354e44729bad
+re-hash b499e122de839be586d0ad95fd33b6943782fc7452f6ecbdf7c7e2b87f1545b8
+re-hash 06ed3ff80876990e0edc28a7e9f3b0be3caedb4a3976044eed243734c5d088ff
+re-hash 2a4546a90e8c538eaaedc321528f5f898b998502777072dd65a7ca3a270b75a8
+re-hash 10dd1e8b7c1cfd30815db9e2e081d6e131da600f5b7417450d666e4f55e7195a
+re-hash 7a77a3dd6db904af5372542e36a039d1646f96ac6898dfbcf185a153147d7a74
+re-hash ae9c0bb0c8076ff4c2b1fe4ddc5a45cc6ec7dd89d67714b19dada1b33abcbd29
+re-hash fc82281e0993933648cf43c9a29c486ac999cac74bfa1fb11631c71e84a3c6f4
+re-hash 88dc63acf344eadcfa5aaabc6a33328b575e3440d2cc219641206b7ca031ef77
+re-hash c1da54a0e886d2f14eb9da5e39fb03824d336dbc74efe9c34c40532e578d4986
+re-hash 75f04500254b12891f0d8a0244fbedb3f6a4c4d9853e9c5a22ce40ab2ece76a2
+re-hash 72484a3ee778c385dd3f605c830d468bca9817cd678461b64300f1c5822f7871
+re-hash cdcc9d9b973ad45b295f72f293285cb80f01903a3316d6adc837311ed1d13faf
+re-hash c74ab814cee470f7c5a01f529191715e4191482d437575bf3913b20b806f362a
+re-hash fcedb7705317a319a71c947b46dc08a46a668fb1eff8e5ebdbd4c123755d78d7
+re-hash aef863fd6c8ec91703664347c2e44724c7b5fc4e9e7b24d28850b4ed575565cb
+re-hash 4f869646a18108f3aa440cdc76514de27d163d520fc74a8bdb888c5ca45df0e4
+re-hash 9d8cdadf4e6ddbd6385b4714f11088f2443a8cae8d2218b84597e463db29c21b
+re-hash 95fd144b189475d769ac857a2d72721bbbf756818f7c67b4c1a026a0ca37c2a3
+re-hash af9fa898d96a5d3aef6847d59ea5bf1fe4f62ff60ebbbb06e3b42f1c50c0e3df
+re-hash a55e501a0bffecf2b9dbc18bdb63232afea7a849a56e3444a3ca267078645d51
+re-hash 757ba48b887ec09ad7a5135bab2f9068eae2da54d418e11ee32fc1dd6211f701
+re-hash 7f3006cd1ef048cdf157fd9edbf88e87757a8f9926186ede0844ec94d7ce5595
+re-hash 4ccd38cc69b9f5391e7a3e4633e5a89b03fed1e6d82732bd88162a530c139983
+re-hash 4e9f1cc543d0beff6450f937c3a940ce4e9dd8c033577b1cc08ff71a8dc2e3b7
+re-hash a7a1959d232df0b4991d746a4dcf08d3034bfbff5358202fcfbfd749a055fa77
+re-hash d81242504b9bd1ed71c74d5075421f42e9ee6d8bf2b82d6ed2ce8038f3a602cc
+re-hash 8c0af1477665e7fd6afe82a24c2df2ecdbb2a1c68d69a4e6eab4e83c50e94024
+re-hash f522295111807b24234905dc22936c0a1519e61d9d4b38c06246fccbab3493f6
+re-hash 31aaf747dfef04dfc46b896c5bb8930155c3ece2acc0a3c6a85e71812cadefb9
+re-hash f522295111807b24234905dc22936c0a1519e61d9d4b38c06246fccbab3493f6
+re-hash 8ccec8e422ce25edee8351d8714af411b5e4bc0b11aadb0d261794a3b0aa0640
+re-hash b3c52b9f1bfc08377636e2821330ac2d6cb835b5455df2cc36583eb366c28370
+re-hash 6384f14f809f7e9fc53f4982cd060c2ebed61d9567156489f38b364b96547d29
+re-hash 6af65f22463aa2adceed3d0d9a17f0dee057d8d7eb9bed3998ba01a4c1d60b93
+re-hash 434aad12b10d6207c8dcdd59a83c1cf1c212f511c502d36a9d3139582557c2d9
+re-hash 365576f160ee4a08038107ef36e48ff81c5a7ebdc3e00b97f80afd7cad124cc5
+python -m pip install -e . -c requirements/runtime-deps.txt
+Obtaining file:///src/aiohttp
+  Installing build dependencies ... [?25l- \ | done
+[?25h  Checking if build backend supports build_editable ... [?25ldone
+[?25h  Getting requirements to build editable ... [?25l- \ done
+[?25h  Preparing editable metadata (pyproject.toml) ... [?25l- \ done
+[?25hRequirement already satisfied: aiohappyeyeballs>=2.5.0 in /usr/local/lib/python3.11/site-packages (from aiohttp==4.0.0a2.dev0) (2.6.1)
+Requirement already satisfied: aiosignal>=1.4.0 in /usr/local/lib/python3.11/site-packages (from aiohttp==4.0.0a2.dev0) (1.4.0)
+Requirement already satisfied: frozenlist>=1.1.1 in /usr/local/lib/python3.11/site-packages (from aiohttp==4.0.0a2.dev0) (1.7.0)
+Requirement already satisfied: multidict<7.0,>=4.5 in /usr/local/lib/python3.11/site-packages (from aiohttp==4.0.0a2.dev0) (6.6.3)
+Requirement already satisfied: propcache>=0.2.0 in /usr/local/lib/python3.11/site-packages (from aiohttp==4.0.0a2.dev0) (0.3.2)
+Requirement already satisfied: yarl<2.0,>=1.17.0 in /usr/local/lib/python3.11/site-packages (from aiohttp==4.0.0a2.dev0) (1.20.1)
+Requirement already satisfied: idna>=2.0 in /usr/local/lib/python3.11/site-packages (from yarl<2.0,>=1.17.0->aiohttp==4.0.0a2.dev0) (3.6)
+Requirement already satisfied: typing-extensions>=4.2 in /usr/local/lib/python3.11/site-packages (from aiosignal>=1.4.0->aiohttp==4.0.0a2.dev0) (4.14.1)
+Building wheels for collected packages: aiohttp
+  Building editable for aiohttp (pyproject.toml) ... [?25l- \ | / - \ | / - \ | done
+[?25h  Created wheel for aiohttp: filename=aiohttp-4.0.0a2.dev0-0.editable-cp311-cp311-linux_x86_64.whl size=5924 sha256=b0d1ed2f2fae98d8ac796bee446117a64664335f4a96ac9739e3780105feddc4
+  Stored in directory: /tmp/pip-ephem-wheel-cache-ssbl1wnw/wheels/28/51/83/5737f45858169f0f235d98e0869b02df8993805cbd9e00cfdd
+Successfully built aiohttp
+Installing collected packages: aiohttp
+Successfully installed aiohttp-4.0.0a2.dev0
+[33mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.[0m[33m
+[0m+ cp fuzz_http_parser.py fuzz_http_parser_pure_python.py
++ sed -i s/AIOHTTP_VAL=0/AIOHTTP_VAL=1/g fuzz_http_parser_pure_python.py
++ cp fuzz_http_payload_parser.py fuzz_http_payload_parser_pure_python.py
++ sed -i s/AIOHTTP_VAL=0/AIOHTTP_VAL=1/g fuzz_http_payload_parser_pure_python.py
+++ find /src -name 'fuzz_*.py'
++ for fuzzer in $(find $SRC -name 'fuzz_*.py')
++ compile_python_fuzzer /src/aiohttp/fuzz_http_parser_pure_python.py
++ fuzzer_path=/src/aiohttp/fuzz_http_parser_pure_python.py
++ shift 1
+++ basename -s .py /src/aiohttp/fuzz_http_parser_pure_python.py
++ fuzzer_basename=fuzz_http_parser_pure_python
++ fuzzer_package=fuzz_http_parser_pure_python.pkg
++ PYFUZZ_WORKPATH=/src/pyfuzzworkdir/
++ FUZZ_WORKPATH=/src/pyfuzzworkdir//fuzz_http_parser_pure_python
++ [[ address = *introspector* ]]
++ [[ address = *coverage* ]]
++ [[ 0 != \0 ]]
++ rm -rf /src/pyfuzzworkdir/
++ mkdir /src/pyfuzzworkdir/ /src/pyfuzzworkdir//fuzz_http_parser_pure_python
++ pyinstaller --distpath /out --workpath=/src/pyfuzzworkdir//fuzz_http_parser_pure_python --onefile --name fuzz_http_parser_pure_python.pkg /src/aiohttp/fuzz_http_parser_pure_python.py
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+58 INFO: PyInstaller: 6.10.0, contrib hooks: 2025.6
+58 INFO: Python: 3.11.13
+60 INFO: Platform: Linux-5.15.0-140-generic-x86_64-with-glibc2.31
+60 INFO: Python environment: /usr/local
+60 INFO: wrote /src/aiohttp/fuzz_http_parser_pure_python.pkg.spec
+62 INFO: Module search paths (PYTHONPATH):
+['/usr/local/lib/python311.zip',
+ '/usr/local/lib/python3.11',
+ '/usr/local/lib/python3.11/lib-dynload',
+ '/usr/local/lib/python3.11/site-packages',
+ '/usr/local/lib/python3.11/site-packages/setuptools/_vendor',
+ '/src/aiohttp']
+137 INFO: checking Analysis
+137 INFO: Building Analysis because Analysis-00.toc is non existent
+137 INFO: Running Analysis Analysis-00.toc
+137 INFO: Target bytecode optimization level: 0
+137 INFO: Initializing module dependency graph...
+137 INFO: Caching module graph hooks...
+143 INFO: Analyzing base_library.zip ...
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+593 INFO: Processing standard module hook 'hook-heapq.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+686 INFO: Processing standard module hook 'hook-encodings.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+1692 INFO: Processing standard module hook 'hook-pickle.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2701 INFO: Caching module dependency graph...
+2753 INFO: Looking for Python shared library...
+2762 INFO: Using Python shared library: /usr/local/lib/libpython3.11.so.1.0
+2762 INFO: Analyzing /src/aiohttp/fuzz_http_parser_pure_python.py
+2764 INFO: Processing standard module hook 'hook-atheris.py' from '/usr/local/lib/python3.11/site-packages/atheris'
+2899 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2996 INFO: Processing standard module hook 'hook-xml.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3484 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+3485 INFO: SetuptoolsInfo: initializing cached setuptools info...
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+5970 INFO: Processing standard module hook 'hook-platform.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7043 INFO: Processing pre-safe-import-module hook 'hook-importlib_metadata.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7043 INFO: Setuptools: 'importlib_metadata' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.importlib_metadata'!
+7046 INFO: Processing standard module hook 'hook-setuptools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7056 INFO: Processing pre-safe-import-module hook 'hook-distutils.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7056 INFO: Processing pre-find-module-path hook 'hook-distutils.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_find_module_path'
+7164 INFO: Processing standard module hook 'hook-distutils.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7191 INFO: Processing standard module hook 'hook-distutils.util.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7216 INFO: Processing standard module hook 'hook-sysconfig.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7245 INFO: Processing pre-safe-import-module hook 'hook-packaging.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7251 INFO: Processing standard module hook 'hook-packaging.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7328 INFO: Processing pre-safe-import-module hook 'hook-jaraco.text.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7328 INFO: Setuptools: 'jaraco.text' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.text'!
+7334 INFO: Processing pre-safe-import-module hook 'hook-importlib_resources.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7334 INFO: Processing pre-safe-import-module hook 'hook-jaraco.functools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7334 INFO: Setuptools: 'jaraco.functools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.functools'!
+7339 INFO: Processing pre-safe-import-module hook 'hook-more_itertools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7339 INFO: Setuptools: 'more_itertools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.more_itertools'!
+7421 INFO: Processing pre-safe-import-module hook 'hook-jaraco.context.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7421 INFO: Setuptools: 'jaraco.context' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.context'!
+7426 INFO: Processing pre-safe-import-module hook 'hook-backports.tarfile.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7426 INFO: Setuptools: 'backports.tarfile' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.backports.tarfile'!
+7479 INFO: Processing standard module hook 'hook-backports.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+7714 INFO: Processing pre-safe-import-module hook 'hook-tomli.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7714 INFO: Setuptools: 'tomli' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.tomli'!
+8046 INFO: Processing pre-safe-import-module hook 'hook-wheel.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8070 INFO: Processing pre-safe-import-module hook 'hook-zipp.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8070 INFO: Setuptools: 'zipp' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.zipp'!
+8132 INFO: Processing standard module hook 'hook-uvloop.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+8258 INFO: Processing module hooks (post-graph stage)...
+8338 INFO: Processing standard module hook 'hook-difflib.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+8445 INFO: Processing standard module hook 'hook-pkg_resources.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+8578 INFO: Processing pre-safe-import-module hook 'hook-platformdirs.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8582 INFO: Processing standard module hook 'hook-platformdirs.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+8805 INFO: Processing pre-safe-import-module hook 'hook-autocommand.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8806 INFO: Setuptools: 'autocommand' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.autocommand'!
+8874 INFO: Processing pre-safe-import-module hook 'hook-typeguard.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8874 INFO: Setuptools: 'typeguard' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.typeguard'!
+9438 INFO: Performing binary vs. data reclassification (107 entries)
+9442 INFO: Looking for ctypes DLLs
+9485 INFO: Analyzing run-time hooks ...
+9489 INFO: Including run-time hook 'pyi_rth_inspect.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9490 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9491 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9492 INFO: Including run-time hook 'pyi_rth_setuptools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9492 INFO: Including run-time hook 'pyi_rth_pkgres.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9502 INFO: Looking for dynamic libraries
+10080 INFO: Warnings written to /src/pyfuzzworkdir/fuzz_http_parser_pure_python/fuzz_http_parser_pure_python.pkg/warn-fuzz_http_parser_pure_python.pkg.txt
+10102 INFO: Graph cross-reference written to /src/pyfuzzworkdir/fuzz_http_parser_pure_python/fuzz_http_parser_pure_python.pkg/xref-fuzz_http_parser_pure_python.pkg.html
+10117 INFO: checking PYZ
+10117 INFO: Building PYZ because PYZ-00.toc is non existent
+10117 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_http_parser_pure_python/fuzz_http_parser_pure_python.pkg/PYZ-00.pyz
+10624 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_http_parser_pure_python/fuzz_http_parser_pure_python.pkg/PYZ-00.pyz completed successfully.
+10639 INFO: checking PKG
+10639 INFO: Building PKG because PKG-00.toc is non existent
+10639 INFO: Building PKG (CArchive) fuzz_http_parser_pure_python.pkg.pkg
+30989 INFO: Building PKG (CArchive) fuzz_http_parser_pure_python.pkg.pkg completed successfully.
+30993 INFO: Bootloader /usr/local/lib/python3.11/site-packages/PyInstaller/bootloader/Linux-64bit-intel/run
+30993 INFO: checking EXE
+30994 INFO: Building EXE because EXE-00.toc is non existent
+30994 INFO: Building EXE from EXE-00.toc
+30999 INFO: Copying bootloader EXE to /out/fuzz_http_parser_pure_python.pkg
+30999 INFO: Appending PKG archive to custom ELF section in EXE
+31058 INFO: Building EXE from EXE-00.toc completed successfully.
++ chmod -x /out/fuzz_http_parser_pure_python.pkg
++ [[ address = *coverage* ]]
++ echo '#!/bin/sh
+# LLVMFuzzerTestOneInput for fuzzer detection.
+this_dir=$(dirname "$0")
+chmod +x $this_dir/fuzz_http_parser_pure_python.pkg
+LD_PRELOAD=$this_dir/sanitizer_with_fuzzer.so ASAN_OPTIONS=$ASAN_OPTIONS:symbolize=1:external_symbolizer_path=$this_dir/llvm-symbolizer:detect_leaks=0 $this_dir/fuzz_http_parser_pure_python.pkg $@'
++ chmod +x /out/fuzz_http_parser_pure_python
++ for fuzzer in $(find $SRC -name 'fuzz_*.py')
++ compile_python_fuzzer /src/aiohttp/fuzz_http_payload_parser_pure_python.py
++ fuzzer_path=/src/aiohttp/fuzz_http_payload_parser_pure_python.py
++ shift 1
+++ basename -s .py /src/aiohttp/fuzz_http_payload_parser_pure_python.py
++ fuzzer_basename=fuzz_http_payload_parser_pure_python
++ fuzzer_package=fuzz_http_payload_parser_pure_python.pkg
++ PYFUZZ_WORKPATH=/src/pyfuzzworkdir/
++ FUZZ_WORKPATH=/src/pyfuzzworkdir//fuzz_http_payload_parser_pure_python
++ [[ address = *introspector* ]]
++ [[ address = *coverage* ]]
++ [[ 0 != \0 ]]
++ rm -rf /src/pyfuzzworkdir/
++ mkdir /src/pyfuzzworkdir/ /src/pyfuzzworkdir//fuzz_http_payload_parser_pure_python
++ pyinstaller --distpath /out --workpath=/src/pyfuzzworkdir//fuzz_http_payload_parser_pure_python --onefile --name fuzz_http_payload_parser_pure_python.pkg /src/aiohttp/fuzz_http_payload_parser_pure_python.py
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+55 INFO: PyInstaller: 6.10.0, contrib hooks: 2025.6
+55 INFO: Python: 3.11.13
+56 INFO: Platform: Linux-5.15.0-140-generic-x86_64-with-glibc2.31
+56 INFO: Python environment: /usr/local
+56 INFO: wrote /src/aiohttp/fuzz_http_payload_parser_pure_python.pkg.spec
+58 INFO: Module search paths (PYTHONPATH):
+['/usr/local/lib/python311.zip',
+ '/usr/local/lib/python3.11',
+ '/usr/local/lib/python3.11/lib-dynload',
+ '/usr/local/lib/python3.11/site-packages',
+ '/usr/local/lib/python3.11/site-packages/setuptools/_vendor',
+ '/src/aiohttp']
+132 INFO: checking Analysis
+132 INFO: Building Analysis because Analysis-00.toc is non existent
+132 INFO: Running Analysis Analysis-00.toc
+132 INFO: Target bytecode optimization level: 0
+132 INFO: Initializing module dependency graph...
+132 INFO: Caching module graph hooks...
+138 INFO: Analyzing base_library.zip ...
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+493 INFO: Processing standard module hook 'hook-encodings.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+776 INFO: Processing standard module hook 'hook-heapq.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+1741 INFO: Processing standard module hook 'hook-pickle.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2608 INFO: Caching module dependency graph...
+2666 INFO: Looking for Python shared library...
+2674 INFO: Using Python shared library: /usr/local/lib/libpython3.11.so.1.0
+2674 INFO: Analyzing /src/aiohttp/fuzz_http_payload_parser_pure_python.py
+2676 INFO: Processing standard module hook 'hook-atheris.py' from '/usr/local/lib/python3.11/site-packages/atheris'
+2805 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2919 INFO: Processing standard module hook 'hook-xml.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3398 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+3398 INFO: SetuptoolsInfo: initializing cached setuptools info...
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+5873 INFO: Processing standard module hook 'hook-platform.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+6969 INFO: Processing pre-safe-import-module hook 'hook-importlib_metadata.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+6969 INFO: Setuptools: 'importlib_metadata' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.importlib_metadata'!
+6972 INFO: Processing standard module hook 'hook-setuptools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+6981 INFO: Processing pre-safe-import-module hook 'hook-distutils.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+6982 INFO: Processing pre-find-module-path hook 'hook-distutils.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_find_module_path'
+7090 INFO: Processing standard module hook 'hook-distutils.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7105 INFO: Processing standard module hook 'hook-distutils.util.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7129 INFO: Processing standard module hook 'hook-sysconfig.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7159 INFO: Processing pre-safe-import-module hook 'hook-packaging.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7164 INFO: Processing standard module hook 'hook-packaging.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7241 INFO: Processing pre-safe-import-module hook 'hook-jaraco.text.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7241 INFO: Setuptools: 'jaraco.text' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.text'!
+7247 INFO: Processing pre-safe-import-module hook 'hook-importlib_resources.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7248 INFO: Processing pre-safe-import-module hook 'hook-jaraco.functools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7248 INFO: Setuptools: 'jaraco.functools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.functools'!
+7253 INFO: Processing pre-safe-import-module hook 'hook-more_itertools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7253 INFO: Setuptools: 'more_itertools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.more_itertools'!
+7333 INFO: Processing pre-safe-import-module hook 'hook-jaraco.context.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7333 INFO: Setuptools: 'jaraco.context' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.context'!
+7337 INFO: Processing pre-safe-import-module hook 'hook-backports.tarfile.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7337 INFO: Setuptools: 'backports.tarfile' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.backports.tarfile'!
+7391 INFO: Processing standard module hook 'hook-backports.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+7632 INFO: Processing pre-safe-import-module hook 'hook-tomli.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7632 INFO: Setuptools: 'tomli' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.tomli'!
+7963 INFO: Processing pre-safe-import-module hook 'hook-wheel.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7988 INFO: Processing pre-safe-import-module hook 'hook-zipp.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7988 INFO: Setuptools: 'zipp' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.zipp'!
+8064 INFO: Processing standard module hook 'hook-uvloop.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+8187 INFO: Processing module hooks (post-graph stage)...
+8257 INFO: Processing standard module hook 'hook-difflib.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+8380 INFO: Processing standard module hook 'hook-pkg_resources.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+8513 INFO: Processing pre-safe-import-module hook 'hook-platformdirs.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8518 INFO: Processing standard module hook 'hook-platformdirs.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+8745 INFO: Processing pre-safe-import-module hook 'hook-autocommand.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8745 INFO: Setuptools: 'autocommand' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.autocommand'!
+8803 INFO: Processing pre-safe-import-module hook 'hook-typeguard.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8803 INFO: Setuptools: 'typeguard' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.typeguard'!
+9379 INFO: Performing binary vs. data reclassification (107 entries)
+9383 INFO: Looking for ctypes DLLs
+9426 INFO: Analyzing run-time hooks ...
+9429 INFO: Including run-time hook 'pyi_rth_inspect.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9431 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9431 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9433 INFO: Including run-time hook 'pyi_rth_setuptools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9433 INFO: Including run-time hook 'pyi_rth_pkgres.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9443 INFO: Looking for dynamic libraries
+10018 INFO: Warnings written to /src/pyfuzzworkdir/fuzz_http_payload_parser_pure_python/fuzz_http_payload_parser_pure_python.pkg/warn-fuzz_http_payload_parser_pure_python.pkg.txt
+10041 INFO: Graph cross-reference written to /src/pyfuzzworkdir/fuzz_http_payload_parser_pure_python/fuzz_http_payload_parser_pure_python.pkg/xref-fuzz_http_payload_parser_pure_python.pkg.html
+10055 INFO: checking PYZ
+10055 INFO: Building PYZ because PYZ-00.toc is non existent
+10055 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_http_payload_parser_pure_python/fuzz_http_payload_parser_pure_python.pkg/PYZ-00.pyz
+10558 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_http_payload_parser_pure_python/fuzz_http_payload_parser_pure_python.pkg/PYZ-00.pyz completed successfully.
+10573 INFO: checking PKG
+10573 INFO: Building PKG because PKG-00.toc is non existent
+10573 INFO: Building PKG (CArchive) fuzz_http_payload_parser_pure_python.pkg.pkg
+31064 INFO: Building PKG (CArchive) fuzz_http_payload_parser_pure_python.pkg.pkg completed successfully.
+31066 INFO: Bootloader /usr/local/lib/python3.11/site-packages/PyInstaller/bootloader/Linux-64bit-intel/run
+31066 INFO: checking EXE
+31066 INFO: Building EXE because EXE-00.toc is non existent
+31066 INFO: Building EXE from EXE-00.toc
+31072 INFO: Copying bootloader EXE to /out/fuzz_http_payload_parser_pure_python.pkg
+31072 INFO: Appending PKG archive to custom ELF section in EXE
+31139 INFO: Building EXE from EXE-00.toc completed successfully.
++ chmod -x /out/fuzz_http_payload_parser_pure_python.pkg
++ [[ address = *coverage* ]]
++ echo '#!/bin/sh
+# LLVMFuzzerTestOneInput for fuzzer detection.
+this_dir=$(dirname "$0")
+chmod +x $this_dir/fuzz_http_payload_parser_pure_python.pkg
+LD_PRELOAD=$this_dir/sanitizer_with_fuzzer.so ASAN_OPTIONS=$ASAN_OPTIONS:symbolize=1:external_symbolizer_path=$this_dir/llvm-symbolizer:detect_leaks=0 $this_dir/fuzz_http_payload_parser_pure_python.pkg $@'
++ chmod +x /out/fuzz_http_payload_parser_pure_python
++ for fuzzer in $(find $SRC -name 'fuzz_*.py')
++ compile_python_fuzzer /src/aiohttp/fuzz_http_parser.py
++ fuzzer_path=/src/aiohttp/fuzz_http_parser.py
++ shift 1
+++ basename -s .py /src/aiohttp/fuzz_http_parser.py
++ fuzzer_basename=fuzz_http_parser
++ fuzzer_package=fuzz_http_parser.pkg
++ PYFUZZ_WORKPATH=/src/pyfuzzworkdir/
++ FUZZ_WORKPATH=/src/pyfuzzworkdir//fuzz_http_parser
++ [[ address = *introspector* ]]
++ [[ address = *coverage* ]]
++ [[ 0 != \0 ]]
++ rm -rf /src/pyfuzzworkdir/
++ mkdir /src/pyfuzzworkdir/ /src/pyfuzzworkdir//fuzz_http_parser
++ pyinstaller --distpath /out --workpath=/src/pyfuzzworkdir//fuzz_http_parser --onefile --name fuzz_http_parser.pkg /src/aiohttp/fuzz_http_parser.py
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+54 INFO: PyInstaller: 6.10.0, contrib hooks: 2025.6
+54 INFO: Python: 3.11.13
+56 INFO: Platform: Linux-5.15.0-140-generic-x86_64-with-glibc2.31
+56 INFO: Python environment: /usr/local
+56 INFO: wrote /src/aiohttp/fuzz_http_parser.pkg.spec
+58 INFO: Module search paths (PYTHONPATH):
+['/usr/local/lib/python311.zip',
+ '/usr/local/lib/python3.11',
+ '/usr/local/lib/python3.11/lib-dynload',
+ '/usr/local/lib/python3.11/site-packages',
+ '/usr/local/lib/python3.11/site-packages/setuptools/_vendor',
+ '/src/aiohttp']
+132 INFO: checking Analysis
+133 INFO: Building Analysis because Analysis-00.toc is non existent
+133 INFO: Running Analysis Analysis-00.toc
+133 INFO: Target bytecode optimization level: 0
+133 INFO: Initializing module dependency graph...
+133 INFO: Caching module graph hooks...
+138 INFO: Analyzing base_library.zip ...
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+486 INFO: Processing standard module hook 'hook-heapq.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+637 INFO: Processing standard module hook 'hook-encodings.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+1615 INFO: Processing standard module hook 'hook-pickle.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2582 INFO: Caching module dependency graph...
+2633 INFO: Looking for Python shared library...
+2642 INFO: Using Python shared library: /usr/local/lib/libpython3.11.so.1.0
+2642 INFO: Analyzing /src/aiohttp/fuzz_http_parser.py
+2644 INFO: Processing standard module hook 'hook-atheris.py' from '/usr/local/lib/python3.11/site-packages/atheris'
+2779 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2877 INFO: Processing standard module hook 'hook-xml.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3365 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+3366 INFO: SetuptoolsInfo: initializing cached setuptools info...
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+5815 INFO: Processing standard module hook 'hook-platform.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+6887 INFO: Processing pre-safe-import-module hook 'hook-importlib_metadata.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+6887 INFO: Setuptools: 'importlib_metadata' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.importlib_metadata'!
+6890 INFO: Processing standard module hook 'hook-setuptools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+6899 INFO: Processing pre-safe-import-module hook 'hook-distutils.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+6899 INFO: Processing pre-find-module-path hook 'hook-distutils.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_find_module_path'
+7018 INFO: Processing standard module hook 'hook-distutils.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7031 INFO: Processing standard module hook 'hook-distutils.util.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7056 INFO: Processing standard module hook 'hook-sysconfig.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7085 INFO: Processing pre-safe-import-module hook 'hook-packaging.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7091 INFO: Processing standard module hook 'hook-packaging.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7168 INFO: Processing pre-safe-import-module hook 'hook-jaraco.text.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7168 INFO: Setuptools: 'jaraco.text' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.text'!
+7174 INFO: Processing pre-safe-import-module hook 'hook-importlib_resources.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7174 INFO: Processing pre-safe-import-module hook 'hook-jaraco.functools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7174 INFO: Setuptools: 'jaraco.functools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.functools'!
+7180 INFO: Processing pre-safe-import-module hook 'hook-more_itertools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7180 INFO: Setuptools: 'more_itertools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.more_itertools'!
+7266 INFO: Processing pre-safe-import-module hook 'hook-jaraco.context.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7266 INFO: Setuptools: 'jaraco.context' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.context'!
+7272 INFO: Processing pre-safe-import-module hook 'hook-backports.tarfile.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7272 INFO: Setuptools: 'backports.tarfile' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.backports.tarfile'!
+7333 INFO: Processing standard module hook 'hook-backports.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+7573 INFO: Processing pre-safe-import-module hook 'hook-tomli.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7573 INFO: Setuptools: 'tomli' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.tomli'!
+7907 INFO: Processing pre-safe-import-module hook 'hook-wheel.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7931 INFO: Processing pre-safe-import-module hook 'hook-zipp.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7931 INFO: Setuptools: 'zipp' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.zipp'!
+7994 INFO: Processing standard module hook 'hook-uvloop.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+8118 INFO: Processing module hooks (post-graph stage)...
+8198 INFO: Processing standard module hook 'hook-difflib.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+8305 INFO: Processing standard module hook 'hook-pkg_resources.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+8439 INFO: Processing pre-safe-import-module hook 'hook-platformdirs.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8443 INFO: Processing standard module hook 'hook-platformdirs.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+8668 INFO: Processing pre-safe-import-module hook 'hook-autocommand.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8668 INFO: Setuptools: 'autocommand' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.autocommand'!
+8736 INFO: Processing pre-safe-import-module hook 'hook-typeguard.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8736 INFO: Setuptools: 'typeguard' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.typeguard'!
+9304 INFO: Performing binary vs. data reclassification (107 entries)
+9308 INFO: Looking for ctypes DLLs
+9351 INFO: Analyzing run-time hooks ...
+9354 INFO: Including run-time hook 'pyi_rth_inspect.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9355 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9356 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9357 INFO: Including run-time hook 'pyi_rth_setuptools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9357 INFO: Including run-time hook 'pyi_rth_pkgres.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9367 INFO: Looking for dynamic libraries
+9942 INFO: Warnings written to /src/pyfuzzworkdir/fuzz_http_parser/fuzz_http_parser.pkg/warn-fuzz_http_parser.pkg.txt
+9965 INFO: Graph cross-reference written to /src/pyfuzzworkdir/fuzz_http_parser/fuzz_http_parser.pkg/xref-fuzz_http_parser.pkg.html
+9979 INFO: checking PYZ
+9979 INFO: Building PYZ because PYZ-00.toc is non existent
+9979 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_http_parser/fuzz_http_parser.pkg/PYZ-00.pyz
+10482 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_http_parser/fuzz_http_parser.pkg/PYZ-00.pyz completed successfully.
+10497 INFO: checking PKG
+10498 INFO: Building PKG because PKG-00.toc is non existent
+10498 INFO: Building PKG (CArchive) fuzz_http_parser.pkg.pkg
+30980 INFO: Building PKG (CArchive) fuzz_http_parser.pkg.pkg completed successfully.
+30984 INFO: Bootloader /usr/local/lib/python3.11/site-packages/PyInstaller/bootloader/Linux-64bit-intel/run
+30984 INFO: checking EXE
+30985 INFO: Building EXE because EXE-00.toc is non existent
+30985 INFO: Building EXE from EXE-00.toc
+30991 INFO: Copying bootloader EXE to /out/fuzz_http_parser.pkg
+30992 INFO: Appending PKG archive to custom ELF section in EXE
+31058 INFO: Building EXE from EXE-00.toc completed successfully.
++ chmod -x /out/fuzz_http_parser.pkg
++ [[ address = *coverage* ]]
++ echo '#!/bin/sh
+# LLVMFuzzerTestOneInput for fuzzer detection.
+this_dir=$(dirname "$0")
+chmod +x $this_dir/fuzz_http_parser.pkg
+LD_PRELOAD=$this_dir/sanitizer_with_fuzzer.so ASAN_OPTIONS=$ASAN_OPTIONS:symbolize=1:external_symbolizer_path=$this_dir/llvm-symbolizer:detect_leaks=0 $this_dir/fuzz_http_parser.pkg $@'
++ chmod +x /out/fuzz_http_parser
++ for fuzzer in $(find $SRC -name 'fuzz_*.py')
++ compile_python_fuzzer /src/aiohttp/fuzz_http_payload_parser.py
++ fuzzer_path=/src/aiohttp/fuzz_http_payload_parser.py
++ shift 1
+++ basename -s .py /src/aiohttp/fuzz_http_payload_parser.py
++ fuzzer_basename=fuzz_http_payload_parser
++ fuzzer_package=fuzz_http_payload_parser.pkg
++ PYFUZZ_WORKPATH=/src/pyfuzzworkdir/
++ FUZZ_WORKPATH=/src/pyfuzzworkdir//fuzz_http_payload_parser
++ [[ address = *introspector* ]]
++ [[ address = *coverage* ]]
++ [[ 0 != \0 ]]
++ rm -rf /src/pyfuzzworkdir/
++ mkdir /src/pyfuzzworkdir/ /src/pyfuzzworkdir//fuzz_http_payload_parser
++ pyinstaller --distpath /out --workpath=/src/pyfuzzworkdir//fuzz_http_payload_parser --onefile --name fuzz_http_payload_parser.pkg /src/aiohttp/fuzz_http_payload_parser.py
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+54 INFO: PyInstaller: 6.10.0, contrib hooks: 2025.6
+55 INFO: Python: 3.11.13
+56 INFO: Platform: Linux-5.15.0-140-generic-x86_64-with-glibc2.31
+56 INFO: Python environment: /usr/local
+56 INFO: wrote /src/aiohttp/fuzz_http_payload_parser.pkg.spec
+58 INFO: Module search paths (PYTHONPATH):
+['/usr/local/lib/python311.zip',
+ '/usr/local/lib/python3.11',
+ '/usr/local/lib/python3.11/lib-dynload',
+ '/usr/local/lib/python3.11/site-packages',
+ '/usr/local/lib/python3.11/site-packages/setuptools/_vendor',
+ '/src/aiohttp']
+132 INFO: checking Analysis
+132 INFO: Building Analysis because Analysis-00.toc is non existent
+132 INFO: Running Analysis Analysis-00.toc
+132 INFO: Target bytecode optimization level: 0
+132 INFO: Initializing module dependency graph...
+132 INFO: Caching module graph hooks...
+137 INFO: Analyzing base_library.zip ...
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+505 INFO: Processing standard module hook 'hook-encodings.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+792 INFO: Processing standard module hook 'hook-heapq.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+1105 INFO: Processing standard module hook 'hook-pickle.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2831 INFO: Caching module dependency graph...
+2882 INFO: Looking for Python shared library...
+2891 INFO: Using Python shared library: /usr/local/lib/libpython3.11.so.1.0
+2891 INFO: Analyzing /src/aiohttp/fuzz_http_payload_parser.py
+2893 INFO: Processing standard module hook 'hook-atheris.py' from '/usr/local/lib/python3.11/site-packages/atheris'
+3021 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3135 INFO: Processing standard module hook 'hook-xml.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3627 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+3627 INFO: SetuptoolsInfo: initializing cached setuptools info...
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+6079 INFO: Processing standard module hook 'hook-platform.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7179 INFO: Processing pre-safe-import-module hook 'hook-importlib_metadata.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7179 INFO: Setuptools: 'importlib_metadata' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.importlib_metadata'!
+7183 INFO: Processing standard module hook 'hook-setuptools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7192 INFO: Processing pre-safe-import-module hook 'hook-distutils.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7192 INFO: Processing pre-find-module-path hook 'hook-distutils.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_find_module_path'
+7300 INFO: Processing standard module hook 'hook-distutils.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7314 INFO: Processing standard module hook 'hook-distutils.util.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7339 INFO: Processing standard module hook 'hook-sysconfig.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7368 INFO: Processing pre-safe-import-module hook 'hook-packaging.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7374 INFO: Processing standard module hook 'hook-packaging.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7467 INFO: Processing pre-safe-import-module hook 'hook-jaraco.text.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7467 INFO: Setuptools: 'jaraco.text' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.text'!
+7474 INFO: Processing pre-safe-import-module hook 'hook-importlib_resources.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7474 INFO: Processing pre-safe-import-module hook 'hook-jaraco.functools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7474 INFO: Setuptools: 'jaraco.functools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.functools'!
+7479 INFO: Processing pre-safe-import-module hook 'hook-more_itertools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7479 INFO: Setuptools: 'more_itertools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.more_itertools'!
+7545 INFO: Processing pre-safe-import-module hook 'hook-jaraco.context.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7545 INFO: Setuptools: 'jaraco.context' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.context'!
+7550 INFO: Processing pre-safe-import-module hook 'hook-backports.tarfile.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7550 INFO: Setuptools: 'backports.tarfile' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.backports.tarfile'!
+7603 INFO: Processing standard module hook 'hook-backports.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+7839 INFO: Processing pre-safe-import-module hook 'hook-tomli.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7840 INFO: Setuptools: 'tomli' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.tomli'!
+8187 INFO: Processing pre-safe-import-module hook 'hook-wheel.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8210 INFO: Processing pre-safe-import-module hook 'hook-zipp.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8211 INFO: Setuptools: 'zipp' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.zipp'!
+8273 INFO: Processing standard module hook 'hook-uvloop.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+8397 INFO: Processing module hooks (post-graph stage)...
+8466 INFO: Processing standard module hook 'hook-difflib.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+8585 INFO: Processing standard module hook 'hook-pkg_resources.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+8719 INFO: Processing pre-safe-import-module hook 'hook-platformdirs.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8724 INFO: Processing standard module hook 'hook-platformdirs.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+8954 INFO: Processing pre-safe-import-module hook 'hook-autocommand.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8954 INFO: Setuptools: 'autocommand' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.autocommand'!
+9011 INFO: Processing pre-safe-import-module hook 'hook-typeguard.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+9011 INFO: Setuptools: 'typeguard' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.typeguard'!
+9579 INFO: Performing binary vs. data reclassification (107 entries)
+9583 INFO: Looking for ctypes DLLs
+9626 INFO: Analyzing run-time hooks ...
+9629 INFO: Including run-time hook 'pyi_rth_inspect.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9630 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9631 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9632 INFO: Including run-time hook 'pyi_rth_setuptools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9633 INFO: Including run-time hook 'pyi_rth_pkgres.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9642 INFO: Looking for dynamic libraries
+10217 INFO: Warnings written to /src/pyfuzzworkdir/fuzz_http_payload_parser/fuzz_http_payload_parser.pkg/warn-fuzz_http_payload_parser.pkg.txt
+10239 INFO: Graph cross-reference written to /src/pyfuzzworkdir/fuzz_http_payload_parser/fuzz_http_payload_parser.pkg/xref-fuzz_http_payload_parser.pkg.html
+10253 INFO: checking PYZ
+10253 INFO: Building PYZ because PYZ-00.toc is non existent
+10253 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_http_payload_parser/fuzz_http_payload_parser.pkg/PYZ-00.pyz
+10770 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_http_payload_parser/fuzz_http_payload_parser.pkg/PYZ-00.pyz completed successfully.
+10786 INFO: checking PKG
+10787 INFO: Building PKG because PKG-00.toc is non existent
+10787 INFO: Building PKG (CArchive) fuzz_http_payload_parser.pkg.pkg
+31096 INFO: Building PKG (CArchive) fuzz_http_payload_parser.pkg.pkg completed successfully.
+31098 INFO: Bootloader /usr/local/lib/python3.11/site-packages/PyInstaller/bootloader/Linux-64bit-intel/run
+31099 INFO: checking EXE
+31099 INFO: Building EXE because EXE-00.toc is non existent
+31099 INFO: Building EXE from EXE-00.toc
+31104 INFO: Copying bootloader EXE to /out/fuzz_http_payload_parser.pkg
+31104 INFO: Appending PKG archive to custom ELF section in EXE
+31166 INFO: Building EXE from EXE-00.toc completed successfully.
++ chmod -x /out/fuzz_http_payload_parser.pkg
++ [[ address = *coverage* ]]
++ echo '#!/bin/sh
+# LLVMFuzzerTestOneInput for fuzzer detection.
+this_dir=$(dirname "$0")
+chmod +x $this_dir/fuzz_http_payload_parser.pkg
+LD_PRELOAD=$this_dir/sanitizer_with_fuzzer.so ASAN_OPTIONS=$ASAN_OPTIONS:symbolize=1:external_symbolizer_path=$this_dir/llvm-symbolizer:detect_leaks=0 $this_dir/fuzz_http_payload_parser.pkg $@'
++ chmod +x /out/fuzz_http_payload_parser
++ for fuzzer in $(find $SRC -name 'fuzz_*.py')
++ compile_python_fuzzer /src/aiohttp/fuzz_multipart.py
++ fuzzer_path=/src/aiohttp/fuzz_multipart.py
++ shift 1
+++ basename -s .py /src/aiohttp/fuzz_multipart.py
++ fuzzer_basename=fuzz_multipart
++ fuzzer_package=fuzz_multipart.pkg
++ PYFUZZ_WORKPATH=/src/pyfuzzworkdir/
++ FUZZ_WORKPATH=/src/pyfuzzworkdir//fuzz_multipart
++ [[ address = *introspector* ]]
++ [[ address = *coverage* ]]
++ [[ 0 != \0 ]]
++ rm -rf /src/pyfuzzworkdir/
++ mkdir /src/pyfuzzworkdir/ /src/pyfuzzworkdir//fuzz_multipart
++ pyinstaller --distpath /out --workpath=/src/pyfuzzworkdir//fuzz_multipart --onefile --name fuzz_multipart.pkg /src/aiohttp/fuzz_multipart.py
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+55 INFO: PyInstaller: 6.10.0, contrib hooks: 2025.6
+55 INFO: Python: 3.11.13
+56 INFO: Platform: Linux-5.15.0-140-generic-x86_64-with-glibc2.31
+56 INFO: Python environment: /usr/local
+56 INFO: wrote /src/aiohttp/fuzz_multipart.pkg.spec
+58 INFO: Module search paths (PYTHONPATH):
+['/usr/local/lib/python311.zip',
+ '/usr/local/lib/python3.11',
+ '/usr/local/lib/python3.11/lib-dynload',
+ '/usr/local/lib/python3.11/site-packages',
+ '/usr/local/lib/python3.11/site-packages/setuptools/_vendor',
+ '/src/aiohttp']
+131 INFO: checking Analysis
+132 INFO: Building Analysis because Analysis-00.toc is non existent
+132 INFO: Running Analysis Analysis-00.toc
+132 INFO: Target bytecode optimization level: 0
+132 INFO: Initializing module dependency graph...
+132 INFO: Caching module graph hooks...
+137 INFO: Analyzing base_library.zip ...
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+505 INFO: Processing standard module hook 'hook-encodings.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+795 INFO: Processing standard module hook 'hook-heapq.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+1108 INFO: Processing standard module hook 'hook-pickle.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2825 INFO: Caching module dependency graph...
+2877 INFO: Looking for Python shared library...
+2885 INFO: Using Python shared library: /usr/local/lib/libpython3.11.so.1.0
+2885 INFO: Analyzing /src/aiohttp/fuzz_multipart.py
+2888 INFO: Processing standard module hook 'hook-atheris.py' from '/usr/local/lib/python3.11/site-packages/atheris'
+3016 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3128 INFO: Processing standard module hook 'hook-xml.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3612 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+3612 INFO: SetuptoolsInfo: initializing cached setuptools info...
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+6088 INFO: Processing standard module hook 'hook-platform.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7187 INFO: Processing pre-safe-import-module hook 'hook-importlib_metadata.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7187 INFO: Setuptools: 'importlib_metadata' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.importlib_metadata'!
+7190 INFO: Processing standard module hook 'hook-setuptools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7200 INFO: Processing pre-safe-import-module hook 'hook-distutils.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7200 INFO: Processing pre-find-module-path hook 'hook-distutils.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_find_module_path'
+7306 INFO: Processing standard module hook 'hook-distutils.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7320 INFO: Processing standard module hook 'hook-distutils.util.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7345 INFO: Processing standard module hook 'hook-sysconfig.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7374 INFO: Processing pre-safe-import-module hook 'hook-packaging.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7380 INFO: Processing standard module hook 'hook-packaging.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7472 INFO: Processing pre-safe-import-module hook 'hook-jaraco.text.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7473 INFO: Setuptools: 'jaraco.text' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.text'!
+7479 INFO: Processing pre-safe-import-module hook 'hook-importlib_resources.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7479 INFO: Processing pre-safe-import-module hook 'hook-jaraco.functools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7479 INFO: Setuptools: 'jaraco.functools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.functools'!
+7484 INFO: Processing pre-safe-import-module hook 'hook-more_itertools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7484 INFO: Setuptools: 'more_itertools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.more_itertools'!
+7550 INFO: Processing pre-safe-import-module hook 'hook-jaraco.context.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7551 INFO: Setuptools: 'jaraco.context' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.context'!
+7555 INFO: Processing pre-safe-import-module hook 'hook-backports.tarfile.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7555 INFO: Setuptools: 'backports.tarfile' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.backports.tarfile'!
+7609 INFO: Processing standard module hook 'hook-backports.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+7847 INFO: Processing pre-safe-import-module hook 'hook-tomli.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7847 INFO: Setuptools: 'tomli' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.tomli'!
+8192 INFO: Processing pre-safe-import-module hook 'hook-wheel.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8216 INFO: Processing pre-safe-import-module hook 'hook-zipp.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8216 INFO: Setuptools: 'zipp' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.zipp'!
+8279 INFO: Processing standard module hook 'hook-uvloop.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+8402 INFO: Processing module hooks (post-graph stage)...
+8473 INFO: Processing standard module hook 'hook-difflib.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+8592 INFO: Processing standard module hook 'hook-pkg_resources.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+8726 INFO: Processing pre-safe-import-module hook 'hook-platformdirs.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8731 INFO: Processing standard module hook 'hook-platformdirs.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+8966 INFO: Processing pre-safe-import-module hook 'hook-autocommand.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8967 INFO: Setuptools: 'autocommand' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.autocommand'!
+9025 INFO: Processing pre-safe-import-module hook 'hook-typeguard.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+9025 INFO: Setuptools: 'typeguard' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.typeguard'!
+9601 INFO: Performing binary vs. data reclassification (107 entries)
+9605 INFO: Looking for ctypes DLLs
+9648 INFO: Analyzing run-time hooks ...
+9652 INFO: Including run-time hook 'pyi_rth_inspect.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9653 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9654 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9655 INFO: Including run-time hook 'pyi_rth_setuptools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9655 INFO: Including run-time hook 'pyi_rth_pkgres.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9665 INFO: Looking for dynamic libraries
+10233 INFO: Warnings written to /src/pyfuzzworkdir/fuzz_multipart/fuzz_multipart.pkg/warn-fuzz_multipart.pkg.txt
+10256 INFO: Graph cross-reference written to /src/pyfuzzworkdir/fuzz_multipart/fuzz_multipart.pkg/xref-fuzz_multipart.pkg.html
+10269 INFO: checking PYZ
+10269 INFO: Building PYZ because PYZ-00.toc is non existent
+10269 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_multipart/fuzz_multipart.pkg/PYZ-00.pyz
+10781 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_multipart/fuzz_multipart.pkg/PYZ-00.pyz completed successfully.
+10796 INFO: checking PKG
+10796 INFO: Building PKG because PKG-00.toc is non existent
+10796 INFO: Building PKG (CArchive) fuzz_multipart.pkg.pkg
+31166 INFO: Building PKG (CArchive) fuzz_multipart.pkg.pkg completed successfully.
+31170 INFO: Bootloader /usr/local/lib/python3.11/site-packages/PyInstaller/bootloader/Linux-64bit-intel/run
+31171 INFO: checking EXE
+31171 INFO: Building EXE because EXE-00.toc is non existent
+31171 INFO: Building EXE from EXE-00.toc
+31178 INFO: Copying bootloader EXE to /out/fuzz_multipart.pkg
+31179 INFO: Appending PKG archive to custom ELF section in EXE
+31238 INFO: Building EXE from EXE-00.toc completed successfully.
++ chmod -x /out/fuzz_multipart.pkg
++ [[ address = *coverage* ]]
++ echo '#!/bin/sh
+# LLVMFuzzerTestOneInput for fuzzer detection.
+this_dir=$(dirname "$0")
+chmod +x $this_dir/fuzz_multipart.pkg
+LD_PRELOAD=$this_dir/sanitizer_with_fuzzer.so ASAN_OPTIONS=$ASAN_OPTIONS:symbolize=1:external_symbolizer_path=$this_dir/llvm-symbolizer:detect_leaks=0 $this_dir/fuzz_multipart.pkg $@'
++ chmod +x /out/fuzz_multipart
++ for fuzzer in $(find $SRC -name 'fuzz_*.py')
++ compile_python_fuzzer /src/aiohttp/fuzz_payload_url.py
++ fuzzer_path=/src/aiohttp/fuzz_payload_url.py
++ shift 1
+++ basename -s .py /src/aiohttp/fuzz_payload_url.py
++ fuzzer_basename=fuzz_payload_url
++ fuzzer_package=fuzz_payload_url.pkg
++ PYFUZZ_WORKPATH=/src/pyfuzzworkdir/
++ FUZZ_WORKPATH=/src/pyfuzzworkdir//fuzz_payload_url
++ [[ address = *introspector* ]]
++ [[ address = *coverage* ]]
++ [[ 0 != \0 ]]
++ rm -rf /src/pyfuzzworkdir/
++ mkdir /src/pyfuzzworkdir/ /src/pyfuzzworkdir//fuzz_payload_url
++ pyinstaller --distpath /out --workpath=/src/pyfuzzworkdir//fuzz_payload_url --onefile --name fuzz_payload_url.pkg /src/aiohttp/fuzz_payload_url.py
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+55 INFO: PyInstaller: 6.10.0, contrib hooks: 2025.6
+55 INFO: Python: 3.11.13
+56 INFO: Platform: Linux-5.15.0-140-generic-x86_64-with-glibc2.31
+56 INFO: Python environment: /usr/local
+57 INFO: wrote /src/aiohttp/fuzz_payload_url.pkg.spec
+58 INFO: Module search paths (PYTHONPATH):
+['/usr/local/lib/python311.zip',
+ '/usr/local/lib/python3.11',
+ '/usr/local/lib/python3.11/lib-dynload',
+ '/usr/local/lib/python3.11/site-packages',
+ '/usr/local/lib/python3.11/site-packages/setuptools/_vendor',
+ '/src/aiohttp']
+132 INFO: checking Analysis
+132 INFO: Building Analysis because Analysis-00.toc is non existent
+132 INFO: Running Analysis Analysis-00.toc
+132 INFO: Target bytecode optimization level: 0
+132 INFO: Initializing module dependency graph...
+133 INFO: Caching module graph hooks...
+138 INFO: Analyzing base_library.zip ...
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+609 INFO: Processing standard module hook 'hook-heapq.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+666 INFO: Processing standard module hook 'hook-encodings.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+1920 INFO: Processing standard module hook 'hook-pickle.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3051 INFO: Caching module dependency graph...
+3107 INFO: Looking for Python shared library...
+3116 INFO: Using Python shared library: /usr/local/lib/libpython3.11.so.1.0
+3116 INFO: Analyzing /src/aiohttp/fuzz_payload_url.py
+3117 INFO: Processing standard module hook 'hook-atheris.py' from '/usr/local/lib/python3.11/site-packages/atheris'
+3200 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+3200 INFO: SetuptoolsInfo: initializing cached setuptools info...
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+5739 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+5840 INFO: Processing standard module hook 'hook-xml.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+6255 INFO: Processing standard module hook 'hook-platform.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7353 INFO: Processing pre-safe-import-module hook 'hook-importlib_metadata.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7353 INFO: Setuptools: 'importlib_metadata' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.importlib_metadata'!
+7356 INFO: Processing standard module hook 'hook-setuptools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7365 INFO: Processing pre-safe-import-module hook 'hook-distutils.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7365 INFO: Processing pre-find-module-path hook 'hook-distutils.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_find_module_path'
+7474 INFO: Processing standard module hook 'hook-distutils.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7488 INFO: Processing standard module hook 'hook-distutils.util.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7513 INFO: Processing standard module hook 'hook-sysconfig.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7542 INFO: Processing pre-safe-import-module hook 'hook-packaging.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7547 INFO: Processing standard module hook 'hook-packaging.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7625 INFO: Processing pre-safe-import-module hook 'hook-jaraco.text.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7625 INFO: Setuptools: 'jaraco.text' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.text'!
+7631 INFO: Processing pre-safe-import-module hook 'hook-importlib_resources.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7631 INFO: Processing pre-safe-import-module hook 'hook-jaraco.functools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7631 INFO: Setuptools: 'jaraco.functools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.functools'!
+7636 INFO: Processing pre-safe-import-module hook 'hook-more_itertools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7636 INFO: Setuptools: 'more_itertools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.more_itertools'!
+7716 INFO: Processing pre-safe-import-module hook 'hook-jaraco.context.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7716 INFO: Setuptools: 'jaraco.context' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.context'!
+7720 INFO: Processing pre-safe-import-module hook 'hook-backports.tarfile.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7720 INFO: Setuptools: 'backports.tarfile' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.backports.tarfile'!
+7774 INFO: Processing standard module hook 'hook-backports.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+8011 INFO: Processing pre-safe-import-module hook 'hook-tomli.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8011 INFO: Setuptools: 'tomli' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.tomli'!
+8344 INFO: Processing pre-safe-import-module hook 'hook-wheel.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8368 INFO: Processing pre-safe-import-module hook 'hook-zipp.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8368 INFO: Setuptools: 'zipp' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.zipp'!
+8443 INFO: Processing standard module hook 'hook-uvloop.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+8567 INFO: Processing module hooks (post-graph stage)...
+8637 INFO: Processing standard module hook 'hook-difflib.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+8758 INFO: Processing standard module hook 'hook-pkg_resources.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+8891 INFO: Processing pre-safe-import-module hook 'hook-platformdirs.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8895 INFO: Processing standard module hook 'hook-platformdirs.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+9121 INFO: Processing pre-safe-import-module hook 'hook-autocommand.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+9121 INFO: Setuptools: 'autocommand' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.autocommand'!
+9179 INFO: Processing pre-safe-import-module hook 'hook-typeguard.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+9179 INFO: Setuptools: 'typeguard' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.typeguard'!
+9750 INFO: Performing binary vs. data reclassification (107 entries)
+9755 INFO: Looking for ctypes DLLs
+9798 INFO: Analyzing run-time hooks ...
+9801 INFO: Including run-time hook 'pyi_rth_inspect.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9802 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9803 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9804 INFO: Including run-time hook 'pyi_rth_setuptools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9805 INFO: Including run-time hook 'pyi_rth_pkgres.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9814 INFO: Looking for dynamic libraries
+10348 INFO: Warnings written to /src/pyfuzzworkdir/fuzz_payload_url/fuzz_payload_url.pkg/warn-fuzz_payload_url.pkg.txt
+10371 INFO: Graph cross-reference written to /src/pyfuzzworkdir/fuzz_payload_url/fuzz_payload_url.pkg/xref-fuzz_payload_url.pkg.html
+10384 INFO: checking PYZ
+10384 INFO: Building PYZ because PYZ-00.toc is non existent
+10384 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_payload_url/fuzz_payload_url.pkg/PYZ-00.pyz
+10897 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_payload_url/fuzz_payload_url.pkg/PYZ-00.pyz completed successfully.
+10913 INFO: checking PKG
+10913 INFO: Building PKG because PKG-00.toc is non existent
+10913 INFO: Building PKG (CArchive) fuzz_payload_url.pkg.pkg
+31156 INFO: Building PKG (CArchive) fuzz_payload_url.pkg.pkg completed successfully.
+31159 INFO: Bootloader /usr/local/lib/python3.11/site-packages/PyInstaller/bootloader/Linux-64bit-intel/run
+31159 INFO: checking EXE
+31159 INFO: Building EXE because EXE-00.toc is non existent
+31159 INFO: Building EXE from EXE-00.toc
+31164 INFO: Copying bootloader EXE to /out/fuzz_payload_url.pkg
+31165 INFO: Appending PKG archive to custom ELF section in EXE
+31227 INFO: Building EXE from EXE-00.toc completed successfully.
++ chmod -x /out/fuzz_payload_url.pkg
++ [[ address = *coverage* ]]
++ echo '#!/bin/sh
+# LLVMFuzzerTestOneInput for fuzzer detection.
+this_dir=$(dirname "$0")
+chmod +x $this_dir/fuzz_payload_url.pkg
+LD_PRELOAD=$this_dir/sanitizer_with_fuzzer.so ASAN_OPTIONS=$ASAN_OPTIONS:symbolize=1:external_symbolizer_path=$this_dir/llvm-symbolizer:detect_leaks=0 $this_dir/fuzz_payload_url.pkg $@'
++ chmod +x /out/fuzz_payload_url
++ for fuzzer in $(find $SRC -name 'fuzz_*.py')
++ compile_python_fuzzer /src/aiohttp/fuzz_web_request.py
++ fuzzer_path=/src/aiohttp/fuzz_web_request.py
++ shift 1
+++ basename -s .py /src/aiohttp/fuzz_web_request.py
++ fuzzer_basename=fuzz_web_request
++ fuzzer_package=fuzz_web_request.pkg
++ PYFUZZ_WORKPATH=/src/pyfuzzworkdir/
++ FUZZ_WORKPATH=/src/pyfuzzworkdir//fuzz_web_request
++ [[ address = *introspector* ]]
++ [[ address = *coverage* ]]
++ [[ 0 != \0 ]]
++ rm -rf /src/pyfuzzworkdir/
++ mkdir /src/pyfuzzworkdir/ /src/pyfuzzworkdir//fuzz_web_request
++ pyinstaller --distpath /out --workpath=/src/pyfuzzworkdir//fuzz_web_request --onefile --name fuzz_web_request.pkg /src/aiohttp/fuzz_web_request.py
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+55 INFO: PyInstaller: 6.10.0, contrib hooks: 2025.6
+55 INFO: Python: 3.11.13
+56 INFO: Platform: Linux-5.15.0-140-generic-x86_64-with-glibc2.31
+56 INFO: Python environment: /usr/local
+57 INFO: wrote /src/aiohttp/fuzz_web_request.pkg.spec
+58 INFO: Module search paths (PYTHONPATH):
+['/usr/local/lib/python311.zip',
+ '/usr/local/lib/python3.11',
+ '/usr/local/lib/python3.11/lib-dynload',
+ '/usr/local/lib/python3.11/site-packages',
+ '/usr/local/lib/python3.11/site-packages/setuptools/_vendor',
+ '/src/aiohttp']
+132 INFO: checking Analysis
+132 INFO: Building Analysis because Analysis-00.toc is non existent
+132 INFO: Running Analysis Analysis-00.toc
+132 INFO: Target bytecode optimization level: 0
+132 INFO: Initializing module dependency graph...
+132 INFO: Caching module graph hooks...
+138 INFO: Analyzing base_library.zip ...
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+576 INFO: Processing standard module hook 'hook-heapq.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+635 INFO: Processing standard module hook 'hook-encodings.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+1612 INFO: Processing standard module hook 'hook-pickle.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2586 INFO: Caching module dependency graph...
+2637 INFO: Looking for Python shared library...
+2644 INFO: Using Python shared library: /usr/local/lib/libpython3.11.so.1.0
+2644 INFO: Analyzing /src/aiohttp/fuzz_web_request.py
+2646 INFO: Processing standard module hook 'hook-atheris.py' from '/usr/local/lib/python3.11/site-packages/atheris'
+2780 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+2877 INFO: Processing standard module hook 'hook-xml.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+3389 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+3389 INFO: SetuptoolsInfo: initializing cached setuptools info...
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+6034 INFO: Processing standard module hook 'hook-platform.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7220 INFO: Processing pre-safe-import-module hook 'hook-importlib_metadata.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7220 INFO: Setuptools: 'importlib_metadata' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.importlib_metadata'!
+7223 INFO: Processing standard module hook 'hook-setuptools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7232 INFO: Processing pre-safe-import-module hook 'hook-distutils.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7232 INFO: Processing pre-find-module-path hook 'hook-distutils.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_find_module_path'
+7342 INFO: Processing standard module hook 'hook-distutils.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7359 INFO: Processing standard module hook 'hook-distutils.util.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7385 INFO: Processing standard module hook 'hook-sysconfig.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7414 INFO: Processing pre-safe-import-module hook 'hook-packaging.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7420 INFO: Processing standard module hook 'hook-packaging.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+7498 INFO: Processing pre-safe-import-module hook 'hook-jaraco.text.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7498 INFO: Setuptools: 'jaraco.text' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.text'!
+7504 INFO: Processing pre-safe-import-module hook 'hook-importlib_resources.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7504 INFO: Processing pre-safe-import-module hook 'hook-jaraco.functools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7504 INFO: Setuptools: 'jaraco.functools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.functools'!
+7509 INFO: Processing pre-safe-import-module hook 'hook-more_itertools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7510 INFO: Setuptools: 'more_itertools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.more_itertools'!
+7593 INFO: Processing pre-safe-import-module hook 'hook-jaraco.context.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7593 INFO: Setuptools: 'jaraco.context' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco.context'!
+7597 INFO: Processing pre-safe-import-module hook 'hook-backports.tarfile.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7597 INFO: Setuptools: 'backports.tarfile' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.backports.tarfile'!
+7651 INFO: Processing standard module hook 'hook-backports.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+7891 INFO: Processing pre-safe-import-module hook 'hook-tomli.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7891 INFO: Setuptools: 'tomli' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.tomli'!
+8231 INFO: Processing pre-safe-import-module hook 'hook-wheel.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8256 INFO: Processing pre-safe-import-module hook 'hook-zipp.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8256 INFO: Setuptools: 'zipp' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.zipp'!
+8329 INFO: Processing standard module hook 'hook-uvloop.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+8526 INFO: Processing standard module hook 'hook-difflib.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+8612 INFO: Processing module hooks (post-graph stage)...
+8707 INFO: Processing standard module hook 'hook-pkg_resources.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks'
+/usr/local/lib/python3.11/site-packages/altgraph/__init__.py:142: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+8843 INFO: Processing pre-safe-import-module hook 'hook-platformdirs.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8848 INFO: Processing standard module hook 'hook-platformdirs.py' from '/usr/local/lib/python3.11/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+9079 INFO: Processing pre-safe-import-module hook 'hook-autocommand.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+9079 INFO: Setuptools: 'autocommand' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.autocommand'!
+9137 INFO: Processing pre-safe-import-module hook 'hook-typeguard.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/pre_safe_import_module'
+9137 INFO: Setuptools: 'typeguard' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.typeguard'!
+9709 INFO: Performing binary vs. data reclassification (107 entries)
+9714 INFO: Looking for ctypes DLLs
+9759 INFO: Analyzing run-time hooks ...
+9762 INFO: Including run-time hook 'pyi_rth_inspect.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9763 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9764 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9765 INFO: Including run-time hook 'pyi_rth_setuptools.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9766 INFO: Including run-time hook 'pyi_rth_pkgres.py' from '/usr/local/lib/python3.11/site-packages/PyInstaller/hooks/rthooks'
+9775 INFO: Looking for dynamic libraries
+10394 INFO: Warnings written to /src/pyfuzzworkdir/fuzz_web_request/fuzz_web_request.pkg/warn-fuzz_web_request.pkg.txt
+10417 INFO: Graph cross-reference written to /src/pyfuzzworkdir/fuzz_web_request/fuzz_web_request.pkg/xref-fuzz_web_request.pkg.html
+10431 INFO: checking PYZ
+10431 INFO: Building PYZ because PYZ-00.toc is non existent
+10431 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_web_request/fuzz_web_request.pkg/PYZ-00.pyz
+10964 INFO: Building PYZ (ZlibArchive) /src/pyfuzzworkdir/fuzz_web_request/fuzz_web_request.pkg/PYZ-00.pyz completed successfully.
+10981 INFO: checking PKG
+10981 INFO: Building PKG because PKG-00.toc is non existent
+10981 INFO: Building PKG (CArchive) fuzz_web_request.pkg.pkg
+31315 INFO: Building PKG (CArchive) fuzz_web_request.pkg.pkg completed successfully.
+31318 INFO: Bootloader /usr/local/lib/python3.11/site-packages/PyInstaller/bootloader/Linux-64bit-intel/run
+31318 INFO: checking EXE
+31318 INFO: Building EXE because EXE-00.toc is non existent
+31318 INFO: Building EXE from EXE-00.toc
+31325 INFO: Copying bootloader EXE to /out/fuzz_web_request.pkg
+31325 INFO: Appending PKG archive to custom ELF section in EXE
+31386 INFO: Building EXE from EXE-00.toc completed successfully.
++ chmod -x /out/fuzz_web_request.pkg
++ [[ address = *coverage* ]]
++ echo '#!/bin/sh
+# LLVMFuzzerTestOneInput for fuzzer detection.
+this_dir=$(dirname "$0")
+chmod +x $this_dir/fuzz_web_request.pkg
+LD_PRELOAD=$this_dir/sanitizer_with_fuzzer.so ASAN_OPTIONS=$ASAN_OPTIONS:symbolize=1:external_symbolizer_path=$this_dir/llvm-symbolizer:detect_leaks=0 $this_dir/fuzz_web_request.pkg $@'
++ chmod +x /out/fuzz_web_request
+✅ 发现目标: fuzz_http_parser_pure_python fuzz_http_payload_parser_pure_python fuzz_http_parser fuzz_http_payload_parser fuzz_multipart fuzz_payload_url fuzz_web_request
+▶️ 步骤3/5: 运行目标 [fuzz_http_parser_pure_python] (∞分钟超时)...
+INFO:__main__:Running: docker run --privileged --shm-size=2g --platform linux/amd64 --rm -i -e FUZZING_ENGINE=libfuzzer -e SANITIZER=address -e RUN_FUZZER_MODE=interactive -e HELPER=True -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/out/aiohttp:/out -t gcr.io/oss-fuzz-base/base-runner run_fuzzer fuzz_http_parser_pure_python.
+unable to setup input stream: unable to set IO streams as raw terminal: input/output error
+ℹ️ 命令以预期状态退出: 124
+▶️ 步骤3/5: 运行目标 [fuzz_http_payload_parser_pure_python] (∞分钟超时)...
+INFO:__main__:Running: docker run --privileged --shm-size=2g --platform linux/amd64 --rm -i -e FUZZING_ENGINE=libfuzzer -e SANITIZER=address -e RUN_FUZZER_MODE=interactive -e HELPER=True -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/out/aiohttp:/out -t gcr.io/oss-fuzz-base/base-runner run_fuzzer fuzz_http_payload_parser_pure_python.
+ℹ️ 命令以预期状态退出: 124
+▶️ 步骤3/5: 运行目标 [fuzz_http_parser] (∞分钟超时)...
+INFO:__main__:Running: docker run --privileged --shm-size=2g --platform linux/amd64 --rm -i -e FUZZING_ENGINE=libfuzzer -e SANITIZER=address -e RUN_FUZZER_MODE=interactive -e HELPER=True -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/out/aiohttp:/out -t gcr.io/oss-fuzz-base/base-runner run_fuzzer fuzz_http_parser.
+unable to setup input stream: unable to set IO streams as raw terminal: input/output error
+ℹ️ 命令以预期状态退出: 124
+▶️ 步骤3/5: 运行目标 [fuzz_http_payload_parser] (∞分钟超时)...
+INFO:__main__:Running: docker run --privileged --shm-size=2g --platform linux/amd64 --rm -i -e FUZZING_ENGINE=libfuzzer -e SANITIZER=address -e RUN_FUZZER_MODE=interactive -e HELPER=True -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/out/aiohttp:/out -t gcr.io/oss-fuzz-base/base-runner run_fuzzer fuzz_http_payload_parser.
+unable to setup input stream: unable to set IO streams as raw terminal: input/output error
+ℹ️ 命令以预期状态退出: 124
+▶️ 步骤3/5: 运行目标 [fuzz_multipart] (∞分钟超时)...
+INFO:__main__:Running: docker run --privileged --shm-size=2g --platform linux/amd64 --rm -i -e FUZZING_ENGINE=libfuzzer -e SANITIZER=address -e RUN_FUZZER_MODE=interactive -e HELPER=True -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/out/aiohttp:/out -t gcr.io/oss-fuzz-base/base-runner run_fuzzer fuzz_multipart.
+unable to setup input stream: unable to set IO streams as raw terminal: input/output error
+ℹ️ 命令以预期状态退出: 124
+▶️ 步骤3/5: 运行目标 [fuzz_payload_url] (∞分钟超时)...
+INFO:__main__:Running: docker run --privileged --shm-size=2g --platform linux/amd64 --rm -i -e FUZZING_ENGINE=libfuzzer -e SANITIZER=address -e RUN_FUZZER_MODE=interactive -e HELPER=True -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/out/aiohttp:/out -t gcr.io/oss-fuzz-base/base-runner run_fuzzer fuzz_payload_url.
+unable to setup input stream: unable to set IO streams as raw terminal: input/output error
+ℹ️ 命令以预期状态退出: 124
+▶️ 步骤3/5: 运行目标 [fuzz_web_request] (∞分钟超时)...
+INFO:__main__:Running: docker run --privileged --shm-size=2g --platform linux/amd64 --rm -i -e FUZZING_ENGINE=libfuzzer -e SANITIZER=address -e RUN_FUZZER_MODE=interactive -e HELPER=True -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/out/aiohttp:/out -t gcr.io/oss-fuzz-base/base-runner run_fuzzer fuzz_web_request.
+unable to setup input stream: unable to set IO streams as raw terminal: input/output error
+ℹ️ 命令以预期状态退出: 124

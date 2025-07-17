@@ -79,7 +79,7 @@ main() {
   echo "📝 日志文件: $LOG_FILE"
   echo "=============================="
 
-  # 1. 构建Docker镜像
+  1. 构建Docker镜像
   run_command \
     "python3 infra/helper.py build_image $PROJECT_NAME" \
     "步骤1/5: 构建Docker镜像"
@@ -104,9 +104,9 @@ main() {
   for target in "${FUZZ_TARGETS[@]}"; do
     run_command \
       "python3 infra/helper.py run_fuzzer $PROJECT_NAME $target" \
-      "步骤3/5: 运行目标 [$target] (∞分钟超时)" \
+      "步骤3/5: 运行目标 [$target] (120秒超时)" \
       "124,1"  # 允许超时(124)和发现崩溃(1)
-  done
+done
 
   # 5. 生成覆盖率报告
   # run_command \
