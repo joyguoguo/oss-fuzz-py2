@@ -87,7 +87,7 @@ process_project() {
   echo "📝 日志文件: $log_file" | tee -a "$log_file"
   echo "============================================================" | tee -a "$log_file"
 
-  # 1. 构建Docker镜像
+  1. 构建Docker镜像
   if ! run_command \
     "python3 infra/helper.py build_image $project_name" \
     "步骤1/5: 构建 $project_name 的Docker镜像" \
@@ -120,8 +120,8 @@ process_project() {
       # 4. 遍历运行所有目标
       for target in "${FUZZ_TARGETS[@]}"; do
         if ! run_command \
-          "python3 infra/helper.py run_fuzzer $project_name $target -- -max_total_time=120" \
-          "步骤3/5: 运行目标 [$target] (120秒超时)" \
+          "python3 infra/helper.py run_fuzzer $project_name $target -- -max_total_time=60" \
+          "步骤3/5: 运行目标 [$target] (60秒超时)" \
           "$log_file" \
           "124,1"; then  # 允许超时(124)和发现崩溃(1)
           echo "⚠️  警告: 目标 [$target] 运行失败，继续下一个目标" | tee -a "$log_file"
@@ -135,8 +135,10 @@ process_project() {
 
   if [ $project_failed -eq 0 ]; then
     echo "✅ 项目 $project_name 处理完成！" | tee -a "$log_file"
+   
   else
     echo "❌ 项目 $project_name 处理失败！" | tee -a "$log_file"
+    
   fi
   
   echo "------------------------------------------------------------"
@@ -150,28 +152,37 @@ if ! check_environment; then
     exit 1
   fi
 
-  local total_projects=$(wc -l < "$PROJECT_LIST_FILE")
+  # 新增：读取项目列表到数组（过滤空行和注释行）
+  local PROJECTS=()
+  while IFS= read -r line || [[ -n "$line" ]]; do
+    if [[ -z "$line" || "$line" =~ ^# ]]; then
+      continue
+    fi
+    PROJECTS+=("$line")
+  done < "$PROJECT_LIST_FILE"
+
+  # 项目总数从数组长度获取（原逻辑从文件行数获取）
+  local total_projects=${#PROJECTS[@]}
   local current_project_num=0
   local success_count=0
   local fail_count=0
 
-  while IFS= read -r project_name || [[ -n "$project_name" ]]; do
-    if [[ -z "$project_name" || "$project_name" =~ ^# ]]; then
-      continue
-    fi
-    
+  # 新增：遍历数组处理项目（替代原while读取文件的循环）
+  for project_name in "${PROJECTS[@]}"; do
+
     current_project_num=$((current_project_num + 1))
     echo ">>> [ $current_project_num / $total_projects ] 开始处理项目: $project_name <<<"
     
     if process_project "$project_name"; then
       echo "✅ [$current_project_num/$total_projects] 项目 $project_name 成功完成"
-      ((success_count++))
+      ( success_count=$[ $success_count + 1 ])
     else
       echo "❌ [$current_project_num/$total_projects] 项目 $project_name 处理失败"
       FAILED_PROJECTS+=("$project_name")
-      ((fail_count++))
+      ( success_count=$[ $success_count + 1 ])
     fi
-  done < "$PROJECT_LIST_FILE"
+
+  done
 
   echo "============================================================"
   echo "🎉 批量处理完成！"
