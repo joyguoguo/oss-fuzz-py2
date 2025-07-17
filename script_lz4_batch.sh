@@ -8,7 +8,7 @@
 PROJECT_LIST_FILE="${1:-valid_projects.txt}" # 默认项目列表文件
 SANITIZER="${2:-address}"                   # 默认检测器类型
 OSS_FUZZ_DIR="$HOME/oss-fuzz-py/oss-fuzz"      # OSS-Fuzz目录
-LOG_DIR="$OSS_FUZZ_DIR/script_lz4_baatch_logs"        # 所有项目的总日志目录
+LOG_DIR="$OSS_FUZZ_DIR/script_lz4_batch_logs"        # 所有项目的总日志目录
 FAILED_PROJECTS=()                          # 存储失败项目列表
 
 # --- 环境检查 ---
@@ -120,7 +120,7 @@ process_project() {
       # 4. 遍历运行所有目标
       for target in "${FUZZ_TARGETS[@]}"; do
         if ! run_command \
-          "python3 infra/helper.py run_fuzzer $project_name $target" \
+          "python3 infra/helper.py run_fuzzer $project_name $target -- -max_total_time=120" \
           "步骤3/5: 运行目标 [$target] (120秒超时)" \
           "$log_file" \
           "124,1"; then  # 允许超时(124)和发现崩溃(1)

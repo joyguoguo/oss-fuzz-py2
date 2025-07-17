@@ -1,0 +1,99 @@
+============================================================
+🚀 开始处理项目: abseil-py
+📝 日志文件: /home/jiayiguo/oss-fuzz-py/oss-fuzz/script_lz4_baatch_logs/oss_fuzz_abseil-py_20250717000847.log
+============================================================
+▶️ 步骤1/5: 构建 abseil-py 的Docker镜像...
+Pull latest base images (compiler/runtime)? (y/N): INFO:__main__:Using cached base images...
+INFO:__main__:Running: docker build --no-cache -t gcr.io/oss-fuzz/abseil-py --file /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/abseil-py/Dockerfile /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/abseil-py.
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile:
+#1 transferring dockerfile: 782B done
+#1 DONE 0.5s
+
+#2 [internal] load metadata for gcr.io/oss-fuzz-base/base-builder-python:latest
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context:
+#3 transferring context: 2B done
+#3 DONE 0.4s
+
+#4 [1/4] FROM gcr.io/oss-fuzz-base/base-builder-python:latest
+#4 CACHED
+
+#5 [internal] load build context
+#5 transferring context: 66B done
+#5 DONE 0.9s
+
+#6 [2/4] RUN git clone https://github.com/abseil/abseil-py abseil-py
+#6 2.360 Cloning into 'abseil-py'...
+#6 DONE 5.9s
+
+#7 [3/4] COPY *.sh *py /src/
+#7 DONE 3.0s
+
+#8 [4/4] WORKDIR /src/abseil-py
+#8 DONE 2.4s
+
+#9 exporting to image
+#9 exporting layers
+#9 exporting layers 1.9s done
+#9 writing image sha256:d91608557ed346f7cd4c5515cec9207d73a592448e81bdab366ca29df3579b8d 0.0s done
+#9 naming to gcr.io/oss-fuzz/abseil-py 0.1s done
+#9 DONE 2.4s
+▶️ 步骤2/5: 编译 abseil-py 的fuzzer (sanitizer=address)...
+INFO:__main__:Running: docker build -t gcr.io/oss-fuzz/abseil-py --file /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/abseil-py/Dockerfile /home/jiayiguo/oss-fuzz-py/oss-fuzz/projects/abseil-py.
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile:
+#1 transferring dockerfile: 782B done
+#1 DONE 1.2s
+
+#2 [internal] load metadata for gcr.io/oss-fuzz-base/base-builder-python:latest
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context:
+#3 transferring context: 2B done
+#3 DONE 0.7s
+
+#4 [1/4] FROM gcr.io/oss-fuzz-base/base-builder-python:latest
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 66B done
+#5 DONE 0.9s
+
+#6 [3/4] COPY *.sh *py /src/
+#6 CACHED
+
+#7 [2/4] RUN git clone https://github.com/abseil/abseil-py abseil-py
+#7 CACHED
+
+#8 [4/4] WORKDIR /src/abseil-py
+#8 CACHED
+
+#9 exporting to image
+#9 exporting layers done
+#9 writing image sha256:d91608557ed346f7cd4c5515cec9207d73a592448e81bdab366ca29df3579b8d 0.1s done
+#9 naming to gcr.io/oss-fuzz/abseil-py 0.0s done
+#9 DONE 0.3s
+INFO:__main__:Keeping existing build artifacts as-is (if any).
+INFO:__main__:Running: docker run --privileged --shm-size=2g --platform linux/amd64 --rm -e FUZZING_ENGINE=libfuzzer -e SANITIZER=address -e ARCHITECTURE=x86_64 -e PROJECT_NAME=abseil-py -e HELPER=True -e FUZZING_LANGUAGE=python -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/out/abseil-py/:/out -v /home/jiayiguo/oss-fuzz-py/oss-fuzz/build/work/abseil-py:/work gcr.io/oss-fuzz/abseil-py.
+---------------------------------------------------------------
+vm.mmap_rnd_bits = 28
+Compiling libFuzzer to /usr/lib/libFuzzingEngine.a...  done.
+---------------------------------------------------------------
+CC=clang
+CXX=clang++
+CFLAGS=-O1   -fno-omit-frame-pointer   -gline-tables-only   -Wno-error=enum-constexpr-conversion   -Wno-error=incompatible-function-pointer-types   -Wno-error=int-conversion   -Wno-error=deprecated-declarations   -Wno-error=implicit-function-declaration   -Wno-error=implicit-int   -Wno-error=vla-cxx-extension   -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -fno-sanitize=function,leak,vptr,
+CXXFLAGS=-O1   -fno-omit-frame-pointer   -gline-tables-only   -Wno-error=enum-constexpr-conversion   -Wno-error=incompatible-function-pointer-types   -Wno-error=int-conversion   -Wno-error=deprecated-declarations   -Wno-error=implicit-function-declaration   -Wno-error=implicit-int   -Wno-error=vla-cxx-extension   -DFUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION -fsanitize=address -fsanitize-address-use-after-scope -fsanitize=fuzzer-no-link -stdlib=libc++ -fno-sanitize=function,leak,vptr
+RUSTFLAGS=--cfg fuzzing -Zsanitizer=address -Cdebuginfo=1 -Cforce-frame-pointers
+---------------------------------------------------------------
++ python3 setup.py install
+python3: can't open file '/src/abseil-py/setup.py': [Errno 2] No such file or directory
+ERROR:__main__:Building fuzzers failed.
+❌ 命令执行失败: python3 infra/helper.py build_fuzzers --sanitizer address abseil-py (退出码: 1)
