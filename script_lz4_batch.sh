@@ -145,7 +145,7 @@ process_project() {
 
 # --- 主流程 ---
 main() {
-  if ! check_environment; then
+if ! check_environment; then
     echo "❌ 环境检查失败，脚本终止"
     exit 1
   fi
@@ -156,7 +156,6 @@ main() {
   local fail_count=0
 
   while IFS= read -r project_name || [[ -n "$project_name" ]]; do
-    # 忽略空行或注释行
     if [[ -z "$project_name" || "$project_name" =~ ^# ]]; then
       continue
     fi
