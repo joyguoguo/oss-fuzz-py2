@@ -4573,3 +4573,4 @@ INFO: A corpus is not provided, starting from an empty corpus
 #31706134	REDUCE cov: 230 ft: 562 corp: 284/70Kb lim: 4096 exec/s: 108955 rss: 67Mb L: 553/3218 MS: 1 EraseBytes-
 #31782560	REDUCE cov: 230 ft: 562 corp: 284/70Kb lim: 4096 exec/s: 108844 rss: 67Mb L: 89/3218 MS: 1 EraseBytes-
 #31783131	REDUCE cov: 230 ft: 562 corp: 284/70Kb lim: 4096 exec/s: 108846 rss: 67Mb L: 491/3218 MS: 1 EraseBytes-
+time="2025-07-18T20:25:26Z" level=error msg="error waiting for container: unexpected EOF"

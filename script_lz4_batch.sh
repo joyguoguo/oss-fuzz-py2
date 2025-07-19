@@ -36,7 +36,7 @@ run_command() {
 
   echo "▶️ $log_msg..." | tee -a "$log_file"
   set +e
-  eval "$cmd" 2>&1 | tee -a "$log_file"
+  { yes | eval "$cmd" ; } 2>&1 | tee -a "$log_file"
   local exit_code=${PIPESTATUS[0]}
   set -e
 
@@ -87,7 +87,7 @@ process_project() {
   echo "📝 日志文件: $log_file" | tee -a "$log_file"
   echo "============================================================" | tee -a "$log_file"
 
-  1. 构建Docker镜像
+  #1. 构建Docker镜像
   if ! run_command \
     "python3 infra/helper.py build_image $project_name" \
     "步骤1/5: 构建 $project_name 的Docker镜像" \
